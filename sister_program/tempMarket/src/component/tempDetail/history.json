@@ -1,0 +1,6 @@
+{
+  "success":true,
+  "content":"我是通过ajax获取的成交记录",
+  "totalItem":39,
+  "pageSize":5
+}

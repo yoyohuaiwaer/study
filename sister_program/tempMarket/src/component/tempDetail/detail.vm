@@ -1,0 +1,5 @@
+<div class="detail" for="$!data.name">
+    <span class="detail-span">$!data.name</span>
+    <label>数量<input type="text" data-name="$!data.name" class="detail-input num-input" data-price="$!data.price" value="$!data.num"></label>
+    <a href="javascript:void(0);" class="del-btn">删除</a>
+</div>

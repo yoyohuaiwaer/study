@@ -1,0 +1,96 @@
+@import "reset";
+@primary: #FF556E;
+@secondary: #FFB4BF;
+@gray: #ECECEC;
+@graySecondary: #DDD;
+@fontColor: #333;
+
+//清除浮动
+.clearfix() {
+  *zoom: 1;
+  &:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+//省略号
+.ellipse() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//兼容性：placeholder
+.placeholder(@color) {
+  ::-webkit-input-placeholder {
+    // WebKit browsers
+    color: @color;
+  }
+
+  :-moz-placeholder {
+    // Mozilla Firefox 4 to 18
+    color: @color;
+  }
+
+  ::-moz-placeholder {
+    // Mozilla Firefox 19+
+    color: @color;
+  }
+
+  :-ms-input-placeholder {
+    // Internet Explorer 10+
+    color: @color;
+  }
+}
+
+//兼容性：圆角
+.border-radius(@radius: 6px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+//兼容性：transition
+.transition(@property1,@duration,@timing-function,@delay) {
+  -webkit-transition: @property1 @duration @timing-function @delay;
+  -moz-transition: @property1 @duration @timing-function @delay;
+  -o-transition: @property1 @duration @timing-function @delay;
+  transition: @property1 @duration @timing-function @delay;
+}
+
+//兼容性：rotate
+.rotate(@deg: 45deg) {
+  -webkit-transform: rotate(@deg);
+  -ms-transform: rotate(@deg);
+  -o-transform: rotate(@deg);
+  -moz-transform: rotate(@deg);
+  transform: rotate(@deg);
+}
+
+//兼容性：box-sizing
+.box-sizing(@value: border-box) {
+  -webkit-box-sizing: @value;
+  -moz-box-sizing: @value;
+  box-sizing: @value;
+}
+
+//兼容性：阴影
+.box-shadow(@x,@y,@b,@color) {
+  -webkit-box-shadow: @x @y @b @color;
+  -moz-box-shadow: @x @y @b @color;
+  box-shadow: @x @y @b @color;
+}
+
+/*隐藏*/
+.hide {
+  display: none!important;
+}
+
+/*显示*/
+.show {
+  display: block!important;
+}

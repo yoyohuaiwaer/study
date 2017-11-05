@@ -1,0 +1,6 @@
+{
+  "success":true,
+  "content":"这是我通过ajax拿到的search的接口，你看分页的数据也变化了",
+  "totalPage":59,
+  "pageSize":5
+}
