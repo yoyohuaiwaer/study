@@ -2,4 +2,4 @@
 [merge]
 tool="kdiff3"
 # Generated files
-/idea/
+/.idea/
