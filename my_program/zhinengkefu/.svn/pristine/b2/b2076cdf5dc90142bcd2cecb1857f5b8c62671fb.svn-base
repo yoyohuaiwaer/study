@@ -1,0 +1,533 @@
+$(document).ready(function() {
+	var treeObj ={
+		level:1
+	}
+	setTree(treeObj);
+	var obj={};
+	listPage(1,false,obj);
+})
+
+function setTree(treeObj,type) {
+	var obj = {
+		level:treeObj.level,
+		parentId:treeObj.parentId,
+		id:treeObj.id,
+		token: $.cookie("token")
+	}
+	$.ajax({
+		url: commUrl + '/qacates/node' ,
+		data: obj,
+		cache: false,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data)
+			addLeftTree(data.data,type);
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	})
+}
+
+//加载左侧树html
+function addLeftTree(datas,type){
+	var html='';
+	var addHtml='';
+	var leftTreeAllNums =0;
+	
+	$.each(datas, function(i, key) {
+		leftTreeAllNums += key.count;
+		var levelNum = key.cateName+"( "+key.count+" )";
+		var parentId = key.parentId?key.parentId:key.id;
+		var html2 = '';
+		var html3 = '';
+		var html4 = '';
+		var html5 = '';
+		var addHtml2 = '';
+		var addHtml3 = '';
+		var addHtml4 = '';
+		var addHtml5 = '';
+		var rightBtns='<div class="classifyBtn" onclick="classClick(this)" >'+
+						'<button type="button" class="addBigClas">▼</button>'+
+						'<ul class="classifyUl">'+
+							'<li class="addCla" onclick="javascript:showOverall(this)">创建子分类</li>'+
+							'<li class="reviseCla" onclick="javascript:showOverall(this)">修改分类</li>'+
+							'<li class="deletedCla" onclick="javascript:showOverall(this)">删除分类</li>'+
+						'</ul>'+
+					'</div>';
+		var rightLastBtns='<div class="classifyBtn" onclick="classClick(this)" >'+
+						'<button type="button" class="addBigClas">▼</button>'+
+						'<ul class="classifyUl">'+
+							'<li class="reviseCla" onclick="javascript:showOverall(this)">修改分类</li>'+
+							'<li class="deletedCla" onclick="javascript:showOverall(this)">删除分类</li>'+
+						'</ul>'+
+					'</div>';
+		if(key.level=='1')
+		{
+			if(key.subs.length>0){
+				$.each(key.subs, function(i, key) {
+					if(key.level=='2')
+					{
+						html3 = '';
+						addHtml3 = '';
+						if(key.subs.length>0)
+						{
+							$.each(key.subs, function(i, key) {
+								html4='';
+								addHtml4 = '';
+								if(key.level=='3')
+								{
+									if(key.subs.length>0)
+									{
+										$.each(key.subs, function(i, key) {
+											html5='';
+											addHtml5 = '';
+											if(key.level=='4')
+											{
+												if(key.subs.length>0)
+												{
+													$.each(key.subs, function(i, key) {
+														var levelNum = key.cateName+"( "+key.count+" )";
+														var parentId = key.parentId?key.parentId:key.id;
+														html5 += '<li>'+
+															'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+																rightLastBtns+
+															'</span>'
+														'</li>';
+														addHtml5 += '<li>'+
+															'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+															'</span>'
+														'</li>';
+													})
+												}
+											}
+											var levelNum = key.cateName+"( "+key.count+" )";
+											var parentId = key.parentId?key.parentId:key.id;
+											html4 += '<li>'+
+												'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+													rightBtns+
+												'</span>'+
+												'<ul>'+html5+'</ul>'+
+											'</li>';
+											addHtml4 += '<li>'+
+												'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+												'</span>'+
+												'<ul>'+addHtml5+'</ul>'+
+											'</li>';
+										})
+									}
+								}
+								var levelNum = key.cateName+"( "+key.count+" )";
+								var parentId = key.parentId?key.parentId:key.id;
+								html3 += '<li>'+
+									'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+										rightBtns+
+									'</span>'+
+									'<ul>'+html4+'</ul>'+
+								'</li>';
+								addHtml3 += '<li>'+
+									'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+									'</span>'+
+									'<ul>'+addHtml4+'</ul>'+
+								'</li>';
+							})
+						}
+					}
+					var levelNum = key.cateName+"( "+key.count+" )";
+					var parentId = key.parentId?key.parentId:key.id;
+					html2 += '<li>'+
+						'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+							rightBtns+
+						'</span>'+
+						'<ul>'+html3+'</ul>'+
+					'</li>';
+					addHtml2 += '<li>'+
+						'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+						'</span>'+
+						'<ul>'+addHtml3+'</ul>'+
+					'</li>';
+				})
+
+			}
+			
+			html +='<li data-count="'+key.count+'">'+
+				'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+					rightBtns+
+				'</span>'+
+				'<ul>'+html2+'</ul>'+
+			'</li>';
+			
+			addHtml+='<li data-count="'+key.count+'">'+
+				'<span class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+				'</span>'+
+				'<ul>'+addHtml2+'</ul>'+
+			'</li>';
+		}
+		
+	})
+	if(type=='add')
+	{
+		$("#anotherTree").html(addHtml);
+		$("#anotherTree").treeview();	
+	}else{
+		$("#tree").html(html);
+		$("#tree").treeview();
+	}
+	$('.leftTreeAllNums').html("全部分类( "+leftTreeAllNums+" )");
+
+}
+
+function listPage(page, isSearch,qsObj) {
+	var obj = {};
+	var _level = 1;
+	var _parentId;
+	var _id;
+	if(qsObj)
+	{
+		_level = qsObj.level;
+		_parentId = qsObj.parentId;
+		_id = qsObj.id;
+	}
+	page = page ? page : 1;
+	obj = {
+		level:_level,
+		parentId:_parentId,
+		id:_id,
+		token: $.cookie("token"),
+		page: page,
+		row: '10',
+		sortId: 'createTime',
+		sortType: 'DESC'
+	}
+	$.ajax({
+		url: commUrl + '/qacates' ,
+		data: obj,
+		cache: false,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data)
+			$(".grid-body").empty();
+			var html = '<tr class="grid-head-th">' +
+				'<th class="start_Time">序号</th>' +
+				'<th class="start_Time">问题</th>' +
+				'<th class="totalNum">相似问句  </th>' +
+				'<th class="totalNum">创建时间 </th>' +
+				'<th class="noLoginNum" >操作</th>' +
+				'</tr>';
+			var sort = 0;
+			var page = '';
+			var similarNum=0;
+			if(data.code == '1' && data.data.datas.length>0) {
+				$.each(data.data.datas, function(i, key) {
+					sort = i + 1;
+					similarNum = key.similar.length;
+					html += '<tr> <td>' + sort + '</td> ' +
+						'<td style="width:300px; "> ' + key.cateName + '</td> ' +
+						'<td><a href="javascript:void(0);"  onclick="javascript:similarQuestions(this)" class="gridBtn" id="' + key.id + '" >'+similarNum+'</a></td> ' +
+						'<td>' + key.createTime + '</td> ' +
+						'<td ><a href="javascript:void(0);"  onclick="javascript:checkInfo(this)" class="gridBtn" id="' + key.id + '" >编辑</a><a href="javascript:void(0);"  onclick="javascript:checkInfo(this)" class="gridBtn" id="' + key.id + '" >删除</a></td>' +
+						'</tr>'
+				})
+				
+				if(data.data.page == '1') {
+					page = '<li class="prevPage readonly" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li>' +
+						' <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定"/></li>'
+
+				} else if(data.data.page == data.data.pageCount) {
+					page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li> ' +
+						'<li class="nextPage readonly" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)"  value="确定"/></li>'
+				} else {
+					page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li> ' +
+						'<li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定" /></li>'
+				}
+			}
+			if(data.code=='-1')
+			{
+				alert(data.msg+" 请重新登录")
+			}
+			$(".pages ul").html(page);
+			$(".grid").html(html);
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	})
+}
+function prevPage(e) {
+    $(e).next("li").find(".onpage").text();
+
+    if($(e).next("li").find(".onpage").text() == '1'){
+        $(e).addClass("readonly");
+    }
+    else {
+        var page = $(e).next("li").find(".onpage").text() - 1;
+        var obj={};
+		 listPage(page,false,obj);
+    }
+}
+
+function nextPage(e){
+    if($(e).prev("li").find(".onpage").text() == $(e).prev("li").find(".pagecount").text()){
+        $(e).addClass("readonly");
+    }
+    else {
+        //alert($(e).prev("li").find(".onpage").text());
+        var page = $(e).prev("li").find(".onpage").text() - 0 + 1;
+		var obj={};
+		listPage(page,false,obj);
+    }
+}
+//输入框跳转页面
+function turnPage(e){
+     if(parseInt($(e).prev(".nowPage").val() )<= 1){
+	     var page = 1;
+	     pagenation(page);
+     }else if(parseInt($(e).prev(".nowPage").val() )>= parseInt($(".pagecount").text())){
+	     var page = $(".pagecount").text();
+	     pagenation(page)
+     }else{
+	     var page = $(e).prev(".nowPage").val();
+	     var obj={};
+		 listPage(page,false,obj);
+
+     }
+}
+//分类新增 修改 删除
+function classClick(value) {
+	var id =$(value).parent().attr('id');
+	var parentID = $(value).parent().data('parentid');
+	var classifyUl = $('.classifyUl');
+	for(var i = 0; i < classifyUl.length; i++) {
+		if($(classifyUl[i]).parent().parent().attr('id') == id)
+		{
+			var isshow = $(classifyUl[i]).css('display');
+			$(classifyUl[i]).css('display', isshow == 'none' ? 'block' : "none");
+		}else
+		{
+			$(classifyUl[i]).css('display', 'none');
+		}
+	}
+}
+
+var popapObj = {};
+//全部分类右边的
+function showTopOverall(e){
+	popapObj.level=1;
+	popapObj.type='addCla';
+	popapObj.parentid =undefined; 
+	popapObj.curId =undefined; 
+	$(".overall").show();
+	$('.popapTitle').html('创建分类')
+	$(".isDeleted").css('display', 'none');
+	$(".popapInput").css('display', 'block');
+	$(".popapInput").val("");
+}
+//分类下拉菜单点击
+function showOverall(e) {
+	
+	var parentid = $(e).parent().parent().parent().data('parentid');
+	var curId = $(e).parent().parent().parent().attr('id');
+	var level = $(e).parent().parent().parent().data('level');
+	popapObj.parentid =parentid; 
+	popapObj.curId =curId; 
+	popapObj.level =level; 
+	var className = $(e).attr('class');
+	popapObj.type = className;
+	$(".overall").show();
+	switch(className){
+		case "addCla": 
+			popapObj.curId = undefined; 
+			popapObj.level =level+1; 
+			popapObj.parentid =curId; 
+			$('.popapTitle').html('创建分类')
+			$(".isDeleted").css('display', 'none');
+			$(".popapInput").css('display', 'block');
+			$(".popapInput").val("");
+		break;
+		case "reviseCla": 
+			$('.popapTitle').html('修改分类');
+			$(".isDeleted").css('display', 'none');
+			$(".popapInput").css('display', 'block');
+			$(".popapInput").val($(e).parent().parent().parent().data("catename"));
+		break;
+		case "deletedCla": 
+		case "deletedCla last":
+			$('.popapTitle').html('删除分类')
+			$(".isDeleted").css('display', 'block');
+			$(".popapInput").css('display', 'none');
+		break;
+	}
+}
+function clearOverall(e) {
+	$(".overall").hide();
+}
+function popopEnsure(e) {
+	var cateName = $(".popapInput").val();
+	popapObj.cateName = cateName;
+	popapObj.level=undefined?1:popapObj.level;
+	if(popapObj.type=='addCla')
+	{
+		if(popapObj.cateName=='')
+		{
+			alert('请输入分类名称')
+			return;
+		}
+	}
+	console.log(popapObj)
+//	删除分类问答节点
+	if(popapObj.type=='deletedCla' || popapObj.type=='deletedCla last')
+	{
+		$.ajax({
+		url:commUrl+'/qacates/d',
+			type: 'POST',
+			data:{
+				token:$.cookie("token"),
+				id:popapObj.curId
+			},
+			cache:false,
+			success: function(data){
+				data = eval('('+data+')');
+				console.log(data)
+				if(data.code == '1'){
+					$(".overall").hide();
+					var treeObj ={
+						level:1
+					}
+					$("#tree").html('');
+					setTree(treeObj);
+					var obj={};
+					listPage(1,false,obj);
+				}
+			},
+			error: function(e){
+				console.log(e)
+				alert('出错啦~！');
+			}
+		})
+	}else{
+		//	新增或修改分类问答节点
+		$.ajax({
+			url:commUrl+'/qacates/node',
+			type: 'POST',
+			data:{
+				token:$.cookie("token"),
+				cateName:popapObj.cateName,
+				id:popapObj.curId,
+				level:popapObj.level,
+				parentId:popapObj.parentid
+			},
+			cache:false,
+			success: function(data){
+				data = eval('('+data+')');
+				if(data.code == '1'){
+					$(".overall").hide();
+					var treeObj ={
+						level:1
+					}
+					$("#tree").html('');
+					setTree(treeObj);
+					var obj={};
+					listPage(1,false,obj);
+				}
+			},
+			error: function(e){
+				console.log(e)
+				alert('出错啦~！');
+			}
+		})
+	}
+}
+//相似问句
+function similarQuestions(e){
+	var id = $(e).attr('id');
+	$(".similarQueOverall").show();
+	$("#simlarAdd").hide();
+	$("#simlarEdit").hide();
+	$("#simlarOne").show();
+	getsimilarQue(id);
+	
+}
+//隐藏相似问句遮罩层
+function hideSimilarQueOver(e){
+	$(".similarQueOverall").hide();
+}
+//填充相似问句
+function getsimilarQue(_id)
+{
+	var obj = {};
+	obj = {
+		id:_id,
+		token: $.cookie("token")
+	}
+	$.ajax({
+		url: commUrl + '/qacates' ,
+		data: obj,
+		cache: false,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data)
+			var similarNum=data.data.similar.length;
+			$('.hasSimilarNum').html('已有相似问句( '+similarNum+' )')
+			if(data.code == '1') {
+				$('.faq-question').html(data.data.cateName);
+				var html='';
+				$.each(data.data.similar, function(i, key) {
+					html+= '<li class="similarLi">'+
+									'<span>'+
+										"我买的米粉在闲置里买的，卖家迟迟不发货怎么办，看怎么办 "
+									'</span>'+
+									'<input type="checkbox" class="elCheckbox" value="">'
+								'</li>'
+					$('.similar-lists').html(html)
+				})
+			}
+			if(data.code=='-1')
+			{
+				alert(data.msg+" 请重新登录")
+			}
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	})
+}
+function isShowTreeTwo(e)
+{
+	var isshow = $('#anotherTree').css('display');
+	$('#anotherTree').css('display', isshow == 'none' ? 'inline-block' : "none");
+}
+
+function checkInfo(e){
+	var id = $(e).attr('id');
+	$(".similarQueOverall").show();
+	$("#simlarEdit").show();
+	$("#simlarOne").hide();
+	$("#simlarAdd").hide();
+	getNewsimilarQue(id);
+}
+
+function addQuestion(e){
+	$(".similarQueOverall").show();
+	$("#simlarEdit").hide();
+	$("#simlarOne").hide();
+	$("#simlarAdd").show();
+	getNewsimilarQue();
+}
+
+//填充新增相似问句
+function getNewsimilarQue()
+{
+	var treeObj ={
+		level:1
+	}
+	setTree(treeObj,'add');
+}

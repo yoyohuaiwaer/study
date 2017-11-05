@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .text {
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<form class="accound-detail">
+    <div><label for="operation">功能选择</label>
+        <select name="operation" id="operation">
+            <option value="basic">基础功能设置</option>
+            <option value="software">软件功能设置</option>
+            <option value="acts">动作设置</option>
+        </select>
+        <span class="tip3"></span>
+    </div>
+    <div style="height: auto" class="accound-detail module" id="basic">
+    </div>
+    <div style="height: auto; " class="accound-detail module" id="addVoiceHtml">
+    </div>
+    <div style="height: auto; display: none;" class="accound-detail module" id="software">
+    </div>
+    <div style="height: auto; display: none;" class="accound-detail module" id="acts">
+    </div>
+    <div class="toolbar" >
+        <input type="button" class="button confirm" value="保存"/>
+        <input type="button" class="button minor cancel" value="取消"/>
+    </div>
+</form>
+<script src="js/functionalArousa.js"></script>
+</body>
+</html>

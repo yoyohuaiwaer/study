@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>会员推荐</title>
+		<!--<link rel="stylesheet" href="css/common.css" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>-->
+	</head>
+
+	<body>
+		<div style="height: 40px;text-align: right">
+			<select id="selectSearch">
+				<option value="title">广告标题</option>
+				<option value="memberType">会员类型</option>
+			</select>
+			<input type="text" class="text searchText" />
+			<input type="button" class="button searchbtn" rel="0" value="搜索" />
+			<input type="button" onclick="javascript:addQuestion(this)" title="0" class="addScene button" value="添加会员广告" style="float: right;margin-bottom: 15px;margin-right: 0px;" />
+		</div>
+		<div class="grid">
+			<div class="order-head order-body">
+				<div class="grid-head-th">
+					<div style="width: 70px;">序号</div>
+					<div style="width: 250px">广告标题</div>
+					<div style="width: 150px">会员分类</div>
+					<div style="width: 300px">时间</div>
+					<div style="width: 190px">操作</div>
+				</div>
+			</div>
+			<div class="grid-body order-body">
+			</div>
+		</div>
+		<div class="overall">
+			<div class="popap">
+				<p>确定要删除该条信息吗？</p>
+				<input type="button" class="button deleteQuestion" onclick="javascript:deleteGoods(this)" value="确定">
+				<input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消" />
+			</div>
+		</div>
+		<!--分页-->
+		<div class="pages">
+			<ul>
+			</ul>
+		</div>
+		<!--分页-->
+		<script type="text/javascript" src="js/memebersRecom.js" ></script>
+	</body>
+
+</html>

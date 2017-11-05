@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同义词列表</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+</head>
+<body>
+
+<div style="height: 40px;text-align: right">
+	<label>客服在线中...</label>
+	<button>忙碌</button>
+	<button id="rtCall">发送消息</button>
+	<div class="search-box" style="display: inline-block">
+        <select name="scene" id="scene" data-rel="2">
+            <option value="昨天" selected="selected">昨天</option>
+            <option value="7天" >过去7天</option>
+            <option value="1个月" >过去1个月</option>
+            <option value="3个月" >过去3个月</option>
+        </select>
+    </div>
+	
+</div>
+
+
+<div class="grid synonym">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class=""><span>序号</span></div>
+            <div class=""><span>日期</span></div>
+            <div class=""><span>问题</span></div>
+            <div class=""><span>音频</span></div>
+            <div class=""><span>答案</span></div>
+            <div class=""><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除该条会话吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+    </div>
+</div>
+<script src="js/customerServiceMsg.js"></script>
+</body>
+</html>

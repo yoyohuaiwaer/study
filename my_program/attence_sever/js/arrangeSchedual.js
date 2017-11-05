@@ -1,0 +1,559 @@
+/**
+ * Created by A on 2017/7/13.
+ */
+
+
+$(document).ready(function(){
+    //commUrl = 'http://10.10.23.65:8080/server';//正式环境//明伟
+    producer();//公司
+    arr = [];
+    loadDetail();
+    chooseper();
+    cancelPop();//cancel Popup
+    confirmPerson();//Pop Person confirm
+    chooseDate();
+    loadDatePicker();
+    confirmDate();
+    deletePerson()
+    //next();
+    changeName();
+    goBack();
+
+});
+function goBack(){
+    $('.goBack').on('click',function(){
+        newPage();
+    });
+}
+function newPage(){
+    $.ajax({
+        url:menuUrl+'order-list.html',
+        success: function(data){
+            $('.main').html(data);
+        }
+    })
+}
+function deletePerson(){
+    $('.deleted').on('click',function(){
+        var status = $('#multiple').attr('data-status');
+        var num = parseInt($('.selectDate li.selected').attr('data-num'),10) - 1;
+        var id = $('.selectDate li.selected').attr('data-id');
+        var newId = id;
+        //console.log(id);
+        if(status == 0){
+            //console.log(arr);
+            arr.splice(num,1);
+
+            loadPerson();
+            $('.selectOption .person').each(function(){
+                if($(this).attr('data-id') == id){
+                    $(this).prop( "checked", false );
+                }
+            })
+        }else{
+            var shiftId = $.cookie('shiftId');
+            $.ajax({
+                url: commUrl+'/shift/group/spec/del',
+                type:'POST',
+                data:{
+                    token: $.cookie('token'),
+                    eid: id,
+                    sid: shiftId
+                },
+                success: function(data){
+                    data = eval('(' + data + ')')
+                    if(data.code == 1){
+                        //console.log(arr);
+                        arr.splice(num,1);
+                        //console.log(arr.splice(num,1));
+                        //debugger;
+                        $('.selectOption .person').each(function(){
+                            //console.log($(this).attr('data-id'));
+                            //console.log(newId);
+                            if( $(this).attr('data-id') == newId){
+                                $(this).prop( "checked", false );//debugger;
+                            }
+                        })
+                        loadPerson();
+
+                    }else{
+                        alert(data.msg);
+                    }
+                    /*if(data.code == '1'){
+                     newPage();
+                     }else {
+                     alert(data.msg);
+                     }*/
+                },
+                error: function(text){
+                    alert('出错啦~！');
+                }
+            })
+
+        }
+        var id = $('.selectDate li').attr('data-id');
+        loaddate(id);
+    })
+}
+
+function loadDetail(){
+    var shiftId = $.cookie('shiftId');
+    $.ajax({
+        url: commUrl+'/shift?token='+$.cookie("token")+'&id='+shiftId,
+        //type:'POST',
+        //data:arr,
+        //dataType: 'json',
+        //contentType: 'application/json; charset=UTF-8',
+        success: function(data){
+            data = eval('(' + data + ')');
+            /*console.log(data);
+            debugger;*/
+            if(data.code == 1){
+                if(data.data.datas.length !== 0){
+                    isUpdate = 1;
+                    arr = [];
+                    console.log(data.data.datas[0].emps);
+                    if(data.data.datas[0].emps !== undefined){
+                        arr = data.data.datas[0].emps;
+                        forEachArr(arr);
+                    }
+
+                }
+            }
+            /*if(data.code == '1'){
+             newPage();
+             }else {
+             alert(data.msg);
+             }*/
+        },
+        error: function(text){
+            alert('出错啦~！');
+        }
+    })
+}
+function forEachArr(arr){
+    $.each(arr,function(i,key){
+        $('.person').each(function(){
+            if($(this).attr('data-id') == key.id){
+                $(this).prop( "checked", true );
+                var $subBox = $('.person');
+                //$subBox.click(function(){
+                $(this).parents('.personBox').find(".allperson").prop("checked",$(this).parents('.personBox').find('.person').length == $(this).parents('.personBox').find('.person:checked').length ? true : false);
+                //});
+            }
+        })
+    })
+}
+function confirmDate(){
+    $('.confirmDate').on('click',function(){
+        var Ele = $('.pmu-selected.pmu-button:not(.pmu-not-in-month) ');
+        var month = $('.pmu-month.pmu-button:eq(0)').text().split(',')[0];
+        var year =  $('.pmu-month.pmu-button:eq(0)').text().split(',')[1];
+        var days = [];
+        switch(month){
+            case '一月':
+                month = '01' ;
+                break;
+            case '二月':
+                month = '02' ;
+                break;
+            case '三月':
+                month = '03' ;
+                break;
+            case '四月':
+                month = '04' ;
+                break;
+            case '五月':
+                month = '05' ;
+                break;
+            case '六月':
+                month = '06' ;
+                break;
+            case '七月':
+                month = '07' ;
+                break;
+            case '八月':
+                month = '08' ;
+                break;
+            case '九月':
+                month = '09' ;
+                break;
+            case '十月':
+                month = '10' ;
+                break;
+            case '十一月':
+                month = '11' ;
+                break;
+            case '十二月':
+                month = '12' ;
+                break;
+        }
+        var _companyId = $('#producer').children('option:selected').attr('value');
+        var eid = $('.selectDate li.selected').attr('data-id');
+        var ename = $('.selectDate li.selected').attr('data-name');
+        var sid = $.cookie('shiftId');
+        var sname = $.cookie('shiftName');
+        Ele.each(function(i,key){
+            var day = $(this).text();
+            if(day < 10){
+                day = '0'+day;
+
+            }
+            var date = year+'-'+month+'-'+day;
+            var obj = {
+                meid: _companyId,
+                eid: eid,
+                ename: ename,
+                sid: sid,
+                sname: sname,
+                date: date
+            }
+            days.push(obj);
+        })
+        days = JSON.stringify(days);
+        console.log(days);
+
+        //后台请求
+        $.ajax({
+            url:commUrl+'/shift/group/spec?token='+$.cookie("token"),
+            type:'POST',
+            data:days,
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            success: function(data){
+                data = eval('(' + data + ')')
+                if(data.code == '1'){
+                    alert('保存成功!');
+                    //newPage();
+                }else {
+                    alert(data.msg);
+                }
+            },
+            error: function(text){
+                alert('出错啦~！');
+            }
+        })
+
+
+
+    })
+}
+function next(){
+    $('#multiple').on('.pmu-next','click',function(){
+        alert('123');
+    })
+}
+function loadDatePicker(date){
+    if(date !== undefined){
+        $('#multiple').empty().attr({'data-status':'1'});
+        $('#multiple').pickmeup({
+            flat	: true,
+            mode	: 'multiple',
+            //current: '2017-07-31',
+            date: date,
+            format: 'Y-m-d',
+            calendars: 1,
+            onRender: function(date) {
+                console.log(date);
+            },
+            onChange: function(formated, dates) {
+                console.log(formated);
+                console.log(dates);
+            },
+            starts: 1
+        });
+        //$('.pickmeup.pmu-view-days:nth-child(1)').hide();
+    }else {
+        $('#multiple').empty().attr({'data-status':'0'});
+        $('#multiple').pickmeup({
+            flat	: true,
+            mode	: 'multiple',
+            //current: '2017-07-31',
+            //date: date,
+            format: 'Y-m-d',
+            calendars: 1,
+            onRender: function(date) {
+                console.log(date);
+            },
+            onChange: function(formated, dates) {
+                console.log(formated);
+                console.log(dates);
+            },
+            starts: 1
+        });
+        //$('.pickmeup.pmu-view-days:nth-child(1)').hide();
+    }
+   /* var now = new Date();
+    now.addDays(-10);
+    var now2 = new Date();
+    now2.addDays(-5);
+    now2.setHours(0,0,0,0);
+    $('#multiple').pickmeup({
+        flat	: true,
+        mode	: 'multiple',
+        //current: '2012-07-31',
+        //date: [],
+        format: 'Y-m-d',
+        calendars: 1,
+        onRender: function(date) {
+            console.log(date);
+            debugger;
+        },
+        onChange: function(formated, dates) {
+            console.log(formated);
+            console.log(dates);
+            debugger;
+        },
+        starts: 1
+    });*/
+}
+function loadPerson(){
+    if(arr.length !== 0){
+        $('#date').show();
+        var html = '<li><h4>人员</h4></li>';
+        $.each(arr,function(i,Person){
+            html +='<li data-id="'+Person.id+'" data-name="'+Person.value+'" data-num="'+(i+1)+'">'+Person.value+'</li>'
+        })
+        /*arr.forEach(function(i,Person){
+         console.log(i);
+         debugger;
+
+         })*/
+        $('.selectDate').html(html);
+        $('.selectDate li:nth-child(2)').addClass('selected');
+        var id = $('.selectDate li:nth-child(2)').attr('data-id');
+        loaddate(id);
+        changeName();
+    }else{
+
+        $('.selectDate li:nth-child(1)').nextAll().remove();
+        $('#multiple').empty();
+        $('#date').hide();
+        alert('请先选择人员')
+    }
+}
+function chooseDate(){
+    $('.chooseDate').on('click',function(){
+        loadPerson();
+    })
+}
+function loaddate(id){
+    var _id = $.cookie('shiftId')
+    $.ajax({
+        url: commUrl+'/shift/group?token='+$.cookie("token")+'&eid='+id+'&id='+_id+'&trans=1',
+        //type:'POST',
+        //data:arr,
+        //dataType: 'json',
+        //contentType: 'application/json; charset=UTF-8',
+        success: function(data){
+            data = eval('(' + data + ')')
+            if(data.code == 1){
+                var datas = data.data.datas
+                if(datas.length !== 0){
+                 /*   var date = []
+                    $.each(datas,function(i,key){
+                        var day = key.workDate;
+                        date.push(day);
+                    })
+                    loadDatePicker(date);*/
+                    var date = []
+                    $.each(datas[0].arrangements,function(i,key){
+                        if(key.eid !== undefined ){
+                            var day = key.date;
+                            date.push(day);
+                        }
+                    })
+                    loadDatePicker(date);
+
+                }else {
+                    //$('#multiple').empty();
+                    loadDatePicker();
+                }
+            }
+            /*if(data.code == '1'){
+             newPage();
+             }else {
+             alert(data.msg);
+             }*/
+        },
+        error: function(text){
+            alert('出错啦~！');
+        }
+    })
+}
+function changeName(){
+    $('.selectDate li:not(:first-child)').on('click',function(){
+        $('.selectDate li').removeClass('selected');
+        $(this).addClass('selected');
+        var id = $(this).attr('data-id');
+        loaddate(id);
+    })
+}
+function confirmPerson(){
+    $('.confirmPerson').on('click',function(){
+         arr = [];
+        $('.person').each(function(){
+            if($(this).is(':checked')){
+                var obj = {
+                    //meid: meid,
+                    //sid: sid,
+                    //sname: sname
+                    id : $(this).attr('data-id'),
+                    value: $(this).attr('data-name')
+                }
+                arr.push(obj);
+            }
+        })
+        //时间列表加载人员名单
+        console.log(arr);
+        $('#person').hide();
+        return arr;
+
+    })
+}
+
+function cancelPop(){
+    $('.cancelPop').on('click',function(){
+        $(this).parents('.overall1').hide();
+    })
+}
+function chooseper(){
+    $('.chooseper').on('click',function(){
+        $('#person').show();
+    })
+};
+function producer(){
+    $.ajax({
+        url: commUrl + '/user/userList',
+        //type: 'POST',
+        cache: false,
+        async: false,
+        data: {
+            token: $.cookie("token")
+        },
+        //dataType: 'json',
+        //contentType: 'application/json; charset=UTF-8',
+        success: function(data) {
+            data = eval('(' + data + ')');
+            if(data.code == '1') {
+                //if(data.data.length > 1){
+                var str = ''
+                //str = '<option value="">选择公司</option>';
+                $.each(data.data,function(i,key){
+                    str +='<option value="'+key.id+'">'+key.nick+'</option>'
+                });
+                //if(data.data.length == 1){
+                    $('#producer').html(str);
+
+                //}else {
+                    $('#producer').html(str);
+                    //$('.chooseCompany').show();
+                //}
+                 _companyId = $('#producer').children('option:selected').attr('value');
+                classId(_companyId);//根据商家获取该商家下的部门
+            }
+        },
+        error: function(text){
+
+        }
+    })
+}
+function chooseAll(){//全选
+    $(".allperson").click(function() {
+
+        $(this).parents('.personBox').find('.person').prop("checked",this.checked);
+    });
+    var $subBox = $('.person');
+    $subBox.click(function(){
+        $(this).parents('.personBox').find(".allperson").prop("checked",$(this).parents('.personBox').find('.person').length == $(this).parents('.personBox').find('.person:checked').length ? true : false);
+    });
+};
+
+function classId(id){
+    var _data = {
+        token: $.cookie("token")
+    }
+    if(id !== undefined){
+        _data.meid = id;
+    }
+    $.ajax({
+        url: commUrl + '/employee/findDept',
+        type: 'POST',
+        cache: false,
+        data: _data,
+        //dataType: 'json',
+        //contentType: 'application/json; charset=UTF-8',
+        success: function(data) {
+            data = eval('(' + data + ')');
+            if(data.code == '1') {
+                var str = ''
+                str = '<li><h4>部门:</h4></li>';
+                $.each(data.data,function(i,key){
+                    //str +='<option value="'+key.id+'">'+key.deptName+'</option>'
+                    var _id = key.id;
+                    var html = '';
+                    html = loadAd(_id);//获取各部门下人员
+                    str += '<li class="depId" data-id="'+key.id+'" data-name="'+key.deptName+'"><a data-id="'+key.id+'" >'+key.deptName+'</a>'+html+'</li>';
+                });
+                $(".selectOption").html(str);
+                $('.depId:eq(0)').addClass('selected').find('.personBox').show()
+                depId();
+                chooseAll();
+            }
+        },
+        error: function(text){
+        }
+    })
+}
+function depId(){//切换部门 出现该部门下人员
+    $('.depId').on('click',function(){
+        $('.depId').removeClass('selected');
+        $(this).addClass('selected');
+        $('.personBox').hide();
+        $(this).find('.personBox').show();
+    })
+}
+function loadAd(id){//下载部门
+    var obj = {
+        token:$.cookie("token"),
+        meid: _companyId,
+        //detpId:id
+
+    };
+    if(id !== undefined){
+        obj.detpId = id;
+    }
+    var html = '';
+    $.ajax({
+        url:commUrl+'/employee/employeeExtList',
+        type:'POST',
+        data:obj,
+        async: false,
+        cache:false,
+        dataType:'json',
+        success:function(data){
+            data = eval('('+data+')');
+            //$(".selectOption").empty();
+             html = '<ul class="personBox" style="display: none;"><li class="chooseALl"><input type="checkbox" class="allperson">选择全部</li>';
+            if(data.code == '1'){
+
+                $.each(data.data,function(i,key){
+                    html += '<li><input type="checkbox" class="person" data-id="'+key.id+'" data-name="'+key.name+'"/>'+key.name+'</li>';
+                })
+                html+='</ul>';
+                return html;
+                //return loadAd(id);
+
+               /* $(".selectOption").html(html);
+                chooseAll();*/
+
+            }
+        },
+        error: function(text){
+            alert(text.readyState);
+            alert(text.status);
+        }
+    })
+    return html;
+
+}

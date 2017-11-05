@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>人员出勤</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+        .breadcrumb li:before {
+            position: absolute;
+            content: '';
+            left: -5px;
+            color: #d7d7d8;
+        }
+        .start_Time span{
+            cursor: pointer;
+        }
+        .start_Time span:hover {
+            color: #00a0ea;
+            text-decoration: underline;
+        }
+        .details,
+        .details ul{
+            width: 100%;
+        }
+        .details h4,
+        .details li{
+            border-bottom: 1px solid #efeff1;
+            line-height: 45px;
+            width: 100%;
+        }
+        .details li span {
+            display: inline-block;
+        }
+        .details li .infoData {
+            width: 15%;
+        }
+        .details li span:not([class="infoData"]){
+            width: 20%;
+            text-align: center;
+        }
+        .returnShop {
+            line-height: 50px;
+            color: #00a0ea;
+        }
+    </style>
+</head>
+<body>
+<div class="chooseTerm" style="height: 40px;margin-bottom: 15px;">
+    <input type="button" onclick="javascript:setList(this)" title="7" class="addScene button" value="7日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="button" onclick="javascript:setList(this)" title="30" class="addScene button" value="30日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="date" id="startTime" onchange="javascript:setStartList()" class="text" style="width: 140px; "/>
+    至<input type="date" id="endTime" onchange="javascript:setStartList()" class="text" style="width: 140px;  margin-left: 6px;"/>
+    <label class="tip"></label>
+    <select id="shop" class="text" onchange="javascript:setTypeSelect(this)" style="width: 140px; display: none;">
+    </select>
+    <span>当天数据于第二天凌晨3点统计</span>
+</div>
+<div style="text-align: right"><input type="button" onclick="javascript:forExcel(this)" class="button excelOut" value="导出Excel"/></div>
+<table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+</table>
+<a class="returnShop" style="display: none;">返回</a>
+<div class="details" style="display: none;">
+    <h4 class="name">小猛</h4>
+    <ul>
+    </ul>
+</div>
+<!--分页-->
+<!--<div class="pages">
+    <ul>
+    </ul>
+</div>-->
+<!--分页-->
+<script type="text/javascript" src="js/attendanceSituation.js" ></script>
+<script type="text/javascript" src="js/outExcel.js" ></script>
+</body>
+</html>

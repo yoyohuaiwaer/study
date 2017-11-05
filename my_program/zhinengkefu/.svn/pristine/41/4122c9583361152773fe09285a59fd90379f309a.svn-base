@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>批量导入</title>
+		<link href="css/common.css" rel="stylesheet">
+		<style>
+			.tips {
+				margin-top: 100px;
+				text-align: center;
+			}
+			
+			.tips img {
+				vertical-align: middle;
+			}
+			
+			.tips span {
+				color: #666666;
+				line-height: 26px;
+			}
+			
+			.tips a {
+				color: #00a0e9;
+			}
+			
+			.fileTip {
+				color: #8d8d8d;
+				margin-top: 10px;
+			}
+			.downLoad{
+				background: #00a0e9;
+				color: #FFFFFF;
+				border-radius: 3px;
+				border: 1px solid #00a0e9;
+				line-height: 28px;
+				width: 84px;
+				text-align: center;
+				display: inline-block;
+			}
+			.downLoad:hover{
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			 <select name="scene" id="scene">
+                <option value="none" selected="selected">选择场景</option>
+            </select>
+			<input type="text" class="text urlTxt"  />
+			<div class="chooseExcel choseimg ">
+				上传
+				<input type="file" class=" confirm onfile"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+			</div>
+			<!--<div class="chooseExcel choseimg ">
+				浏览
+				<input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+			</div>-->
+			<div style="display: inline-block;">
+				<audio style="display: none;" id="audioId" controls></audio>
+			</div>
+			<a  class="downLoad" download>下载模板</a>
+			<!--<input type="button" class="button confirm onload" value="下载模板" />-->
+			<P class="fileTip">请下载模板按照表格内的格式要求填写正确后上传!</p>
+		</div>
+		<div class="errorTips tips" style="display: none;width: 100%;">
+			<img src="images/wrong.png" />
+			<span class="showTips"></span>
+		</div>
+		<div class="successTips tips" style="display: none; width: 100%;">
+			<img src="images/correct.png" />
+			<!--<span>上传成功,成功通过验证11条,失败22条,详情请下载并查看<a download href="file:///C:/Users/admin/Downloads/My97DatePicker.rar">上传结果</a></span>-->
+			<span class="showTips"></span>
+		</div>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/bulkLoad.js"></script>
+	</body>
+	<script type="text/javascript">
+//		$.post(url, {
+//			param1,
+//			param2
+//		}, function(data) {
+//			if(data.code == 0) {
+//				try {
+//					var a = document.getElementById("downPdf");
+//					a.href = data.url;
+//					a.download = data.fileName;
+//					a.click();
+//				} catch(e) {}
+//			} else {
+//				alert(data.errorMsg);
+//			}
+//		});
+	</script>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排班表</title>
+    <link href="css/easyUi.css" rel="stylesheet">
+    <!--<style>
+        .grid.account .grid-body-tr > div,
+        .grid.account .grid-head-th > div {
+            /*width: 180px;*/
+            box-sizing: border-box;
+        }
+        .grid.account .grid-body-tr > div span,
+        .grid.account .grid-head-th > div span {
+            display: block;
+            /*width: 180px;*/
+            box-sizing: border-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .grid.account .grid-body-tr:hover,
+        .grid.account .grid-body-tr.selected{
+            background: rgba(0,160,233,.3);
+            cursor: pointer;
+        }
+    </style>-->
+</head>
+<body>
+<input type="date" id="startTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px;"/>至
+<input type="date" id="endTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px;  margin:0 20px 0 6px;"/>
+<label class="tip"></label>
+<select name="producer" id="producer"></select>
+<input type="text" class="text searchText" value="姓名查找" style="width: 150px"/>
+<input type="button" class="button searchbtn"  rel="3" value="搜索" style="width: 80px"/>
+<div style="width: 960px; height: 550px; overflow: auto;">
+    <div class="panel datagrid" style="width: 960px;">
+        <div class="datagrid-wrap panel-body" title="" style="width: 960px;height: 299px; box-sizing: border-box;">
+            <div class="datagrid-view" style="width: 941px;height: 26px;">
+                <div class="datagrid-view1" style="width: 246px;">
+                    <div class="datagrid-header" style="width: 246px; height: 25px;">
+                        <div class="datagrid-header-inner" style="display: block;">
+                            <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0" style="height: 25px;">
+                                <tbody>
+                                <tr class="datagrid-header-row">
+                                    <td rowspan="1">
+                                        <div class="datagrid-header-rownumber"></div>
+                                    </td>
+                                    <td field="itemid">
+                                        <div class="datagrid-cell datagrid-cell-c1-itemid" style="">
+                                            <span>姓名</span><span class="datagrid-sort-icon">&nbsp;</span></div>
+                                    </td>
+                                    <td field="productid" class="">
+                                        <div class="datagrid-cell datagrid-cell-c1-productid" style="">
+                                            <span>部门</span><span class="datagrid-sort-icon">&nbsp;</span></div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="datagrid-footer" style="width: 246px;">
+                        <div class="datagrid-footer-inner" style="display: none;"></div>
+                    </div>
+                </div>
+                <div class="datagrid-view2" style="width: 696px; overflow-x: overlay">
+                    <div class="datagrid-header" style="width: auto; height: 25px;">
+                        <div class="datagrid-header-inner" style="display: block;">
+                            <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0" style="height: 25px;">
+                                <tbody>
+                                <tr class="datagrid-header-row" id="dataHead" style="width: auto;">
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="datagrid-footer" style="width: 452px;">
+                        <div class="datagrid-footer-inner" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="datagrid-view" style="width: 941px;height: 256px; overflow-y: auto">
+                <div class="datagrid-view1" style="width: 246px;">
+                    <div class="datagrid-body" style="width: 246px;">
+                        <div class="datagrid-body-inner">
+                            <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0">
+                                <tbody id="nameDept">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="datagrid-footer" style="width: 246px;">
+                        <div class="datagrid-footer-inner" style="display: none;"></div>
+                    </div>
+                </div>
+                <div class="datagrid-view2" style="width: 696px; position: relative">
+                    <div class="datagrid-body" style="width:auto;" id="scrollTest">
+                        <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0">
+                            <tbody id="dataBody">
+                            <tr id="datagrid-row-r1-2-2" datagrid-row-index="2" class="datagrid-row" style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">38.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">12
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">Venomless</div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="datagrid-row-r1-2-3" datagrid-row-index="3" class="datagrid-row" style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">26.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">12
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">Rattleless</div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="datagrid-row-r1-2-4" datagrid-row-index="4" class="datagrid-row" style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">35.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">12
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">Green Adult</div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="datagrid-row-r1-2-5" datagrid-row-index="5" class="datagrid-row" style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">158.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">12
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">Tailless</div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="datagrid-row-r1-2-6" datagrid-row-index="6" class="datagrid-row" style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">83.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">12
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">With tail</div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="datagrid-row-r1-2-7" datagrid-row-index="7" class="datagrid-row" style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">23.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">12
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">Adult Female
+                                    </div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="datagrid-row-r1-2-8" datagrid-row-index="8" class="datagrid-row  "
+                                style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">89.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">12
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">Adult Male</div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="datagrid-row-r1-2-9" datagrid-row-index="9" class="datagrid-row  "
+                                style="height: 25px;">
+                                <td field="listprice">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-listprice">63.5
+                                    </div>
+                                </td>
+                                <td field="unitcost">
+                                    <div style="text-align:right;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-unitcost">92
+                                    </div>
+                                </td>
+                                <td field="attr1">
+                                    <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">Adult Male</div>
+                                </td>
+                                <td field="status">
+                                    <div style="text-align:center;height:auto;"
+                                         class="datagrid-cell datagrid-cell-c1-status">P
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="datagrid-footer" style="width: 696px;">
+                        <div class="datagrid-footer-inner" style="display: none;"></div>
+                    </div>
+                </div>
+                <style type="text/css" easyui="true">
+                    .datagrid-cell-c1-itemid {
+                        width: 99px
+                    }
+
+                    .datagrid-cell-c1-productid {
+                        width: 119px
+                    }
+
+                    .datagrid-cell-c1-listprice {
+                        width: 89px
+                    }
+
+                    .datagrid-cell-c1-unitcost {
+                        width: 89px
+                    }
+
+                    .datagrid-cell-c1-attr1 {
+                        width: 229px
+                    }
+
+                    .datagrid-cell-c1-status {
+                        width: 59px
+                    }
+                </style>
+            </div>
+            <div class="scroll">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+<!--<div class="grid account" style="width: auto">
+    <div class="order-head">
+        <div class="grid-head-th">
+            &lt;!&ndash;<div class="answer" style="width: 500px;">项目</div>
+            <div class="num" style="width: 210px;">次数</div>
+            <div class="percent" style="width: 250px;">占比</div>&ndash;&gt;
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+</div>-->
+<script src="js/associateRotas.js"></script>
+</body>
+</html>

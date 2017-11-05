@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>热词列表</title>
+</head>
+<body>
+<div style="text-align: right">
+    <div class="search-box" style="display: inline-block">
+        <select name="scene" id="scene" data-rel="2">
+            <!--<option value="none" selected="selected">选择场景</option>-->
+        </select>
+    </div>
+    <input type="button"  class="addSynonym button" value="新增热词"/></div>
+<div class="grid synonym">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class=""><span>序号</span></div>
+            <div class=""><span>行业</span></div>
+            <div class=""><span>关键字</span></div>
+            <div class=""><span>关联热词</span></div>
+            <div class=""><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除词条热词吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+    </div>
+</div>
+<script src="js/hotWords.js"></script>
+</body>
+</html>

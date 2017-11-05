@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>官方平台账号</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+
+    <style>
+        .industrys {
+            display: inline-block;
+            height: auto;
+            line-height: 30px;
+            width: 450px;
+        }
+        .industrys-box {
+            margin-bottom: 15px;
+        }
+        .industrys-box span {
+            display: inline-block;
+            width: 60px;
+        }
+        .industrys-box label{
+            width: auto!important;
+            margin-right: 20px;
+        }
+        .industrys-box input[type="checkbox"]{
+            margin-left: 0;
+        }
+        .industrys-box .industrys-input {
+            display: inline-block;
+            width: 330px;
+            border:1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 15px;
+        }
+        .checked-box {
+            border:1px solid #ccc;
+            display: inline-block;
+            vertical-align: top;
+            width: 290px;
+            min-height: 30px;
+        }
+         .imageBox img {
+             display: none;
+         }
+
+        .photo {
+            width: 120px;
+            height: 120px;
+        }
+
+        .imageBox {
+            display: inline-block;
+            position: absolute;
+        }
+
+        .imageBox li {
+            width: 140px;
+            height: 120px;
+            float: left;
+            position: relative;
+        }
+
+        .closeLayer {
+            z-index: 99;
+            position: absolute;
+            right: 20px;
+            top: 0px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<form class="accound-detail">
+    <div><label for="username">账号</label><input type="text" id="username" class="text"/><span class="tip5"></span></div>
+    <div><label for="email">姓名</label><input type="email" id="email" class="text"/><span class="tip1"></span></div>
+    <div><label for="password">登录密码</label><input type="text" id="password" class="text"/><span class="tip2"></span></div>
+    <div><label for="phone">联系电话</label><input type="text" id="phone" class="text"/><span class="tip4"></span></div>
+    <div class="authorization"><label>班级</label><select name="category" id="classId"></select><!--<span class="tip3"></span>--></div>
+    <!--<div><label style="vertical-align: top;">状态</label><label><input type="radio" class="radio" name="status" value="1" checked/>启用</label><label><input type="radio" class="radio" name="status" value="2"/>停用</label></div>-->
+    <div>
+        <label>性别:&nbsp;&nbsp;</label>
+        <label style="width: 70px; ">
+            <input name="sex" type="radio" value="男" checked/>男
+        </label>
+        <label>
+            <input name="sex" type="radio" value="女" />女
+        </label>
+    </div>
+    <div class="adItem" style="margin: 0 0 10px 0; height: 210px;">
+        <label>会员相片:</label>
+        <div class="choseimg changeImg" style="margin: 0;">
+            +
+            <input type="file" style="width: 120px; height: 130px; ">
+        </div>
+        <ul class="imageBox">
+            <li>
+                <img src="" id="imageStr0" class="photo">
+                <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="0">
+                    <img id="layer0" src="images/delected.png">
+                </div>
+            </li>
+            <li>
+                <img src="" id="imageStr1" class="photo">
+                <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="1">
+                    <img id="layer1" src="images/delected.png">
+                </div>
+            </li>
+            <li>
+                <img src="" id="imageStr2" class="photo">
+                <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="2">
+                    <img id="layer2" src="images/delected.png">
+                </div>
+            </li>
+            <li>
+                <img src="" id="imageStr3" class="photo">
+                <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="3">
+                    <img id="layer3" src="images/delected.png">
+                </div>
+            </li>
+            <li>
+                <img src="" id="imageStr4" class="photo">
+                <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="4">
+                    <img id="layer4" src="images/delected.png">
+                </div>
+            </li>
+        </ul>
+        <p class="imgTips">最多可以上传5张图片,图片格式为jpg|jpeg|png|bmp 小于2M</p>
+    </div>
+
+    <div class="toolbar" >
+        <input type="button" class="button confirm" value="保存"/>
+        <input type="button" class="button minor cancel" value="取消"/>
+    </div>
+</form>
+<div class="overall">
+    <div class="popap" style="height: 200px;">
+        <p>正在上传资源中,请稍候......</p>
+    </div>
+</div>
+<script src="js/terraceAccount-details.js"></script>
+</body>
+</html>

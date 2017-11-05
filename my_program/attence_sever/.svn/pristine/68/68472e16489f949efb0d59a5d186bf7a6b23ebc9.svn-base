@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增子账号</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+
+    <style>
+        .industrys {
+            display: inline-block;
+            height: auto;
+            line-height: 30px;
+            width: 450px;
+        }
+        .industrys-box {
+            margin-bottom: 15px;
+        }
+        .industrys-box span {
+            display: inline-block;
+            width: 60px;
+        }
+        .industrys-box label{
+            width: auto!important;
+            margin-right: 20px;
+        }
+        .industrys-box input[type="checkbox"]{
+            margin-left: 0;
+        }
+        .industrys-box .industrys-input {
+            display: inline-block;
+            width: 330px;
+            border:1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 15px;
+        }
+        .checked-box {
+            border:1px solid #ccc;
+            display: inline-block;
+            vertical-align: top;
+            width: 290px;
+            min-height: 30px;
+        }
+         .imageBox img {
+             display: none;
+         }
+
+        .photo {
+            width: 120px;
+            height: 120px;
+        }
+
+        .imageBox {
+            display: inline-block;
+            position: absolute;
+        }
+
+        .imageBox li {
+            width: 140px;
+            height: 120px;
+            float: left;
+            position: relative;
+        }
+
+        .closeLayer {
+            z-index: 99;
+            position: absolute;
+            right: 20px;
+            top: 0px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<form class="accound-detail">
+    <!--<div><label for="username">用户名</label><input type="text" id="username" class="text"/><span class="tip5"></span></div>-->
+    <div><label for="username">用户名</label><input type="email" id="username" class="text"><span class="tip1"></span></div>
+    <div><label for="password">登录密码</label><input type="text" id="password" class="text"><span class="tip2"></span></div>
+    <div><label for="nick">商家名</label><input type="text" id="nick" class="text"><span class="tip4"></span></div>
+    <!--<div class="authorization"><label>授权</label>&lt;!&ndash;<span class="tip3"></span>&ndash;&gt;<label><input type="checkbox" class="checkbox" name="" value="57ff30380a263655e986ccf3">账号管理</label><label><input type="checkbox" class="checkbox" name="" value="57ff306b0a263655e986ccf4">官方问答库录入</label><label><input type="checkbox" class="checkbox" name="" value="58660a785a5a9763823e639a">官方问答库管理</label><label><input type="checkbox" class="checkbox" name="" value="58660a975a5a9763823e639b">商家管理</label><label><input type="checkbox" class="checkbox" name="" value="582d3006b2a99afa74c510de">数据运营</label><label><input type="checkbox" class="checkbox" name="" value="58a1109330391db6e08754ba">内容管理</label><label><input type="checkbox" class="checkbox" name="" value="58a50a8130391db6e08754bd">功能管理</label><label><input type="checkbox" class="checkbox" name="" value="583bd368b2a99afa74c510f3">设置</label></div>-->
+    <div><label style="vertical-align: top;">状态</label><label><input type="radio" class="radio" name="status" value="0" checked="">启用</label><label><input type="radio" class="radio" name="status" value="1">停用</label></div>
+    <div class="toolbar">
+        <input type="button" class="button confirm" value="保存">
+        <input type="button" class="button minor cancel" value="取消">
+    </div>
+</form>
+<div class="overall">
+    <div class="popap" style="height: 200px;">
+        <p>正在上传资源中,请稍候......</p>
+    </div>
+</div>
+<script src="js/terraceAccount-details.js"></script>
+</body>
+</html>

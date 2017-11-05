@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排班</title>
+    <!--<script src="js/jquery-1.4.2.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <script src="js/datepicker.js"></script>
+    <link href="css/datepicker.css" rel="stylesheet"/>
+
+</head>
+<style>
+    .selectDate {
+        height: 100%;
+        box-shadow: 5px 1px 5px #ececec;
+        border-right: 10px solid #ccc;
+        width: 100px;
+        text-align: left;
+        padding: 0 10px;
+        display: inline-block;
+    }
+    #multiple {
+        position: absolute;
+        top: 50px;
+        left: 130px;
+    }
+    .tipred {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 130px;
+        line-height: 40px;
+    }
+    .pickmeup .pmu-instance nav *:hover,
+    .pickmeup .pmu-instance .pmu-button:hover {
+        color: #ff6633;
+    }
+    .pickmeup {
+        background: rgba(0,160,234,.5);
+    }
+    .selectDate li {
+        height: 30px;
+        line-height: 30px;
+    }
+    .selectOption li.selected a,
+    .selectDate li.selected{
+        color: #00a0ea;
+    }
+    #person .popap{
+        margin-top: -250px
+    }
+    .selectOption {
+        height: 100%;
+        max-height: inherit;
+        position: relative;
+        background: none;
+    }
+    .selectOption:after {
+        border-right: 10px solid #ccc;
+        position: absolute;
+        top: 0;
+        left: 120px;
+        content: '';
+        height: 100%;
+        box-shadow: 5px 1px 5px #ececec;
+    }
+    .selectOption li {
+        width: 100px;
+        text-align: left;
+
+    }
+    .personBox {
+        position: absolute;
+        left: 120px;
+        box-sizing: border-box;
+        padding-left: 20px;
+        width: 678px;
+        top: 0;
+
+    }
+    .personBox li:not(:first-child){
+        display: inline-block;
+        width: 100px;
+        color: #666;
+        font-family: "microsoft yahei";
+    }
+    .qa-list {
+        line-height: 40px;;
+    }
+    .qa-list label {
+        font-size: 16px;
+        font-weight: 500;
+        display: inline-block;
+        width: 120px;
+    }
+    .pickmeup {
+        position: absolute !important;
+    }
+    .selectDate li:not(:first-child) {
+        cursor: pointer;
+    }
+    .selectOption li li.chooseALl {
+        width: 668px;
+        margin-left: -10px;
+        border-bottom: 1px solid #8d8d8d;
+        z-index: 9999;
+    }
+</style>
+<body>
+<select name="producer" id="producer" style="display: none;">
+
+</select>
+<div class="qa-list">
+    <label >员工:</label>
+    <a class="chooseper">选择人员</a>
+    <!--<div class="selectBox" id="adIds">
+        <div class="optionSelected"><span class="select-font">选择部门</span><span class="suport-icon icon-drop_down"></span></div>
+        <ul class="selectOption" style="display: none;"></ul>
+    </div>-->
+</div>
+<div class="qa-list">
+    <label >选择时间:</label>
+    <a class="chooseDate">选择时间</a>
+</div>
+<div class="toolbar" style="position: absolute;">
+    <input type="button" class="button goBack" value="返回上一级">
+    <!--<input type="button" class="button minor cancel" value="取消">-->
+</div>
+
+<div class="overall1"  id="person">
+    <div class="popap" style="width: 800px; height: 500px; margin-left: -400px; margin-top: -250px;">
+        <!--div class="optionSelected"><span class="select-font">选择部门</span><span class="suport-icon icon-drop_down"></span></div>-->
+        <ul class="selectOption"></ul>
+        <div class="toolbar" style="position: absolute; width: 800px; text-align: center; top: 420px; left: 0">
+            <input type="button" class="button confirmPerson" value="保存">
+            <input type="button" class="button minor cancelPop" value="关闭">
+        </div>
+    </div>
+</div>
+
+<div class="overall1"  id="date">
+    <div class="popap" style="width: 700px; height: 500px; margin-left: -350px; margin-top: -250px; text-align: left">
+        <!--div class="optionSelected"><span class="select-font">选择部门</span><span class="suport-icon icon-drop_down"></span></div>-->
+        <ul class="selectDate"></ul>
+        <span class="tipred" style="color: red">Tips:只能今天之后的日期的排班且一次只能保存一个月的排班！</span>
+        <div id="multiple" data-status="0"></div>
+        <div class="toolbar" style="position: absolute; width: 800px; text-align: center; top: 420px; left: 0">
+            <input type="button" class="button confirmDate" value="保存">
+            <input type="button" class="button deleted" value="删除">
+            <input type="button" class="button minor cancelPop" value="关闭">
+        </div>
+    </div>
+</div>
+
+<script src="js/arrangeSchedual.js"></script>
+</body>
+</html>

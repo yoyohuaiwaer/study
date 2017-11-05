@@ -1,0 +1,43 @@
+body/* reset */
+{
+    margin:0;
+    padding:0;
+    font-family: "microsoft yahei";
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+    background-color: #fff;
+}
+
+
+#page {
+    width:1200px;
+    margin: 0 auto;
+
+}
+#top li {
+    list-style-type: none;
+    line-height: 32px;
+    margin-left: 20px;
+    padding-left: 20px;
+    float: right;
+}
+#header #top {
+    background-color: #eee;
+    height: 32px;
+}
+#header {
+}
+
+#top ul {
+
+}
+#top a {
+    color: #333;
+    text-decoration: none;
+    font-family: "microsoft yahei";
+}
+#top a:hover {
+    color: #1e81df;
+    text-decoration: none;
+}

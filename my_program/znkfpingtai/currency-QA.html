@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通用问答</title>
+
+
+
+    <style>
+        .grid {
+            width: 960px;
+        }
+        .grid-head-th > div.industry,
+        .grid-body-tr > div.industry {
+            width: 250px;
+        }
+        .grid-head-th > div.operation,
+        .grid-body-tr > div.operation {
+            width: 218px;
+        }
+        .grid-head-th > div.scene,
+        .grid-body-tr > div.scene {
+            width: 350px;
+        }
+        .grid-body-tr > div.scene span,
+        .grid-head-th > div.scene span{
+            width: 350px;
+        }
+        .grid-head-th > div.order-number,
+        .grid-body-tr > div.order-number {
+            width: 100px;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+<body>
+<div>
+
+    <div style="text-align: right">
+        <div class="search-box" style="display: inline-block">
+            <select name="scene" id="scene" data-rel="2">
+                <!--<option value="none" selected="selected">选择场景</option>-->
+            </select>
+        </div>
+        <div class="search-box" style="display: inline-block">
+            <select name="search" id="search" class="text" style="width: 80px;">
+                <option  value="关键词">关键词</option>
+                <option  value="答案">答案</option>
+            </select>
+            <input type="text" class="text searchText"/>
+            <input type="button" class="button searchbtn"  data-status="0" value="搜索"/>
+        </div>
+        <input type="button" class="addQuestion button" value="新增问答" rel="1"/>
+        <input type="button" class="showOverflow1 button" value="新增场景" rel="1"/>
+    </div>
+    <div class="grid sceneQa">
+        <div class="grid-head">
+            <div class="grid-head-th">
+                <div class=""><span>序号</span></div>
+                <div class=""><span>场景</span></div>
+                <div class=""><span>原始问题</span></div>
+                <div class=""><span>关键词(组)</span></div>
+                <div class=""><span>答案</span></div>
+                <div class=""><span>动作</span></div>
+                <div class="operation"><span>操作</span></div>
+            </div>
+        </div>
+        <div class="grid-body">
+
+        </div>
+    </div>
+    <div class="pages">
+        <ul>
+        </ul>
+    </div>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除词条问答吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+    </div>
+</div>
+<div class="overall1" style="display: none;">
+    <div class="popap">
+        <p><input type="text" class="text newScene" id="newScene" value=""/></p>
+        <input type="button" class="button addScene" value="确定">
+        <input type="button" class="button minor hideOverflow1"  value="取消"/>
+    </div>
+</div>
+<script type="text/javascript" src="js/currency-QA.js"></script>
+</body>
+</html>

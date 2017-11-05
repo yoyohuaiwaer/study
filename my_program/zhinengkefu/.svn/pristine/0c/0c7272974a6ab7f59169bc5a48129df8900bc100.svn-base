@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/pt.css" rel="stylesheet">
+    <title>引导设置</title>
+</head>
+<body>
+<div>
+    <div class="u-panels">
+        <!--Regular list-->
+        <div class="u-panel" id="Ele1" data-id="" data-floor="1">
+            <h5 class="u-panel-tlt">一级分类</h5>
+            <ul class="u-panel-cnt" >
+                <!--Regular if1-->
+                <!--Regular list-->
+                <!--<li class="u-panel-itm z-sel">
+                    <div class="z-normal">
+                        <span title="" class="u-panel-itm-tlt">千万的群二多</span>
+                        <span class="icon-pencil"></span>
+                        <span class="icon-recycling11"></span>
+                    </div>
+                    <div class="z-edit">
+                        <input type="text" class="u-ipt">
+                        <span class="icon-Checkmark"></span>
+                        <span class="icon-Cancel"></span>
+
+                    </div>
+                </li>-->
+                <!--Regular if2-->
+                <a class="u-panel-add">
+                    添加分类项
+                </a>
+            </ul>
+        </div>
+
+        <!--<div class="u-panel">
+            <h5 class="u-panel-tlt">二级分类</h5>
+            <ul class="u-panel-cnt" onselectstart="return false">
+                &lt;!&ndash;Regular if3&ndash;&gt;
+                &lt;!&ndash;Regular list&ndash;&gt;
+                <li class="u-panel-itm normal z-sel">
+                    <div class="z-normal">
+                        <span title="得分威尔" class="u-panel-itm-tlt f-ellipsis">得分威尔</span>
+                        <i class="u-icon-edit"></i>
+                        <i class="u-icon-delete"></i>
+                    </div>
+                    <div class="z-edit">
+                        <input type="text" class="u-ipt u-ipt-4">
+                        <i class="u-icon-check"></i>
+                        <i class="u-icon-error"></i>
+                    </div>
+                </li>
+
+                <li class="u-panel-itm normal">
+                    <div class="z-normal">
+                        <span title="二有" class="u-panel-itm-tlt f-ellipsis">二有</span>
+                        <i class="u-icon-edit"></i>
+                        <i class="u-icon-delete"></i>
+                    </div>
+                    <div class="z-edit">
+                        <input type="text" class="u-ipt u-ipt-4">
+                        <i class="u-icon-check"></i>
+                        <i class="u-icon-error"></i>
+                    </div>
+                </li>
+
+
+                &lt;!&ndash;Regular if4&ndash;&gt;
+                <a class="u-panel-add">
+                    <i class="u-icon-add"></i>添加分类项
+                </a>
+            </ul>
+            <div class="u-panel-save">
+                <button type="Button" class="u-btn u-btn-disabled" disabled="disabled"> <i class="u-icon-font icon-correct" style="display: none;"></i><i class="u-icon-font icon-wrong" style="display: none;"></i>保存</button><span class="u-error" style="color: red; margin-left: 50px;"></span>
+            </div>
+        </div>-->
+
+    </div>
+    <a class="u-panel-add">
+        新增下一级分类
+    </a>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p style="font-size: 16px;">您确认要删除该类别及以下的所有内容么，一旦删除无法恢复</p>
+        <input type="button" class="button deletePanel" value="确定">
+        <input type="button" class="button minor cancelDelete" value="取消"/>
+    </div>
+</div>
+<script src="js/boot-list.js"></script>
+</body>
+</html>

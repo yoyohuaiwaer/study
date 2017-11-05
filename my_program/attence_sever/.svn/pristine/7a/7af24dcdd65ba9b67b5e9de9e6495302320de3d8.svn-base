@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .selectOption li.selected a,
+        .selectDate li.selected{
+            color: #00a0ea;
+        }
+        #person .popap{
+            margin-top: -250px
+        }
+        .selectOption {
+            height: 100%;
+            max-height: inherit;
+            position: relative;
+            background: none;
+        }
+        .selectOption:after {
+            border-right: 10px solid #ccc;
+            position: absolute;
+            top: 0;
+            left: 120px;
+            content: '';
+            height: 100%;
+            box-shadow: 5px 1px 5px #ececec;
+        }
+        .selectOption li {
+            width: 100px;
+            text-align: left;
+
+        }
+        .selectOption li li.chooseALl {
+            width: 768px;
+            margin-left: -10px;
+            border-bottom: 1px solid #8d8d8d;
+            z-index: 9999;
+        }
+        .personBox {
+            position: absolute;
+            left: 120px;
+            box-sizing: border-box;
+            padding-left: 20px;
+            width: 678px;
+            top: 0;
+
+        }
+        .personBox li:not(:first-child){
+            display: inline-block;
+            width: 100px;
+            color: #666;
+            font-family: "microsoft yahei";
+        }
+        .selectOption {
+            border-top: 1px solid #8d8d8d;
+        }
+    </style>
+</head>
+<body>
+<select name="producer" id="producer" style="display: none;">
+</select>
+<div style="width: 900px; height: 600px;">
+    <ul class="selectOption"></ul>
+    <div class="toolbar" style=" margin-top:40px; text-align: center;">
+        <input type="button" class="button confirmPerson" value="保存">
+        <input type="button" class="button minor cancelPop" value="取消">
+    </div>
+</div>
+<script src="js/normalShift.js"></script>
+</body>
+</html>

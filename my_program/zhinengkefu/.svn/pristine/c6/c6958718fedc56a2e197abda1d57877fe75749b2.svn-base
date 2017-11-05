@@ -1,0 +1,411 @@
+$(document).ready(function() {
+	addHX();
+	$.ajax({
+		url: commUrl + '/menu/findbyid',
+		//type:'GET',
+		//async: false,
+		data: {
+			token: $.cookie("token"),
+			parentId: '598173badac5751672de1384'
+		},
+		success: function(data) {
+			data = eval('(' + data + ')');
+			if(data.code == '1') {
+				$(".breadcrumb").empty();
+				var breadcrumb = '<li class = "selected" ><a href="javascript:void(0);" onclick="javascript:changePage(this);"  title="' + menuUrl + '' + data.data[0].url + '" id="' + data.data[0].id + '">' + data.data[0].name + '</a>';
+				$(".breadcrumb").html(breadcrumb);
+			}
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	});
+	//  searchbtn();
+	//  listPage();
+})
+
+function addHX() {
+	//		创建连接
+	var conn = {};
+	conn = new WebIM.connection({
+		isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
+		https: typeof WebIM.config.https === 'boolean' ? WebIM.config.https : location.protocol === 'https:',
+		url: WebIM.config.xmppURL,
+		isAutoLogin: WebIM.config.isAutoLogin,
+		heartBeatWait: WebIM.config.heartBeatWait,
+		autoReconnectNumMax: WebIM.config.autoReconnectNumMax,
+		autoReconnectInterval: WebIM.config.autoReconnectInterval
+	});
+	//使用用户名/密码登录环信 Web IM:
+		var options_dl = {
+			apiUrl: WebIM.config.apiURL,
+			user: 'xiaoqi',
+			pwd: 'xiaoqi',
+			appKey: WebIM.config.appkey
+		};
+		conn.open(options_dl);
+	//		添加回调函数
+	conn.listen({
+		onOpened: function(message) { //连接成功回调
+			// 如果isAutoLogin设置为false，那么必须手动设置上线，否则无法收消息
+			// 手动上线指的是调用conn.setPresence(); 如果conn初始化时已将isAutoLogin设置为true
+			// 则无需调用conn.setPresence();       
+			console.log("%c [opened] 连接已成功建立", "color: green")
+		},
+		onClosed: function(message) { //连接关闭回调
+			console.log(message)
+		},
+		onTextMessage: function(message) {
+			// 在此接收和处理消息，根据message.type区分消息来源，私聊或群组或聊天室
+			console.log(message)
+		},
+		onEmojiMessage: function(message) { //收到表情消息
+			// 当为WebIM添加了Emoji属性后，若发送的消息含WebIM.Emoji里特定的字符串，connection就会自动将
+			// 这些字符串和其它文字按顺序组合成一个数组，每一个数组元素的结构为{type: 'emoji(或者txt)', data:''}
+			// 当type='emoji'时，data表示表情图像的路径，当type='txt'时，data表示文本消息
+			console.log('Emoji');
+			var data = message.data;
+			for(var i = 0, l = data.length; i < l; i++) {
+				console.log(data[i]);
+			}
+		},
+		onPictureMessage: function(message) { //收到图片消息
+			console.log(message)
+			var options = {
+				url: message.url
+			};
+			options.onFileDownloadComplete = function() {
+				// 图片下载成功
+				console.log('Image download complete!');
+			};
+			options.onFileDownloadError = function() {
+				// 图片下载失败
+				console.log('Image download failed!');
+			};
+			WebIM.utils.download.call(conn, options); // 意义待查
+		},
+		onCmdMessage: function(message) { //收到命令消息
+			console.log(message)
+		},
+		onAudioMessage: function(message) { //收到音频消息
+
+			console.log(message)
+		},
+		onLocationMessage: function(message) { //收到位置消息
+
+			console.log(message)
+		},
+		onFileMessage: function(message) { //收到文件消息
+
+			console.log(message)
+		},
+		onVideoMessage: function(message) { //收到视频消息
+			var node = document.getElementById('privateVideo');
+			var option = {
+				url: message.url,
+				headers: {
+					'Accept': 'audio/mp4'
+				},
+				onFileDownloadComplete: function(response) {
+					var objectURL = WebIM.utils.parseDownloadResponse.call(conn, response);
+					node.src = objectURL;
+				},
+				onFileDownloadError: function() {
+					console.log('File down load error.')
+				}
+			};
+			WebIM.utils.download.call(conn, option);
+		},
+		onPresence: function(message) { //收到联系人订阅请求、处理群组、聊天室被踢解散等消息
+			console.log(message)
+			switch(message.type) {
+				case 'subscribe': // 对方请求添加好友
+					// 同意对方添加好友
+					document.getElementById('agreeFriends').onclick = function(message) {
+						conn.subscribed({
+							to: 'asdfghj',
+							message: "[resp:true]"
+						});
+					};
+					// 拒绝对方添加好友
+					document.getElementById('rejectFriends').onclick = function(message) {
+						conn.unsubscribed({
+							to: message.from,
+							message: "rejectAddFriend" // 拒绝添加好友回复信息
+						});
+					};
+
+					break;
+				case 'subscribed': // 对方同意添加好友，已方同意添加好友
+					break;
+				case 'unsubscribe': // 对方删除好友
+					break;
+				case 'unsubscribed': // 被拒绝添加好友，或被对方删除好友成功
+					break;
+				case 'memberJoinPublicGroupSuccess': // 成功加入聊天室
+					console.log('join chat room success');
+					break;
+				case 'joinChatRoomFaild': // 加入聊天室失败
+					console.log('join chat room faild');
+					break;
+				case 'joinPublicGroupSuccess': // 意义待查
+					console.log('join public group success', message.from);
+					break;
+				case 'createGroupACK':
+					conn.createGroupAsync({
+						from: message.from,
+						success: function(option) {
+							console.log('Create Group Succeed');
+						}
+					});
+					break;
+			}
+
+		},
+		onRoster: function(message) { //处理好友申请
+			console.log(message)
+			if(message.type === 'subscribe') {
+
+				/*同意添加好友操作的实现方法*/
+				conn.subscribed({
+					to: message.name,
+					message: '[resp:true]'
+				});
+				conn.subscribe({ //需要反向添加对方好友
+					to: message.from,
+					message: '[resp:true]'
+				});
+			}
+		},
+		onInviteMessage: function(message) { //处理群组邀请
+			console.log(message)
+		},
+		onOnline: function() {}, //本机网络连接成功
+		onOffline: function() {}, //本机网络掉线
+		onError: function(message) {}, //失败回调
+		onBlacklistUpdate: function(list) { //黑名单变动
+			// 查询黑名单，将好友拉黑，将好友从黑名单移除都会回调这个函数，list则是黑名单现有的所有好友信息
+			console.log(list);
+		}
+	});
+	var rtcCall = new WebIM.WebRTC.Call({
+    connection: conn,
+    mediaStreamConstaints: {
+            audio: true,
+            video: true
+    },
+
+    listener: {
+        onAcceptCall: function (from, options) {
+            console.log('onAcceptCall::', 'from: ', from, 'options: ', options);
+        },
+        //通过streamType区分视频流和音频流，streamType: 'VOICE'(音频流)，'VIDEO'(视频流)
+        onGotRemoteStream: function (stream, streamType) {
+            console.log('onGotRemoteStream::', 'stream: ', stream, 'streamType: ', streamType);
+            var video = document.getElementById('video');
+            video.srcObject = stream;
+        },
+        onGotLocalStream: function (stream, streamType) {
+            console.log('onGotLocalStream::', 'stream:', stream, 'streamType: ', streamType);
+            var video = document.getElementById('localVideo');
+            video.srcObject = stream;
+        },
+        onRinging: function (caller) {
+            console.log('onRinging::', 'caller:', caller);
+        },
+        onTermCall: function (reason) {
+            console.log('onTermCall::');
+            console.log('reason:', reason);
+        },
+        onIceConnectionStateChange: function (iceState) {
+            console.log('onIceConnectionStateChange::', 'iceState:', iceState);
+        },
+        onError: function (e) {
+            console.log(e);
+        }
+     }
+});
+	$("#rtCall").click(function(){
+	  console.log('=========')
+//	    var id = conn.getUniqueId();                 // 生成本地消息id
+//	    var msg = new WebIM.message('txt', id);      // 创建文本消息
+//	    msg.set({
+//	        msg: '我是来自外星的萌妹子，哇呀呀呀！',                  // 消息内容
+//	        to: 'pengmeng5678',                          // 接收消息对象（用户id）
+//	        roomType: false,
+//	        success: function (id, serverMsgId) {
+//	            console.log('send private text Success');
+//	        }
+//	    });
+//	    msg.body.chatType = 'singleChat';
+//	    conn.send(msg.body);
+rtcCall.caller = 'pengmeng5678';
+        rtcCall.makeVideoCall('我是来自外星的萌妹子，哇呀呀呀！');
+	});
+	
+}
+
+function listPage(page, isSearch) {
+	var obj = {};
+	page = page ? page : 1;
+	obj = {
+		token: $.cookie("token"),
+		page: page,
+		row: '10',
+		sortId: 'createTime',
+		sortType: 'DESC'
+	}
+
+	//  	 $.ajax({
+	//          url:commUrl+'/ad/find?timestamp=+'+ new Date().getTime(),
+	//          data:obj,
+	//          cache:false,
+	//          dataType:'json',
+	//          success:function(data){
+	//              data = eval('('+data+')');
+	//              $(".grid-body").empty();
+	//              var html = '';
+	//              var sort = 0;
+	//              var page = '';
+	//              if(data.code == '1'){
+	//                  $.each(data.data.datas,function(i,key){
+	//                      sort = i + 1;
+	//                      html += '<div class="grid-body-tr"> <div class="number"  style="width:70px">'+sort+'</div> ' +
+	//                      '<div class="title"  style="width:400px;max-width:400px; overflow:hidden;">'+key.title+'</div> ' +
+	////                      '<div class="content"  style="width:200px;max-width:200px; overflow:hidden;">'+key.content+'</div> ' +
+	//                      '<div class="startTime"  style="width:300px;max-width:300px">'+ key.createTime+'</div> ' +
+	////                      '<div class="endTime"  style="width:200px;max-width:200px">'+ key.endTime+'</div> ' +
+	//                      '<div class="operation"  style="width:190px">' +
+	//                      '<a href="javascript:void(0);" onclick="javascript:editGoods(this)" class="editGoods" id="'+key.id+'" title="'+key.title+'"  name="'+key.content+'">编辑</a>' +
+	//                      '<a href="javascript:void(0);"  onclick="javascript:showOverall(this)" class="deleteGoods" id="'+key.id+'">删除</a></div> </div>'
+	//                  })
+	//                  
+	//                  if(data.data.page == '1') {
+	//                      page = '<li class="prevPage readonly" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">'+data.data.page+'</span>/<span class="pagecount">'+data.data.pageCount+'</span> </li>' +
+	//                          ' <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定"/></li>'
+	//
+	//                  }
+	//                  else if(data.data.page == data.data.pageCount){
+	//                      page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">'+data.data.page+'</span>/<span class="pagecount">'+data.data.pageCount+'</span> </li> ' +
+	//                          '<li class="nextPage readonly" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)"  value="确定"/></li>'
+	//                  }
+	//                  else {
+	//                      page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">'+data.data.page+'</span>/<span class="pagecount">'+data.data.pageCount+'</span> </li> ' +
+	//                          '<li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定" /></li>'
+	//                  }
+	//                  
+	//              }
+	//          	$(".pages ul").html(page);
+	//          	$(".grid-body").html(html);
+	//          },
+	//          error: function(text){
+	//              alert(text.readyState);
+	//              alert(text.status);
+	//          }
+	//      })
+}
+
+function clearOverall(e) {
+	$(".overall").hide();
+}
+
+function showOverall(e) {
+	$(".deleteQuestion").attr({
+		id: e.id
+	});
+	$(".overall").show();
+}
+
+function editGoods(e) {
+	$.cookie("read", e.id, {
+		path: '/'
+	});
+	$.cookie("title", e.title, {
+		path: '/'
+	});
+	$.cookie("content", e.name, {
+		path: '/'
+	});
+	$.ajax({
+		url: 'add-ad.html',
+		datatype: 'html',
+		success: function(data) {
+			$(".main").empty().html(data);
+		}
+	})
+}
+
+function deleteGoods(e) {
+	$.ajax({
+		url: commUrl + '/ad/delete',
+		data: {
+			token: $.cookie("token"),
+			id: e.id
+		},
+		cache: false,
+		type: 'get',
+		success: function(data) {
+
+			data = eval('(' + data + ')');
+			if(data.code == '1') {
+				newPage();
+			}
+		}
+	})
+}
+
+function newPage() {
+	//	    $.get('adList.html',{token:$.cookie("token")},function(response){
+	//	        $(".main").empty().html(response);
+	//	    })
+}
+
+function addQuestion(e) {
+	$.cookie("read", e.title, {
+		path: '/'
+	})
+	$.ajax({
+		url: 'add-ad.html',
+		cache: false,
+		datatype: 'html',
+		success: function(data) {
+			$(".main").empty().html(data);
+		}
+	})
+}
+
+function prevPage(e) {
+	$(e).next("li").find(".onpage").text();
+
+	if($(e).next("li").find(".onpage").text() == '1') {} else {
+		var page = $(e).next("li").find(".onpage").text() - 1;
+		listPage(page);
+	}
+}
+
+function nextPage(e) {
+	if($(e).prev("li").find(".onpage").text() == $(e).prev("li").find(".pagecount").text()) {} else {
+		var page = $(e).prev("li").find(".onpage").text() - 0 + 1;
+		listPage(page);
+
+	}
+}
+
+function turnPage(e) {
+	var page = 1;
+	if(parseInt($(e).prev(".nowPage").val()) <= 1) {
+
+	} else if(parseInt($(e).prev(".nowPage").val()) >= parseInt($(".pagecount").text())) {
+		page = $(".pagecount").text();
+	} else {
+		page = $(e).prev(".nowPage").val();
+	}
+	listPage(page);
+}
+
+function searchbtn() {
+	$('.searchbtn').on('click', function() {
+		listPage(1, true);
+	})
+};

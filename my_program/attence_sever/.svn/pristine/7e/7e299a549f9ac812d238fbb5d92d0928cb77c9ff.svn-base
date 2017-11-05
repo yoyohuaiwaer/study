@@ -1,0 +1,1775 @@
+/* line 4, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000034}}
+* {
+  margin: 0;
+  padding: 0;
+}
+/* line 8, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000038}}
+* html body {
+  overflow: visible;
+}
+/* line 11, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000311}}
+* html iframe,
+* html frame {
+  overflow: auto;
+}
+/* line 14, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000314}}
+* html frameset {
+  overflow: hidden;
+}
+/* line 18, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000318}}
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+table,
+td,
+img,
+div,
+tr {
+  margin: 0;
+  padding: 0;
+}
+/* line 39, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000339}}
+table {
+  border: 1px solid #efeff1;
+}
+/* line 42, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000342}}
+th {
+  font-weight: normal;
+}
+/* line 45, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000345}}
+tr {
+  text-align: center;
+}
+/* line 48, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000348}}
+th,
+td {
+  text-align: center;
+  border: 1px solid #efeff1;
+  box-sizing: border-box;
+  line-height: 45px;
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 59, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000359}}
+input,
+select {
+  font-size: 12px;
+  vertical-align: middle;
+}
+/* line 63, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000363}}
+select {
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #c3c3c3;
+  border-radius: 5px;
+  min-width: 80px;
+}
+/* line 70, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000370}}
+textarea,
+input {
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 0px;
+}
+/* line 75, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000375}}
+input[readonly] {
+  border: none;
+  width: auto;
+  min-width: 10px;
+}
+/* line 80, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000380}}
+li {
+  list-style-type: none;
+}
+/* line 83, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000383}}
+img {
+  border: 0 none;
+}
+/* line 86, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000386}}
+a {
+  color: #333333;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+/* line 92, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000392}}
+a:hover {
+  color: #ff6633;
+}
+/* line 95, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000395}}
+h1 {
+  font-size: 24px;
+}
+/* line 98, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\0000398}}
+h2 {
+  font-size: 20px;
+}
+/* line 101, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003101}}
+h3 {
+  font-size: 18px;
+}
+/* line 104, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003104}}
+h4 {
+  font-size: 16px;
+}
+/* line 107, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003107}}
+h5 {
+  font-size: 14px;
+}
+/* line 110, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003110}}
+h6 {
+  font-size: 12px;
+}
+/* line 113, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003113}}
+.pointer {
+  cursor: pointer;
+}
+/* line 116, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003116}}
+.noborder {
+  border: 0 none;
+}
+/* line 119, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003119}}
+.noPadding {
+  padding: 0;
+}
+/* line 122, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003122}}
+.t_l {
+  text-align: left;
+}
+/* line 125, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003125}}
+.t_c {
+  text-align: center;
+}
+/* line 128, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003128}}
+.t_r {
+  text-align: right;
+}
+/* line 131, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003131}}
+.break {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+/* line 135, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003135}}
+.nobreak {
+  word-break: keep-all;
+  word-wrap: normal;
+}
+/* line 139, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003139}}
+.fl {
+  float: left;
+}
+/* line 142, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003142}}
+.fr {
+  float: right;
+}
+/* line 145, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003145}}
+.unline {
+  text-decoration: underline;
+}
+/* line 148, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003148}}
+.disunline {
+  text-decoration: none;
+}
+/* line 151, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003151}}
+.absolute {
+  position: absolute;
+}
+/* line 154, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003154}}
+.relative {
+  position: relative;
+}
+/* line 157, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003157}}
+.wrapper {
+  clear: both;
+  overflow: hidden;
+}
+/* line 161, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003161}}
+.o-hidden {
+  overflow: hidden;
+}
+/* line 164, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003164}}
+.invisible {
+  visibility: hidden;
+}
+/* line 167, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003167}}
+.hidden {
+  display: none;
+}
+/* line 170, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003170}}
+.block {
+  display: block;
+}
+/* line 173, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003173}}
+.clear {
+  clear: both;
+  height: 0px;
+  width: 100%;
+  font-size: 1px;
+  line-height: 0px;
+  visibility: hidden;
+  overflow: hidden;
+}
+/* line 182, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003182}}
+.fb {
+  font-weight: bold;
+}
+/* line 185, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003185}}
+.fn {
+  font-weight: normal;
+}
+/* line 188, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003188}}
+.fI {
+  font-style: italic;
+}
+/* line 191, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003191}}
+.f10 {
+  font-size: 10px;
+}
+/* line 194, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003194}}
+.f11 {
+  font-size: 11px;
+}
+/* line 197, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003197}}
+.f12 {
+  font-size: 12px;
+}
+/* line 200, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003200}}
+.f13 {
+  font-size: 13px;
+}
+/* line 203, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003203}}
+.f14 {
+  font-size: 14px;
+}
+/* line 206, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003206}}
+.f16 {
+  font-size: 16px;
+}
+/* line 209, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003209}}
+.f18 {
+  font-size: 18px;
+}
+/* line 219, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003219}}
+body,
+#layout,
+html {
+  height: 100%;
+}
+/* line 224, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003224}}
+body {
+  font-family: 'Microsoft Yahei' !important;
+  font-size: 14px;
+  height: 100%;
+}
+/* line 229, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003229}}
+#layout {
+  background: #e7e8eb;
+}
+/* line 233, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003233}}
+#header {
+  width: 100%;
+  height: 72px;
+  position: relative;
+  margin-bottom: 36px;
+  line-height: 72px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+/* line 240, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003240}}
+#header:before {
+  content: '';
+  height: 4px;
+  width: 100%;
+  background: #00a0e9;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 251, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003251}}
+.button {
+  width: 110px;
+  height: 32px;
+  border: 1px solid #00a0ea;
+  background: #00a0ea;
+  color: #fff;
+  border-radius: 5px;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+/* line 262, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003262}}
+.button:hover,
+.button:focus {
+  outline: none;
+}
+/* line 266, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003266}}
+.button.minor {
+  background: #fff;
+  color: #333;
+  border: 1px solid #dbdae0;
+}
+/* line 271, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003271}}
+.button:last-child {
+  margin-right: 0;
+}
+/* line 276, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003276}}
+.text {
+  border: 1px solid #c3c3c3;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+}
+/* line 283, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003283}}
+.logo {
+  float: left;
+  font-size: 24px;
+  color: #595959;
+}
+/* line 288, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003288}}
+.user {
+  float: right;
+}
+/* line 290, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003290}}
+.user li {
+  display: inline-block;
+  margin-right: 5px;
+}
+/* line 295, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003295}}
+#main,
+#header {
+  background: #ffffff;
+}
+/* line 300, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003300}}
+.head-center img {
+  vertical-align: middle;
+}
+/* line 304, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003304}}
+.head-center,
+#main {
+  width: 1200px;
+  margin: 0 auto;
+  display: table;
+}
+/* line 313, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003313}}
+#main {
+  height: calc(100% - 108px);
+  border-top: 1px solid #d9dadc;
+}
+/* line 323, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003323}}
+#main-left {
+  width: 210px;
+  border-right: 1px solid #efeff1;
+  float: left;
+  height: 100%;
+}
+/* line 330, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003330}}
+#main-right {
+  width: 988px;
+  float: right;
+}
+/* line 334, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003334}}
+.tree {
+  width: 100%;
+}
+/* line 338, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003338}}
+.main {
+  padding: 15px;
+}
+/* line 343, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003343}}
+.tree .node {
+  line-height: 35px;
+}
+/* line 345, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003345}}
+.tree .node .node-name {
+  font-size: 14px;
+  width: 158px;
+}
+/* line 348, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003348}}
+.tree .node .node-name > a {
+  display: inline-block;
+  width: 100%;
+  line-height: 35px;
+}
+/* line 355, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003355}}
+.tree .node .node-font {
+  padding-left: 30px;
+}
+/* line 359, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003359}}
+.tree .node.node-selected {
+  background: #00a0e9;
+}
+/* line 361, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003361}}
+.tree .node.node-selected a {
+  color: #fff;
+}
+/* line 367, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003367}}
+.tree > .tree-menus > .node {
+  line-height: 50px;
+  border-bottom: 1px solid #efeff1;
+  padding-bottom: 10px;
+}
+/* line 371, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003371}}
+.tree > .tree-menus > .node > .node-font {
+  color: #8d8d8d;
+}
+/* line 374, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003374}}
+.tree > .tree-menus > .node .node {
+  cursor: pointer;
+}
+/* line 376, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003376}}
+.tree > .tree-menus > .node .node:hover {
+  background: #00a0e9;
+}
+/* line 378, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003378}}
+.tree > .tree-menus > .node .node:hover a {
+  color: #fff;
+}
+/* line 383, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003383}}
+.tree > .tree-menus > .node .node .node-font {
+  padding-left: 45px;
+}
+/* line 388, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003388}}
+.tree > .tree-menus > .node #add:hover {
+  background: none;
+}
+/* line 390, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003390}}
+.tree > .tree-menus > .node #add:hover a {
+  color: #8d8d8d;
+}
+/* line 398, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003398}}
+.login-box {
+  width: 475px;
+  height: 520px;
+  margin: 0 auto;
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1), -1px 0 5px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  font-size: 14px;
+  position: relative;
+  border-radius: 4px ;
+  z-index: 0;
+}
+/* line 411, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003411}}
+.login-box:before,
+.login-box:after {
+  position: absolute;
+  content: '';
+  width: 48%;
+  height: 10px;
+  bottom: 6px;
+  z-index: -1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+/* line 422, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003422}}
+.login-box:before {
+  transform: rotate(3deg);
+  right: 10px;
+}
+/* line 426, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003426}}
+.login-box:after {
+  transform: rotate(-3deg);
+  left: 10px;
+}
+/* line 430, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003430}}
+.login-box form {
+  height: 400px;
+  z-index: 999;
+  background: #fff;
+}
+/* line 437, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003437}}
+.login-box h2 {
+  text-align: center;
+  line-height: 120px;
+  font-weight: 300;
+  font-size: 28px;
+}
+/* line 443, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003443}}
+.login-box form > div:not(.tips) {
+  margin-bottom: 40px;
+  padding: 0 70px;
+  box-sizing: border-box;
+}
+/* line 447, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003447}}
+.login-box form > div:not(.tips) span,
+.login-box form > div:not(.tips) a {
+  display: inline-block;
+  width: 130px;
+  float: right;
+  height: 40px;
+  cursor: pointer;
+}
+/* line 455, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003455}}
+.login-box form > div:not(.tips) span {
+  line-height: 40px;
+  text-align: right;
+  width: 65px;
+}
+/* line 460, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003460}}
+.login-box form > div:not(.tips) a {
+  height: auto;
+  text-align: right;
+  color: #fff;
+  width: auto;
+}
+/* line 466, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003466}}
+.login-box form > div:not(.tips) img {
+  vertical-align: middle;
+}
+/* line 470, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003470}}
+.login-box form > div.mb-none {
+  margin-bottom: 0;
+}
+/* line 473, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003473}}
+.login-box form > div.tips {
+  line-height: 40px;
+  color: red;
+  height: 40px;
+  padding: 0 50px;
+}
+/* line 480, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003480}}
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box input[type="submit"] {
+  line-height: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #838585;
+  width: 100%;
+  padding: 0 15px 0 30px;
+  font-size: 14px;
+  color: gray;
+  box-sizing: border-box;
+}
+/* line 493, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003493}}
+.login-box input.login_username {
+  background: url("../images/dengl_03.png") no-repeat 5px center;
+}
+/* line 496, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003496}}
+.login-box input.login_password {
+  background: url("../images/dengl_06.png") no-repeat 5px center;
+}
+/* line 499, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003499}}
+.login-box input#strCode {
+  width: 255px;
+  margin-right: 15px;
+  padding-left: 15px;
+}
+/* line 504, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003504}}
+.login-box input[type="checkbox"] {
+  height: 16px;
+  width: 16px;
+  background: #fff;
+  margin-right: 8px;
+  font-size: 14px;
+}
+/* line 511, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003511}}
+.login-box input[type="submit"] {
+  background: #1880d5;
+  color: #fff;
+  font-size: 16px;
+  border: 1px solid transparent;
+  font-family: "microsoft yahei";
+}
+/* line 521, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003521}}
+#signupForm {
+  padding-top: 50px;
+}
+/* line 523, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003523}}
+#signupForm > div {
+  margin-left: 50px;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+/* line 528, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003528}}
+#signupForm > div label {
+  font-size: 13px;
+  margin-right: 15px;
+}
+/* line 532, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003532}}
+#signupForm > div input[type="password"] {
+  height: 30px;
+  width: 270px;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #c3c3c3;
+}
+/* line 539, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003539}}
+#signupForm > div.t_r {
+  width: 360px;
+}
+/* line 546, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003546}}
+.main-title {
+  font-size: 16px;
+  padding-left: 40px;
+  font-family: 'Microsoft Yahei';
+  padding-top: 20px;
+  font-weight: 100;
+  color: #222;
+}
+/* line 554, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003554}}
+.breadcrumb {
+  height: 50px;
+  line-height: 50px;
+  padding-left: 10px;
+  border-bottom: 1px solid #efeff1;
+}
+/* line 559, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003559}}
+.breadcrumb li {
+  display: inline-block;
+  padding: 0 30px;
+  position: relative;
+  border-bottom: 2px solid transparent;
+}
+/* line 564, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003564}}
+.breadcrumb li a {
+  color: #d7d7d8;
+}
+/* line 567, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003567}}
+.breadcrumb li.selected {
+  border-bottom: 2px solid #00a0e9;
+}
+/* line 569, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003569}}
+.breadcrumb li.selected a,
+.breadcrumb li.selected span {
+  color: #333;
+}
+/* line 572, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003572}}
+.breadcrumb li.selected a:hover,
+.breadcrumb li.selected span:hover {
+  color: #333;
+}
+/* line 577, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003577}}
+.breadcrumb li:before {
+  position: absolute;
+  content: '/';
+  left: -5px;
+  color: #d7d7d8;
+}
+/* line 584, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003584}}
+.breadcrumb li:first-child:before {
+  content: '';
+}
+/* line 594, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003594}}
+.tabs .tabs-head {
+  border-bottom: 1px solid #efeff1;
+  padding-left: 20px;
+}
+/* line 597, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003597}}
+.tabs .tabs-head li {
+  height: 45px;
+  line-height: 45px;
+  padding: 0 20px;
+  display: inline-block;
+}
+/* line 602, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003602}}
+.tabs .tabs-head li.tabs-selected {
+  border-bottom: 2px solid #00a0e9;
+}
+/* line 608, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003608}}
+.tabs .tabs-body {
+  padding: 15px 10px;
+}
+/* line 612, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003612}}
+.grid {
+  width: 960px;
+  padding-left: -1px;
+  padding-right: -1px;
+  box-sizing: border-box;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+/* line 620, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003620}}
+.grid-head,
+.grid-body {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+/* line 627, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003627}}
+.grid-body p {
+  width: 100%;
+  line-height: 100px;
+  text-align: center;
+  font-size: 20px;
+}
+/* line 633, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003633}}
+.grid-head {
+  margin-bottom: -1px;
+}
+/* line 636, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003636}}
+.grid-head-th,
+.grid-body-tr {
+  display: table-row;
+  border: 1px solid #efeff1;
+  margin-bottom: -1px;
+}
+/* line 641, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003641}}
+.grid-head-th > div,
+.grid-body-tr > div {
+  display: table-cell;
+  text-align: center;
+  border: 1px solid #efeff1;
+  box-sizing: border-box;
+  line-height: 45px;
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 651, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003651}}
+.grid-head-th > div a,
+.grid-body-tr > div a {
+  color: #00a0e9;
+}
+/* line 654, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003654}}
+.grid-head-th > div.order-number,
+.grid-body-tr > div.order-number,
+.grid-head-th > div.answer-number,
+.grid-body-tr > div.answer-number {
+  width: 100px;
+}
+/* line 658, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003658}}
+.grid-head-th > div.industry,
+.grid-body-tr > div.industry,
+.grid-head-th > div.scene,
+.grid-body-tr > div.scene,
+.grid-head-th > div.industrybox,
+.grid-body-tr > div.industrybox {
+  width: 250px;
+  max-width: 250px;
+}
+/* line 663, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003663}}
+.grid-head-th > div.industry span,
+.grid-body-tr > div.industry span,
+.grid-head-th > div.scene span,
+.grid-body-tr > div.scene span,
+.grid-head-th > div.industrybox span,
+.grid-body-tr > div.industrybox span,
+.grid-head-th > div.industry a,
+.grid-body-tr > div.industry a,
+.grid-head-th > div.scene a,
+.grid-body-tr > div.scene a,
+.grid-head-th > div.industrybox a,
+.grid-body-tr > div.industrybox a {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 671, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003671}}
+.grid-head-th > div.industry input,
+.grid-body-tr > div.industry input,
+.grid-head-th > div.scene input,
+.grid-body-tr > div.scene input,
+.grid-head-th > div.industrybox input,
+.grid-body-tr > div.industrybox input {
+  height: 25px;
+  line-height: 25px;
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid #c3c3c3;
+}
+/* line 677, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003677}}
+.grid-head-th > div.industry input:focus,
+.grid-body-tr > div.industry input:focus,
+.grid-head-th > div.scene input:focus,
+.grid-body-tr > div.scene input:focus,
+.grid-head-th > div.industrybox input:focus,
+.grid-body-tr > div.industrybox input:focus {
+  outline: none;
+}
+/* line 682, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003682}}
+.grid-head-th > div.operation,
+.grid-body-tr > div.operation {
+  width: 260px;
+}
+/* line 684, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003684}}
+.grid-head-th > div.operation a,
+.grid-body-tr > div.operation a {
+  cursor: pointer;
+  padding: 0 15px;
+  font-size: 14px;
+}
+/* line 691, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003691}}
+.grid-head-th > div.index,
+.grid-body-tr > div.index {
+  width: 46px;
+}
+/* line 694, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003694}}
+.grid-head-th > div.order-num,
+.grid-body-tr > div.order-num {
+  width: 102px;
+}
+/* line 696, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003696}}
+.grid-head-th > div.order-num span,
+.grid-body-tr > div.order-num span {
+  width: 102px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 704, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003704}}
+.grid-head-th > div.desk-num,
+.grid-body-tr > div.desk-num {
+  width: 72px;
+}
+/* line 707, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003707}}
+.grid-head-th > div.order-person,
+.grid-body-tr > div.order-person {
+  width: 65px;
+}
+/* line 710, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003710}}
+.grid-head-th > div.tel,
+.grid-body-tr > div.tel,
+.grid-head-th > div.order-time,
+.grid-body-tr > div.order-time {
+  width: 160px;
+}
+/* line 713, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003713}}
+.grid-head-th > div.order-status,
+.grid-body-tr > div.order-status,
+.grid-head-th > div.order-money,
+.grid-body-tr > div.order-money,
+.grid-head-th > div.order-detail,
+.grid-body-tr > div.order-detail {
+  width: 70px;
+}
+/* line 716, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003716}}
+.grid-head-th > div.order-operation,
+.grid-body-tr > div.order-operation {
+  width: 145px;
+}
+/* line 718, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003718}}
+.grid-head-th > div.order-operation .confirm,
+.grid-body-tr > div.order-operation .confirm,
+.grid-head-th > div.order-operation .cancel,
+.grid-body-tr > div.order-operation .cancel {
+  width: 54px;
+  height: 24px;
+  line-height: 24px;
+}
+/* line 723, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003723}}
+.grid-head-th > div.order-operation .confirm.invalid,
+.grid-body-tr > div.order-operation .confirm.invalid,
+.grid-head-th > div.order-operation .cancel.invalid,
+.grid-body-tr > div.order-operation .cancel.invalid {
+  background-color: #dedede;
+  border: 1px solid #dedede;
+  color: #6e6e6e;
+}
+/* line 733, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003733}}
+.node-font > span,
+.node-font > div {
+  display: inline-block;
+}
+/* line 742, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003742}}
+.grid-body.goods .grid-body-tr > div,
+.grid-head.goods .grid-body-tr > div,
+.grid-body.goods .grid-head-th > div,
+.grid-head.goods .grid-head-th > div {
+  height: 85px;
+  vertical-align: middle;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 750, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003750}}
+.grid-body.goods .grid-body-tr > div.number,
+.grid-head.goods .grid-body-tr > div.number,
+.grid-body.goods .grid-head-th > div.number,
+.grid-head.goods .grid-head-th > div.number,
+.grid-body.goods .grid-body-tr > div.price,
+.grid-head.goods .grid-body-tr > div.price,
+.grid-body.goods .grid-head-th > div.price,
+.grid-head.goods .grid-head-th > div.price,
+.grid-body.goods .grid-body-tr > div.unit,
+.grid-head.goods .grid-body-tr > div.unit,
+.grid-body.goods .grid-head-th > div.unit,
+.grid-head.goods .grid-head-th > div.unit {
+  width: 70px;
+}
+/* line 755, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003755}}
+.grid-body.goods .grid-body-tr > div.pic,
+.grid-head.goods .grid-body-tr > div.pic,
+.grid-body.goods .grid-head-th > div.pic,
+.grid-head.goods .grid-head-th > div.pic {
+  width: 120px;
+  box-sizing: border-box;
+}
+/* line 758, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003758}}
+.grid-body.goods .grid-body-tr > div.pic img,
+.grid-head.goods .grid-body-tr > div.pic img,
+.grid-body.goods .grid-head-th > div.pic img,
+.grid-head.goods .grid-head-th > div.pic img {
+  height: 65px;
+  vertical-align: middle;
+  border-radius: 10px;
+}
+/* line 764, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003764}}
+.grid-body.goods .grid-body-tr > div.name,
+.grid-head.goods .grid-body-tr > div.name,
+.grid-body.goods .grid-head-th > div.name,
+.grid-head.goods .grid-head-th > div.name {
+  width: 178px;
+}
+/* line 767, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003767}}
+.grid-body.goods .grid-body-tr > div.info,
+.grid-head.goods .grid-body-tr > div.info,
+.grid-body.goods .grid-head-th > div.info,
+.grid-head.goods .grid-head-th > div.info {
+  width: 300px;
+}
+/* line 769, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003769}}
+.grid-body.goods .grid-body-tr > div.info span,
+.grid-head.goods .grid-body-tr > div.info span,
+.grid-body.goods .grid-head-th > div.info span,
+.grid-head.goods .grid-head-th > div.info span {
+  width: 300px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 777, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003777}}
+.grid-body.goods .grid-body-tr > div.operation,
+.grid-head.goods .grid-body-tr > div.operation,
+.grid-body.goods .grid-head-th > div.operation,
+.grid-head.goods .grid-head-th > div.operation {
+  width: 130px;
+}
+/* line 779, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003779}}
+.grid-body.goods .grid-body-tr > div.operation a,
+.grid-head.goods .grid-body-tr > div.operation a,
+.grid-body.goods .grid-head-th > div.operation a,
+.grid-head.goods .grid-head-th > div.operation a {
+  padding: 0 8px;
+}
+/* line 786, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003786}}
+.grid-head-th {
+  background: #f7f8f9;
+}
+/* line 789, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003789}}
+.grid-head-th > div {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+/* line 792, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003792}}
+.grid-head-th > div:first-child {
+  border-left: 1px solid #efeff1;
+}
+/* line 795, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003795}}
+.grid-head-th > div:last-child {
+  border-right: 1px solid #efeff1;
+}
+/* line 800, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003800}}
+.grid-body-tr.red > div {
+  border: 2px solid #d8d5d5;
+}
+/* line 802, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003802}}
+.grid-body-tr.red > div:not(:first-child),
+.grid-body-tr.red > div:not(:last-child) {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+/* line 807, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003807}}
+.grid-body-tr.red > div:first-child {
+  border-left-color: #d8d5d5 ;
+}
+/* line 810, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003810}}
+.grid-body-tr.red > div:last-child {
+  border-right-color: #d8d5d5 ;
+}
+/* line 815, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003815}}
+.accound-detail {
+  display: block;
+}
+/* line 817, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003817}}
+.accound-detail > div {
+  height: 70px;
+  line-height: 30px;
+}
+/* line 820, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003820}}
+.accound-detail > div label,
+.accound-detail > div input {
+  line-height: 30px;
+  height: 30px;
+  display: inline-block;
+}
+/* line 826, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003826}}
+.accound-detail > div label {
+  min-width: 100px;
+}
+/* line 829, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003829}}
+.accound-detail > div input[type="checkbox"] {
+  margin-left: 40px;
+  width: 15px;
+  margin-right: 5px;
+}
+/* line 833, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003833}}
+.accound-detail > div input[type="checkbox"]:first-child {
+  margin-left: 0;
+}
+/* line 839, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003839}}
+.overall,
+.overall1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  text-align: center;
+  vertical-align: middle;
+  display: none;
+}
+/* line 851, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003851}}
+.overall .popap,
+.overall1 .popap {
+  width: 500px;
+  height: 300px;
+  background: #fff;
+  border-radius: 10px;
+  left: 50%;
+  margin-left: -250px;
+  top: 50%;
+  margin-top: -150px;
+  position: absolute;
+}
+/* line 861, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003861}}
+.overall .popap p,
+.overall1 .popap p {
+  font-size: 20px;
+  line-height: 200px;
+}
+/* line 871, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003871}}
+.addFunctionBox li {
+  width: 450px;
+  box-sizing: border-box;
+  border: 1px solid #c3c3c3;
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 29px;
+  height: 90px;
+  margin-bottom: 20px;
+}
+/* line 880, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003880}}
+.addFunctionBox li > div {
+  float: left;
+  height: 100%;
+  box-sizing: border-box;
+}
+/* line 885, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003885}}
+.addFunctionBox li .icon {
+  width: 95px;
+  text-align: center;
+  border-right: 1px solid #c3c3c3;
+}
+/* line 890, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003890}}
+.addFunctionBox li img {
+  height: 100%;
+}
+/* line 893, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003893}}
+.addFunctionBox li .title {
+  display: block;
+  line-height: 40px;
+}
+/* line 897, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003897}}
+.addFunctionBox li .showstate a {
+  display: block;
+  margin-top: 40px;
+  line-height: 20px;
+}
+/* line 902, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003902}}
+.addFunctionBox li .function-detial {
+  width: 250px;
+  padding: 0 20px;
+}
+/* line 906, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003906}}
+.addFunctionBox li .desc {
+  height: 40px;
+  line-height: 20px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #757474;
+}
+/* line 919, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003919}}
+#add {
+  margin-left: 25px;
+  margin-right: 35px;
+  border: 1px dashed #efeff1;
+}
+/* line 923, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003923}}
+#add > .node-font {
+  padding-left: 20px;
+}
+/* line 925, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003925}}
+#add > .node-font > span,
+#add > .node-font > div {
+  display: inline-block;
+}
+/* line 929, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003929}}
+#add > .node-font > span {
+  font-weight: bold;
+  font-size: 24px;
+  color: #8d8d8d;
+}
+/* line 935, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003935}}
+#add.node-selected {
+  background: none;
+}
+/* line 937, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003937}}
+#add.node-selected a {
+  color: #8d8d8d;
+}
+/* line 945, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003945}}
+.industrybox input.industry,
+.scene input.industry,
+.industrybox input.name,
+.scene input.name {
+  display: none;
+}
+/* line 950, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003950}}
+.clearEdit,
+.submitEdit,
+.clearEdit,
+.submitEdit,
+.tipIndustry,
+.tipName {
+  display: none;
+}
+/* line 959, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003959}}
+#qrecordForm > div {
+  width: 100%;
+  line-height: 60px;
+}
+/* line 962, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003962}}
+#qrecordForm > div label {
+  display: inline-block;
+  font-size: 14px;
+  font-family: 'Microsoft Yahei';
+  width: 110px;
+}
+/* line 967, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003967}}
+#qrecordForm > div label#tip4 {
+  width: auto;
+  font-size: 12px;
+  color: red;
+}
+/* line 978, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003978}}
+.t_r {
+  text-align: center;
+}
+/* line 981, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003981}}
+.pages {
+  text-align: right;
+}
+/* line 985, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003985}}
+.pages li {
+  display: inline-block;
+  line-height: 30px;
+}
+/* line 988, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003988}}
+.pages li.prevPage,
+.pages li.nextPage {
+  cursor: pointer;
+  border: 1px solid #d4d4d4;
+  border-radius: 3px;
+  padding: 0 12px;
+  font-weight: bold;
+  color: #888787;
+}
+/* line 997, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\00003997}}
+.pages li.prevPage.readonly,
+.pages li.nextPage.readonly {
+  background: rgba(212, 212, 212, 0.5);
+  cursor: default;
+  color: #888787;
+}
+/* line 1004, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031004}}
+.pages li:last-child input[type="number"] {
+  border: 1px solid #c3c3c3;
+  border-radius: 5px;
+  width: 50px;
+  height: 32px;
+  line-height: 30px;
+  margin-right: 10px;
+  margin: 0 10px;
+  box-sizing: border-box;
+}
+/* line 1014, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031014}}
+.pages li:last-child input[type="button"] {
+  display: inline-block;
+  border-radius: 5px;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  height: 30px;
+  cursor: pointer;
+  width: 50px;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  color: #333;
+  text-align: center;
+}
+/* line 1032, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031032}}
+.choseimg {
+  margin: 10px 0;
+  height: 120px;
+  width: 120px;
+  border: 1px solid #c3c3c3;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 100px;
+  font-size: 80px;
+  color: #c3c3c3;
+  overflow: hidden;
+}
+/* line 1045, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031045}}
+.choseimg:hover {
+  cursor: pointer;
+}
+/* line 1048, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031048}}
+.choseimg input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid #00a0ea;
+  background: none;
+  opacity: 0;
+}
+/* line 1057, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031057}}
+.choseimg input[type="file"]:focus,
+.choseimg input[type="file"]:hover {
+  cursor: pointer;
+}
+/* line 1063, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031063}}
+#up,
+#down {
+  width: 15px;
+  height: 15px;
+}
+/* line 1068, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031068}}
+#imageId,
+#imageId1 {
+  width: 150px;
+  display: none;
+  vertical-align: middle;
+}
+/* line 1074, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031074}}
+.editButton {
+  display: none;
+}
+/* line 1077, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031077}}
+.colorBlue {
+  color: #00a0e9;
+}
+/* line 1084, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031084}}
+.grid.device .grid-head-th > div span,
+.grid.device .grid-body-tr > div span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 1091, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031091}}
+.grid.device .grid-head-th > div:first-child,
+.grid.device .grid-body-tr > div:first-child {
+  width: 50px;
+}
+/* line 1093, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031093}}
+.grid.device .grid-head-th > div:first-child span,
+.grid.device .grid-body-tr > div:first-child span {
+  width: 30px;
+}
+/* line 1097, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031097}}
+.grid.device .grid-head-th > div:nth-child(6),
+.grid.device .grid-body-tr > div:nth-child(6),
+.grid.device .grid-head-th > div:nth-child(7),
+.grid.device .grid-body-tr > div:nth-child(7) {
+  width: 60px;
+}
+/* line 1100, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031100}}
+.grid.device .grid-head-th > div:nth-child(6) span,
+.grid.device .grid-body-tr > div:nth-child(6) span,
+.grid.device .grid-head-th > div:nth-child(7) span,
+.grid.device .grid-body-tr > div:nth-child(7) span {
+  width: 40px;
+}
+/* line 1104, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031104}}
+.grid.device .grid-head-th > div:nth-child(2),
+.grid.device .grid-body-tr > div:nth-child(2) {
+  width: 220px;
+}
+/* line 1106, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031106}}
+.grid.device .grid-head-th > div:nth-child(2) span,
+.grid.device .grid-body-tr > div:nth-child(2) span {
+  width: 200px;
+}
+/* line 1110, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031110}}
+.grid.device .grid-head-th > div:nth-child(3),
+.grid.device .grid-body-tr > div:nth-child(3),
+.grid.device .grid-head-th > div:nth-child(4),
+.grid.device .grid-body-tr > div:nth-child(4),
+.grid.device .grid-head-th > div:nth-child(5),
+.grid.device .grid-body-tr > div:nth-child(5) {
+  width: 150px;
+}
+/* line 1114, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031114}}
+.grid.device .grid-head-th > div:nth-child(3) span,
+.grid.device .grid-body-tr > div:nth-child(3) span,
+.grid.device .grid-head-th > div:nth-child(4) span,
+.grid.device .grid-body-tr > div:nth-child(4) span,
+.grid.device .grid-head-th > div:nth-child(5) span,
+.grid.device .grid-body-tr > div:nth-child(5) span {
+  width: 130px;
+}
+/* line 1118, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031118}}
+.grid.device .grid-head-th > div:last-child,
+.grid.device .grid-body-tr > div:last-child {
+  width: 90px;
+}
+/* line 1120, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031120}}
+.grid.device .grid-head-th > div:last-child span,
+.grid.device .grid-body-tr > div:last-child span {
+  width: 90px;
+}
+/* line 1127, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031127}}
+.grid.device .grid-head-th > div {
+  border-right: 0px solid transparent;
+}
+/* line 1129, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031129}}
+.grid.device .grid-head-th > div:last-child,
+.grid.device .grid-head-th > div:nth-child(7),
+.grid.device .grid-head-th > div:nth-child(6) {
+  border-right: 1px solid transparent;
+}
+/* line 1137, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031137}}
+.previewbox {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 1141, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031141}}
+.previewbox img {
+  height: 120px;
+  vertical-align: middle;
+}
+/* line 1146, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031146}}
+.answerList {
+  width: 400px;
+}
+/* line 1149, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031149}}
+.adItem {
+  margin: 20px 0;
+}
+/* line 1152, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031152}}
+.adItem label {
+  width: 120px;
+  display: inline-block;
+}
+/* line 1156, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031156}}
+.adItem input {
+  padding: 0 4px;
+}
+/* line 1159, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031159}}
+.timeContent {
+  display: inline-block;
+}
+/* line 1162, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031162}}
+.timeContent input {
+  width: 20px;
+  line-height: 24px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #c3c3c3;
+}
+/* line 1170, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031170}}
+#videoId {
+  width: 200px;
+  height: 120px;
+  background: #000;
+  display: none;
+}
+/* line 1176, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031176}}
+.optionSelected {
+  border: 1px solid #8d8d8d;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 0 0 10px;
+  border-radius: 5px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+/* line 1186, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031186}}
+.selectBox {
+  display: inline-block;
+  width: 284px;
+  position: relative;
+  box-sizing: border-box;
+}
+/* line 1192, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031192}}
+.selectOption {
+  max-height: 240px;
+  width: 100%;
+  position: absolute;
+  border: 1px solid #8d8d8d;
+  border-top: none;
+  background: #cccccc;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+/* line 1202, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031202}}
+.selectOption li {
+  width: 100%;
+  line-height: 30px;
+  height: 30px;
+  overflow: hidden;
+  box-sizing: inherit;
+  padding: 0 10px;
+}
+/* line 1210, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031210}}
+.selectOption li input[type="checkbox"] {
+  width: 15px;
+  margin-right: 10px;
+  height: 15px;
+}
+/* line 1215, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031215}}
+.grid.sceneQa .grid-body-tr > div:first-child,
+.grid.sceneQa .grid-head-th > div:first-child {
+  width: 60px;
+  max-width: 60px;
+}
+/* line 1220, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031220}}
+.grid.sceneQa .grid-body-tr > div:nth-child(2),
+.grid.sceneQa .grid-head-th > div:nth-child(2) {
+  width: 100px;
+  max-width: 100px;
+}
+/* line 1225, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031225}}
+.grid.sceneQa .grid-body-tr > div:nth-child(3),
+.grid.sceneQa .grid-head-th > div:nth-child(3) {
+  width: 150px;
+  max-width: 150px;
+}
+/* line 1230, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031230}}
+.grid.sceneQa .grid-body-tr > div:nth-child(4),
+.grid.sceneQa .grid-head-th > div:nth-child(4),
+.grid.sceneQa .grid-body-tr > div:nth-child(5),
+.grid.sceneQa .grid-head-th > div:nth-child(5) {
+  width: 220px;
+  max-width: 220px;
+}
+/* line 1237, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031237}}
+.grid.sceneQa .grid-body-tr > div:nth-child(6),
+.grid.sceneQa .grid-head-th > div:nth-child(6) {
+  width: 80px;
+  max-width: 80px;
+}
+/* line 1242, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031242}}
+.grid.sceneQa .grid-body-tr > div:last-child,
+.grid.sceneQa .grid-head-th > div:last-child {
+  width: 130px;
+  max-width: 130px;
+}
+/* line 1247, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031247}}
+.grid.sceneQa .grid-body-tr > div:last-child a,
+.grid.sceneQa .grid-head-th > div:last-child a {
+  padding: 0 10px;
+}
+/* line 1251, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031251}}
+.chooseExcel {
+  font-size: 16px;
+  letter-spacing: 5px;
+  height: 28px;
+  width: 100px;
+  line-height: 28px;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #dbdae0;
+}
+/* line 1262, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031262}}
+.datep {
+  border: 1px solid #CCCCCC;
+  width: 156px;
+  line-height: 28px;
+  padding-left: 4px;
+  display: inline-block;
+}
+/* line 1268, common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/demo\/attence_sever\/less\/common\.less}line{font-family:\000031268}}
+.datainp {
+  line-height: 28px;
+}

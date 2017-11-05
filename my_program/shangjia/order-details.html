@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/common.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <script type="text/javascript" src="js/orderDetails.js"></script>
+
+    <style>
+        .breadcrumb li:before {
+            content: '';
+        }
+        .grid-head-th > div, .grid-body-tr > div {
+            text-align: left;
+        }
+        .grid-body-tr .column-one {
+            width: 92px;
+            border-right: none;
+        }
+        .grid-body-tr .column-two,
+        .grid-body-tr .column-three{
+            border-left: none;
+            border-right: none;
+        }
+        .grid-body-tr .column-two {
+            width: 624px;
+        }
+        .grid-body-tr .column-three {
+            width: 80px;
+        }
+        .grid-body-tr .column-four {
+            border-left: none;
+            width: 164px;
+        }
+        textarea.tips {
+            width: 960px;
+            height: 50px;
+            line-height: 25px;
+            border: 1px solid #d4d4d4;
+        }
+        textarea.tips[disabled] {
+            background: rgba(212, 212, 212, 0.3);
+            border: 1px solid #d4d4d4;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="grid info">
+        <div class="order-head">
+            <div class="grid-head-th">
+                <div class="order-info" style="width: 960px">订单信息</div>
+            </div>
+        </div>
+        <div class="grid-body order-body" id="orderInfo">
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="order-head">
+            <div class="grid-head-th">
+                <div class="order-info" style="width: 960px">订单内容</div>
+            </div>
+        </div>
+        <div class="grid-body order-body" >
+
+
+            <div class="grid-body-tr" id="select">
+                <div class="column-one"><input type="checkbox" class="checkbox-all" id="selectAll" checked="checked">&nbsp;&nbsp;全选：</div>
+            </div>
+
+            <div class="grid-body-tr total-money">
+                <div class="column-one" id="money"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <textarea name="" id="tips" class="tips" placeholder="备注"></textarea>
+    </div>
+    <!--<div class="tips" id="tips"></div>-->
+    <div  style="text-align: right; margin-top: 15px">
+        <input type="button" class="button details-confirm" value="确认"/>
+        <input type="button" class="button cancel" value="确认"/>
+    </div>
+
+    <!--分页-->
+    <div class="pages">
+        <ul>
+        </ul>
+    </div>
+    <!--分页-->
+</div>
+</body>
+</html>

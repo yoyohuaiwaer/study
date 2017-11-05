@@ -1,0 +1,381 @@
+/**
+ * Created by A on 2017/8/9.
+ */
+$(document).ready(function(){
+    $('.main-title').hide();
+    $('.breadcrumb').hide();
+
+    if($.cookie('state') == undefined){
+        $.cookie('state', "free", {path: '/'});
+    }
+    if($.cookie("state") =='free')
+    {
+        $("#workStatus option").eq(0).attr("selected",true);
+        $.cookie('state', "free", {path: '/'});
+    }else{
+        $("#workStatus option").eq(1).attr("selected",true);
+        $.cookie('state', "busyness", {path: '/'});
+    }
+    //$('#thumbs a').touchTouch();
+    //oncaller = '';
+    //$('#sendMessage').attr({'readonly':'readonly'});
+    /*console.log($.cookie('stream'));
+     console.log($.cookie('streamType'));
+     debugger;*/
+    connRtc();
+    sports('.top');
+    sports('.right');
+    sports('.left');
+    sports('.bottom');
+    movement();
+})
+
+
+function Touch(clickEle,parEle,showEle,prev,next){
+    $(clickEle).on('click',function(){
+        var index = $(this).parents(parEle).attr('data-index');
+        console.log(index);
+        var num = $(parEle).length - 1;
+        console.log(num);
+        if(num == 0){
+            $(prev).hide();
+            $(next).hide();
+        }
+        $(showEle).removeClass('show');
+        $(showEle).eq(index).addClass('show');
+        if(index == num){//预览最后一个
+            $(next).addClass('last');
+        }else if(index == 1){//预览第一个
+            $(prev).addClass('first');
+        }
+        $('.overall').show();//显示
+        //next click
+        $(next).on('click',function(){
+            var index2 = $(showEle).index($('.show'));
+            console.log(index2);
+            console.log(num);
+            if(index2==num){
+                $('#pagelimit').html('已经是最后了');
+                $(next).addClass('last');
+            }else if(index2 == 0){
+                index2 = index2 + 1;
+                $(showEle).removeClass('show');
+                $(showEle).eq(index2).addClass('show');
+                $(prev).removeClass('first');
+                $('#pagelimit').empty();
+            }else{
+                index2 = index2 + 1;
+                $(showEle).removeClass('show');
+                $(showEle).eq(index2).addClass('show');
+            }
+        })
+        $(prev).on('click',function(){
+            var index2 = $(showEle).index($('.show'));
+            console.log(index2);
+            console.log(num);
+            if(index2==0){
+                $('#pagelimit').html('已经是第一张了');
+                $(prev).addClass('first');
+            }else if(index2 == num){
+                index2 = index2 - 1;
+                $(showEle).removeClass('show');
+                $(showEle).eq(index2).addClass('show');
+                $(next).removeClass('last');
+                $('#pagelimit').empty();
+            }else {
+                index2 = index2 - 1;
+                $(showEle).removeClass('show');
+                $(showEle).eq(index2).addClass('show');
+            }
+        })
+        $('.close').on('click',function(){
+            $('.overall').hide();//显示
+        })
+    })
+
+}
+function push(){
+    $('.push').on('click',function(){
+
+    })
+}
+function pagenation(page,type){
+    page = page?page:1;
+    /*if(page == undefined){
+     page = 1;
+     }else {
+     page = page;
+     }*/
+    var obj = {
+        token:$.cookie("token"),
+        page: page,
+        //row: '10',
+        type:type
+    }
+    if(type == 'image'){
+        obj.row = 6;
+    }
+    console.log(JSON.stringify(obj));
+    $.ajax(
+        {
+            url: commUrl+'/pushMaterial',
+            data: obj,
+            success: function (data) {
+                data = JSON.parse(data);
+                console.log(data);
+                debugger;
+                var html = '';
+                var dom = '';
+                var reponse = data.data.datas;
+                switch (type){
+                    case 'image':
+                        $.each(reponse,function(i,key){//加载图片
+                            html +='<div class="viewImgBox" data-index="'+i+'"> ' +
+                                '<img src="'+key.img+'" alt=""/> ' +
+                                '<h4 class="title">'+key.title+'</h4> ' +
+                                '<div class="toolbar"> ' +
+                                '<a data-index="'+i+'" class="preview" data-id="'+key.id+'">preview</a> ' +
+                                '<a data-index="'+i+'" class="push" data-id="'+key.id+'">push</a> </div> </div>';
+                            dom += '<div class="showImg"> ' +
+                                '<img src="'+key.img+'" alt=""/> ' +
+                                '<div class="toolbar"><a data-index="'+i+'" class="push" data-id="'+key.id+'">push</a> </div> </div>';
+
+                        })
+                        $('#gallerySlider').empty().html(dom);
+                        $('#gallerySlider').parent('.showerBox').addClass('img');
+                        $('#thumbs').empty().html(html).addClass('img');
+                        Touch('.preview','.viewImgBox','.showImg','#prevArrow','#nextArrow');
+                        push();
+                        break;
+                    case 'test':
+                        $.each(reponse,function(i,key){//加载文本
+                            html +='<div class="testBox"> ' +
+                                '<h4 class="title">'+key.title+'</h4> ' +
+                                '<div class="content">'+key.content+'</div> ' +
+                                '<div class="toolbar"> ' +
+                                '<input type="button" class="botton" data-index="'+(i+1)+'" data-id="'+key.id+'" value="预览"/> ' +
+                                '<input type="button" class="botton" data-index="'+(i+1)+'" data-id="'+key.id+'" value="推送"/> </div> </div>'
+                        })
+                }
+                //debugger;
+                /*data  = eval('('+data+')');
+                 if(data.code == '1'){
+                 $(".pages ul").empty();
+
+
+                 if(data.data.page == data.data.pageCount){
+                 page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">'+data.data.page+'</span>/<span class="pagecount">'+data.data.pageCount+'</span> </li> ' +
+                 '<li class="nextPage readonly" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)"  value="确定"/></li>'
+                 }
+                 else if(data.data.page == '1') {
+                 page = '<li class="prevPage readonly" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">'+data.data.page+'</span>/<span class="pagecount">'+data.data.pageCount+'</span> </li>' +
+                 ' <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定"/></li>'
+
+                 }
+                 else {
+                 page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">'+data.data.page+'</span>/<span class="pagecount">'+data.data.pageCount+'</span> </li> ' +
+                 '<li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class=""><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定" /></li>'
+                 }
+                 }
+                 $(".pages ul").html(page);*/
+
+            },
+            error: function (text) {
+                alert(text.readyState);
+                alert(text.status);
+            }
+        });
+}
+
+
+
+function movement(){
+    $('.image').on('click',function(){
+       if( $('.movement').is(':hidden')){
+            var type = $(this).attr('class');
+            pagenation('',type);
+            $('.movement').show();
+        }else {
+            $('.movement').hide();
+        }
+
+    })
+}
+function sports(Element){//点击方向
+    $(Element).on('click',function(){
+        var command = $(this).attr('data-command');
+        $.ajax({
+            url: commUrl + '/member/memberList',
+            data: {
+                token: $.cookie("token"),
+                command: command
+            },
+            cache: false,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                data = eval('(' + data + ')');
+                if(data.code == '1') {
+                    $.each(data.data.datas, function(i, key) {
+
+
+                    });
+                }
+            },
+            error: function(text) {
+                alert(text.readyState);
+                alert(text.status);
+            }
+        })
+    })
+}
+function Timer(){
+    var minite = '0';
+    var second = '0';
+    function setTTime( timer1 ,timer2){//alert('123');
+        second = parseInt(timer2,10);
+        minite = parseInt(timer1,10);
+        if(minite == 0){
+            $('.minute').empty().html(minite);
+        }
+        //$('.minute').empty().html(minite);
+        //$('.second').empty().html(second);
+        if(second < 59){
+            second++;
+            $('.second').empty().html(second);
+        }else{
+            minite++;
+            second = 0;
+            $('.minute').empty().html(minite);
+            $('.second').empty().html(second);
+        }
+        //console.log(minite);
+        //console.log(second);
+    };
+    /*setInterval( function(){
+     setTTime(minite,second)
+     },1000);*/
+    stopTimer = setInterval( function(){
+        setTTime(minite,second)
+    },1000);
+};
+/*var setInventFor = */
+function connRtc(){
+    conn.listen({
+        onOpened: function (message) {          //连接成功回调，连接成功后才可以发送消息
+            console.log(message);
+            console.log("%c [opened] 连接已成功建立", "color: green")
+        },
+        onTextMessage: function (message) {
+            // 在此接收和处理消息，根据message.type区分消息来源，私聊或群组或聊天室
+            $('.talkingBox').append('<div class="talkingLeft"> <div class="tallimg"> </div> <div class="tallkingText">'+message.data+'</div> </div>');
+        },  //收到文本消息
+
+        onOnline: function () {
+            console.log('onLine');
+        },                  //本机网络连接成功
+        onOffline: function () {
+            console.log('offline');
+        },                 //本机网络掉线
+        onError: function (message) {
+            console.log('Error');
+            console.log(message);
+            if (message && message.type == 1) {
+                console.warn('连接建立失败！请确认您的登录账号是否和appKey匹配。')
+            }
+        },           //失败回调
+    });
+//rtc调用
+
+    /*var getRoasters = function () {
+        var option = {
+            success: function (roster) {
+                for (var o in roster) {
+                    console.log("jid: ", roster[o].jid);
+                    console.log("name: ", roster[o].name);
+                    console.log("subscription: ", roster[o].subscription);
+                }
+            }
+        };
+        conn.getRoster(option);
+    };*/
+    function sendMessage(){//发送消息
+        $('#sendMessage').on('click',function(){
+            alert('123');
+            var text = $('#chatText').val();
+            var id = conn.getUniqueId();
+            var msg = new WebIM.message('txt', id);
+            msg.set({
+                msg: text,                       // 消息内容
+                to: 'huanxin',//oncaller,                          // 接收消息对象
+                roomType: false,
+                success: function (id, serverMsgId) {
+                    console.log(id);
+                    console.log(serverMsgId);
+                    console.log("send private text Success");
+                    $('.talkingBox').append('<div class="talkingRight"> <div class="tallimg"> </div> <div class="tallkingText">'+text+'</div> </div>');
+                }
+            });
+            msg.body.chatType = 'singleChat';
+            conn.send(msg.body);
+        })
+    }
+
+    $('#workStatus').on('change',function(){
+        var status = $(this).children('option:selected').val();
+        if(status == 'busyness'){
+            reportIMState("on","busyness");
+            $.cookie('state', "busyness", {path: '/'});
+        }else{
+            reportIMState("on","free");
+            $.cookie('state', "free", {path: '/'});
+        }
+    })
+    $('#onlineStstus').on('change',function(){//在线离线问题
+        var status = $(this).children('option:selected').val();
+        var username = $.cookie('IMusername');
+        var password = $.cookie('IMpassword');
+        if(status == 'on'){
+            //alert('in');
+            var options = {
+                apiUrl: WebIM.config.apiURL,
+                user: username,
+                pwd: password,
+                appKey: WebIM.config.appkey
+            };
+            conn.open(options)
+            reportIMState("on","free");
+            $('#workStatus').show();
+            $("#workStatus option").eq(0).attr("selected",true);
+            $.cookie('state', "free", {path: '/'});
+
+
+
+        }else{
+            //alert('out')
+            conn.close();
+            //console.log('success');
+            conn.errorType = WebIM.statusCode.WEBIM_CONNCTION_CLIENT_LOGOUT;
+
+            $("#workStatus option").eq(0).attr("selected",true);
+            $.cookie('state', "free", {path: '/'});
+
+
+           /* $("#workStatus option").eq(1).attr("selected",true);
+            $.cookie('state', "busyness", {path: '/'});*/
+            $('#workStatus').hide();
+            reportIMState("off","");
+        }
+    })
+    $('.endVedio').on('click',function(){//关闭视频
+        rtcCall.endCall();
+        clearInterval(stopTimer);
+        $('.unicom').hide();
+        $('#video').show();
+    });
+    //$('.call').on('click',call);
+    document.getElementById('getRoasters').onclick = getRoasters;
+    $('.muted').on('click',function(){
+        $('#localVideo').attr('muted');
+    })
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+    <link href="css/common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="http://112.74.14.173/images/showCompanyBrowser.ico" type="image/x-icon">
+
+
+    <style>
+        body {
+            background: #f2f3f4;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+<div class="login-box">
+    <h2>三宝心理咨询辅助机器人</h2>
+    <form method="post" id="loginuser">
+        <div  class="mb-none">
+            <input type="text" name="username" id="username"  class="login_username" value="用户名"/>
+        </div>
+        <div class="tips tipsueser"></div>
+        <div class="mb-none">
+            <!--<input type="password" name="password" id="password"   class="login_password"/>-->
+            <input type="text" class="login_password" id="password"   class="login_password" value="密码"/>
+        </div>
+        <div class="tips tipspassword"></div>
+        <div class="mb-none">
+            <input type="text" id="strCode" name="strCode"  value="验证码" class="login_code"/>
+            <span><img src="" alt="" id="codeImage"/></span>
+        </div>
+        <div class="tips tipscode"></div>
+       
+        <div>
+            <input type="submit" id="submit" value="登录"/>
+        </div>
+        <div style="width: 173px;padding-right: 0;display: inline-block;">
+            <input type="checkbox" class="remberme"/>记住用户名
+            <a href="#">忘记密码</a>
+        </div>
+        <div style="display: inline-block;width: 230px;padding-left: 0;padding: 0;text-align: right; color: #00a0e9">
+            必须使用谷歌,火狐浏览器
+        </div>
+
+
+    </form>
+ <div style="margin-top: 30px;font-family: 微软雅黑;font-size: 14px" align="center">购买设备赠送默认账号，初始密码为123456，进入请立即修改密码!</div>
+</div>
+<div class="overall"></div>
+<script type="text/javascript" src="js/brower.js"></script>
+<script src="js/login.js"></script>
+
+
+</body>
+</html>

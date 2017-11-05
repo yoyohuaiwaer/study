@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加商品</title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+</head>
+<body>
+<form action="" method="post" id="qrecordForm">
+    <div>
+        <p>问题:</p>
+        <textarea id="question" rows="3"  required="required" style="width: 800px; line-height: 20px; border-radius: 4px; resize: none;" ></textarea>
+        <label class="tip1"></label>
+    </div>
+    <div>
+        <p>答案:</p>
+        <textarea id="answer" rows="5"  required="required" style="width: 800px; line-height: 20px; border-radius: 4px; resize: none;" ></textarea>
+        <label class="tip2"></label>
+    </div>
+    <div>
+        <input type="button" class="button subButton" onclick="javascript:submitAddAnswers(this)" value="确定"/>
+        <input type="button" class="button minor" onclick="javascript:resetAddAnswers(this)" value="取消"/>
+        <label class="tip3"></label>
+    </div>
+</form>
+    <script type="text/javascript" src="js/addQuesAnswer.js" ></script>
+</body>
+</html>

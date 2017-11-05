@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/common.js" type="text/javascript"></script>
+    <script src="js/device-detail.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="device-box" id="qrecordForm">
+    <div class="device-nume"><label>设备号:</label><span></span></div>
+    <div class="device-startTime"><label>启用时间:</label><span></span></div>
+    <div class="device-endTime"><label>到期时间:</label><span></span></div>
+    <div class="device-useWay"><label>使用方式:</label><span></span></div>
+    <div class="device-useStatus">
+        <label form="useAdr">归属:</label>
+        <input type="text" class="text" id="useAdr"/>
+    </div>
+    <div class="toolbar">
+        <input type="button" class="button confirm" value="确定"/>
+        <input type="button" class="button minor cancel" value="取消"/>
+    </div>
+</div>
+</body>
+</html>

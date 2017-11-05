@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关键词冲突</title>
+</head>
+<body>
+<div style="text-align: right"></div>
+<table class="grid" cellspacing="0">
+    <thead  >
+    <tr class="grid-head-th">
+        <th>序号</th>
+        <th>关键词（组）</th>
+        <th>问答类型</th>
+        <th>问答库类型</th>
+        <th>场景</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody class="table-body" >
+    </tbody>
+</table>
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除这个条冲突吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+
+    </div>
+</div>
+<script src="js/conflict.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .choseimg {
+            vertical-align: middle;
+            font-size: 16px;
+            height: auto;
+            width: auto;
+            color: #666;
+            text-decoration: underline;
+            margin-right: 15px;
+            border: none;
+            line-height: normal;
+        }
+        .longText {
+            width: 400px;
+        }
+        /*.imgList:after{
+            position: absolute;
+            z-index: 1;
+            font-size: 20px;
+            content: '图片预览';
+            top: 0;
+            bottom:0;
+            left: 0;
+            right: 0;
+            min-width: 100px;
+            height: 120px;
+            line-height: 120px;
+            border: 1px solid #ccc;
+            color: #ccc;
+            text-align: center;
+        }
+        .imgList img{
+            height: 120px;
+        }*/
+        .imageBox img {
+            display: none;
+        }
+
+        .photo {
+            width: 120px;
+            height: 120px;
+        }
+
+        .imageBox {
+            /*display: inline-block;
+            position: absolute;*/
+        }
+
+        .imageBox li {
+            width: 140px;
+            height: 120px;
+            float: left;
+            position: relative;
+        }
+
+        .closeLayer {
+            z-index: 99;
+            position: absolute;
+            right: 20px;
+            top: 0px;
+        }
+
+    </style>
+</head>
+<body>
+<form class="accound-detail">
+    <div>
+        <label for="coursewareName">*课件名：</label>
+        <input type="text" id="coursewareName" class="text"/>
+        <span class="tip1"></span>
+    </div>
+    <div>
+        <label for="column">*栏目：</label>
+        <select id="column">
+
+        </select>
+        <span class="tip2"></span>
+    </div>
+    <div>
+        <label>*标签：</label>
+        <div class="selectBox" id="adIds">
+            <div class="optionSelected"><span class="select-font">选择标签</span><span class="suport-icon icon-drop_down"></span></div>
+            <ul class="selectOption" style="display: none;">
+            </ul>
+        </div>
+        <span class="tip3"></span></div>
+    <div>
+        <label for="wakeWords">*唤醒词：</label>
+        <input type="text" id="wakeWords" class="text longText"/>
+        <span class="tip4"></span>
+    </div>
+    <div style="height: 160px">
+        <label style="vertical-align: middle">*图片：</label>
+        <div class="choseimg change">
+            自定义上传
+            <input type="file" class="file_upload" style="width: 120px; height: 40px">
+        </div>
+        <div style="display: inline-block; position: relative;vertical-align: middle; height: 120px;width: 705px" class="imgList">
+            <ul class="imageBox">
+                <li>
+                    <img src="" id="imageStr0" class="photo">
+                    <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="0">
+                        <img id="layer0" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr1" class="photo">
+                    <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="1">
+                        <img id="layer1" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr2" class="photo">
+                    <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="2">
+                        <img id="layer2" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr3" class="photo">
+                    <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="3">
+                        <img id="layer3" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr4" class="photo">
+                    <div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="4">
+                        <img id="layer4" src="images/delected.png">
+                    </div>
+                </li>
+            </ul>
+            <!--<img src="" id="imageId" class="imageId">-->
+            <!--<img src="" id="imageId" style="width: 120px; height: 120px;">-->
+            <span class="imgTips">图片格式为jpg|jpeg|png|bmp 小于1M 图片尺寸为447*280</span>
+        </div>
+
+    </div>
+    <div style="height: 80px">
+        <label style="vertical-align: middle">*音频：</label>
+        <div class="changeAudio choseimg" style="margin: 0;">
+            自定义上传
+            <input type="file" style="width: 120px; height: 40px">
+        </div>
+        <div style="display: inline-block; position: relative; width: 300px;height: 120px;">
+            <audio id="audioId" controls="controls" src=""></audio>
+        </div>
+        <span class="audioTips">视频格式为rmvb|avi|wmv|mpg|mp4 小于20m </span>
+    </div>
+    <div style="height: 160px; margin-bottom: 20px;">
+        <label style="vertical-align: middle">*视频：</label>
+        <div class="changeVedio  choseimg" style="margin: 0;">
+            自定义上传
+            <input type="file" style="width: 120px; height: 120px ">
+        </div>
+        <div style="display: inline-block; position: relative; width: 300px;height: 120px;">
+            <video id="videoId" controls="controls" style="height: 120px;"></video>
+        </div>
+        <span class="videoTips">音频格式为wav|mp3|wma 小于10m </span>
+    </div>
+    <div>
+        <label for="switchImgWords">*图片切换词：</label>
+        <input type="text" id="switchImgWords" class="text longText" value="看图片；查看图片"/>
+        <span class="tip5"></span></div>
+    <div>
+        <label for="switchAudioWords">*音频切换词：</label>
+        <input type="text" id="switchAudioWords" class="text longText" value="听下语音；换语音"/>
+        <span class="tip5"></span>
+    </div>
+    <div>
+        <label for="switchVedioWords">*视频切换词：</label>
+        <input type="email" id="switchVedioWords" class="text longText"  value="看下视频；换视频"/>
+        <span class="tip1"></span>
+    </div>
+    <div>
+        <label>动作：</label>
+        <select name="action" id="action">
+            <option value="happy">开心</option>
+            <option value="sad">悲伤</option>
+            <option value="thinking">思考</option>
+            <option value="angry">愤怒</option>
+            <option value="goodBye">再见</option>
+            <option value="none" selected="selected">不定义</option>
+        </select>
+        <span class="tip4"></span>
+    </div>
+    <div>
+        <label>推荐：</label>
+        <label><input type="radio" checked="checked" name="isRecommend" value="1">是</label>
+        <label><input type="radio" checked="checked" name="isRecommend" value="0">否</label>
+        <span class="tip4"></span>
+    </div>
+    <div>
+        <label>置顶：</label>
+        <label><input type="radio" name="isTop" value="1">是</label>
+        <label><input type="radio" checked="checked" name="isTop" value="0">否</label>
+        <span class="tip4"></span>
+    </div>
+    <div style="height: 170px;">
+        <label for="desc" style="vertical-align: top;">简介</label>
+        <div style="display: inline-block; position: relative;">
+            <textarea name="" id="desc" cols="70" rows="6" style="padding: 5px; line-height: 20px; border: 1px solid #c3c3c3; border-radius: 5px;"></textarea>
+            <div style="position: absolute; line-height: 20px; bottom: 15px; right: 10px;">
+            <span class="already">0</span>/
+            <span class="surplus ">200</span>
+            </div>
+        </div>
+        <span class="tip2"></span>
+    </div>
+
+    <div class="toolbar" >
+        <input type="button" class="button confirm" data-id="" value="保存"/>
+        <input type="button" class="button minor cancel" value="取消"/>
+    </div>
+</form>
+<div class="overall" >
+    <div class="popap" style="height: 200px;">
+        <p>正在上传资源中,请稍候......</p>
+    </div>
+</div>
+<script type="text/javascript" src="js/courseware-details.js"></script>
+</body>
+</html>

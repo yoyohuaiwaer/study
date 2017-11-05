@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增通用问答</title>
+</head>
+<body>
+<div>
+
+    <form action="" method="get" id="qrecordForm">
+        <div>
+            <label for="action">场景:</label>
+            <select name="scene" id="scene">
+                <option value="none" selected="selected">选择场景</option>
+            </select>
+            <label id="tip7" for="action"></label>
+        </div>
+        <div>
+            <label for="lbs">地图定位:</label>
+        	<input name="lbs" type="checkbox" id="lbs" value="LBS" />&nbsp;百度搜索地图
+        </div>
+        <div>
+            <label for="question">原始问题:</label>
+            <input type="text" name="question" id="question" class="text"/>
+            <label id="tip6" for="question"></label>
+        </div>
+        <div>
+            <label for="mainKey">关键词(组):</label>
+            <input type="text" name="question" id="mainKey" class="text"/>
+            <label id="tip1" for="mainKey"></label>
+        </div>
+        <div>
+            <label for="action">动作定义:</label>
+            <select name="action" id="action">
+                <option value="happy">开心</option>
+                <option value="sad">悲伤</option>
+                <option value="thinking">思考</option>
+                <option value="angry">愤怒</option>
+                <option value="goodBye">再见</option>
+                <option value="none" selected="selected">不定义</option>
+            </select>
+            <label id="tip2" for="action"></label>
+        </div>
+
+
+        <div>
+            <label for="answer">答案:</label>
+            <input type="text" name="answer" id="answer" class="text" style="width: 520px"/>
+            <label id="tip3" for="answer"></label>
+        </div>
+        <div>
+            <label for="url">url:</label>
+            <input type="url" name="url" id="url" class="text" style="width: 520px"/>
+            <label id="tip4" for="url"></label>
+        </div>
+        <div class="qa-list">
+            <label for="adIds">关联素材:</label>
+            <div class="selectBox" id="adIds">
+                <div class="optionSelected"><span class="select-font">关联素材</span><span class="suport-icon icon-drop_down"></span></div>
+                <ul class="selectOption" style="display: none;">
+                </ul>
+            </div>
+        </div>
+        <div class="t_r">
+            <input type="button" value="保存" class="button confirm" id="保存"/>
+            <input type="button" value="取消" class="button minor cancel" id="取消" />
+        </div>
+        <div id="tip5"></div>
+    </form>
+</div>
+<script src="js/question-record.js" >
+
+</script>
+</body>
+</html>

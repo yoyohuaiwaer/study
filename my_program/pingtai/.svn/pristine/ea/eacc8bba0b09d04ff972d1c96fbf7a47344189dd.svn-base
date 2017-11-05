@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <link href="css/common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="http://112.74.14.173/images/showCompanyBrowser.ico" type="image/x-icon">-->
+    <title></title>
+    <style>
+        .overall1 .popap p {
+            line-height: 60px;
+            text-align: left;
+        }
+        .tags {
+            width: 80px;
+        }
+        .tagsList {
+            text-align: left;
+            height: 100px;
+            margin-bottom: 50px;
+            vertical-align: top;
+        }
+        .overall1 .popap {
+            padding: 0 20px;
+        }
+        .overall1 .popap label {
+            font-size: 14px;
+            display: inline-block;
+            width: 80px;
+        }
+        .bigBox {
+            display: inline-block;
+            width: 380px;
+            height:120px ;
+            overflow-y: auto;
+        }
+        .tagsBox {
+            display: inline-block;
+            position: relative;
+            height:30px;
+            white-space: nowrap;
+            margin-right: 5px;
+            margin-bottom: 10px;
+            vertical-align: top;
+
+        }
+        .deletTagsBox {
+            position: absolute;
+            display: inline-block;
+            right: 5px;
+            top: 5px;
+            color: #c3c3c3;
+            line-height: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+            cursor: pointer;
+        }
+        .addTags {
+          display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .tagsContent {
+            display: inline-block;
+            min-width: 80px;
+            display: none;
+            border: 1px solid #00a0ea;
+            border-radius: 5px;
+            height: 30px;
+            box-sizing: border-box;
+            line-height: 30px;
+            cursor: pointer;
+            padding: 0 7px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="button" class="button addMediaTags" value="新增标签" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+</div>
+<div class="grid">
+    <div class="grid-head goods">
+        <div class="grid-head-th">
+            <div style="width: 100px;height: 45px;">序号</div>
+            <div style="width: 230px;height: 45px;">标签类型</div>
+            <div style="width: 230px; height: 45px;">标签</div>
+            <div style="width: 240px;height: 45px;">更新时间</div>
+            <div style="width: 160px;height: 45px;">操作</div>
+        </div>
+    </div>
+    <div class="grid-body" >
+
+    </div>
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除该条信息吗？</p>
+        <input type="button" class="button deleteTagsConfirm" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<div class="overall1">
+    <div class="popap">
+        <p style="margin-top: 40px;"><label for="tagsType">标签类型:</label><input type="text" class="text tagsType" id="tagsType" value=""/></p>
+        <div class="tagsList">
+            <label for="tags" style="width: 75px; vertical-align: top">标签:</label>
+            <div class="bigBox">
+                <!--<div class="tagsBox">
+                    <span class="deletTagsBox">x</span>
+                    <span class="tagsContent" data-id=""></span>
+                    <input type="text" class="text tags" data-id="" value=""/>
+                </div><div class="tagsBox">
+                    <span class="deletTagsBox">x</span>
+                    <span class="tagsContent" data-id=""></span>
+                    <input type="text" class="text tags" data-id=""  value=""/>
+                </div><div class="tagsBox">
+                    <span class="deletTagsBox">x</span>
+                    <span class="tagsContent" data-id=""></span>
+                    <input type="text" class="text tags" data-id="" value=""/>
+                </div><div class="tagsBox">
+                    <span class="deletTagsBox">x</span>
+                    <span class="tagsContent" data-id=""></span>
+                    <input type="text" class="text tags" data-id="" value=""/>
+                </div>-->
+                <div class="addTags">+</div>
+            </div>
+        </div>
+        <p></p>
+        <input type="button" class="button addTagsConfirm" value="确定" data-id="">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+    </div>
+</div>
+<script type="text/javascript" src="js/multimedia-tags.js"></script>
+</body>
+</html>

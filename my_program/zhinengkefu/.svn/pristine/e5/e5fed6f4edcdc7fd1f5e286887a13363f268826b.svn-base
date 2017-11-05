@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同义词列表</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+    	.cursort{
+    		width: 41px;
+    	}
+    	.curtime{
+    		width: 120px;
+    	}
+    	.curquestion{
+    		width: 250px;
+    	}
+    	.curaudio{
+    		width: 61px;
+    	}
+    	.buttonList{
+    		width: 240px;
+    	}
+    	.buttonList a{
+    		padding: 0 10px;
+    	}
+    </style>
+</head>
+<body>
+
+<div style="height: 40px;text-align: right">
+	<label style="margin-right: 20px;"  id="kfIsOn">客服在线中...</label>
+	<div class="search-box" style="display: inline-block; margin-right: 20px;">
+        <select name="kfstate" id="kfstate" >
+            <option value="free" selected="selected">空闲</option>
+		    <option value="busyness" >忙碌</option>
+        </select>
+    </div>
+	<div class="search-box" style="display: inline-block">
+        <select name="scene" id="scene" data-rel="2">
+            <option value="昨天" selected="selected">昨天</option>
+            <option value="7天" >7天</option>
+            <option value="30天" >30天</option>
+            <option value="90天" >90天</option>
+        </select>
+    </div>
+	
+</div>
+
+<div class="grid synonym">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class="cursort"><span>序号</span></div>
+            <div class="curtime"><span>日期</span></div>
+            <div class="curquestion"><span>问题</span></div>
+            <div class="curaudio"><span>音频</span></div>
+            <div class="curquestion"><span>答案</span></div>
+            <div class=""><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除该条会话吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+    </div>
+</div>
+<script src="js/customerServiceMsg.js"></script>
+</body>
+</html>

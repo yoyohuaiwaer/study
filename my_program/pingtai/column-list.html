@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <link href="css/common.css" rel="stylesheet">
+    <link rel="shortcut icon" href="http://112.74.14.173/images/showCompanyBrowser.ico" type="image/x-icon">-->
+    <title></title>
+    <style>
+        .overall1 .popap p {
+            line-height: 80px;
+            text-align: left;
+        }
+        .overall1 .popap {
+            padding: 0 20px;
+        }
+        .overall1 .popap label {
+            font-size: 14px;
+            display: inline-block;
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="button" class="button addColumn" data-id="" value="新增栏目" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+</div>
+<div class="grid">
+    <div class="grid-head goods">
+        <div class="grid-head-th">
+            <div style="width: 70px;height: 45px;">序号</div>
+            <div style="width: 230px;height: 45px;">标签类型</div>
+            <div style="width: 230px;height: 45px;">标签</div>
+            <div style="width: 250px;height: 45px;">更新时间</div>
+            <div style="width: 190px;height: 45px;">操作</div>
+        </div>
+    </div>
+    <div class="grid-body" >
+        <!--<div class="grid-body-tr" >
+            <div class="number" style="width: 70px">'+sort+'</div>
+            <div class="title"  style="width: 150px">资料不全</div>
+            <div class="content" style="width: 100px">'+key.type+'</div>
+            <div class="startTime"  style="width: 150px">'+ key.className+'</div>
+            <div class="operation"  style="width: 100px">
+                <a href="javascript:void(0);" class="editTags" id="'+key.id+'" title="'+key.title+'"  name="'+key.content+'">编辑</a>
+                <a href="javascript:void(0);" class="showDeletePop" id="'+key.id+'">删除</a></div>
+        </div>-->
+    </div>
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除该条信息吗？</p>
+        <input type="button" class="button deleteTagsConfirm" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<script type="text/javascript" src="js/column-list.js"></script>
+</body>
+</html>

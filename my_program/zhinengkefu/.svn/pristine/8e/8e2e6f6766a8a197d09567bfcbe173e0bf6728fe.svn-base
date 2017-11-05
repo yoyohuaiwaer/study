@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>官方平台账号</title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+</head>
+<body>
+<form class="accound-detail">
+    <!--<div><label for="username">用户名</label><input type="text" id="username" class="text"/><span class="tip5"></span></div>-->
+    <div><label for="email">用户名</label><input type="email" id="email" class="text" placeholder="只能输入英文和数字" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/><span class="tip1"></span></div>
+    <div><label for="password">登录密码</label><input type="text" id="password" class="text"/><span class="tip2"></span></div>
+    <div><label for="user">使用者</label><input type="text" id="user" class="text"/><span class="tip4"></span></div>
+    <div><label style="vertical-align: top;">状态</label><label><input type="radio" class="radio" name="status" value="1" checked/>启用</label><label><input type="radio" class="radio" name="status" value="2"/>停用</label></div>
+    <div class="toolbar" >
+        <input type="button" class="button confirm" value="保存"/>
+        <input type="button" class="button minor cancel" value="取消"/>
+    </div>
+</form>
+<script src="js/terraceAccount-details.js"></script>
+</body>
+</html>

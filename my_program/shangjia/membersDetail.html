@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--<link href="css/common.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+		<script type="text/javascript" src="js/jedate.js"></script>
+	</head>
+
+	<body>
+		<div style="height: 40px;margin-bottom: 15px;">
+			<input type="button" onclick="javascript:setList(this)" title="7" class="addScene button" value="7日" style="float: left;margin-right: 20px; width: 40px;" />
+			<input type="button" onclick="javascript:setList(this)" title="30" class="addScene button" value="30日" style="float: left;margin-right: 20px; width: 40px;" />
+			<span class="datep" ><input class="datainp" id="dateinfo" type="text" placeholder="请选择"   readonly></span>至
+			<span class="datep" ><input class="datainp" id="dateLast" type="text" placeholder="请选择"  readonly></span>
+			<input name="fTime" type="checkbox" value="" onclick="clickCheckbox()"/> 最早登录时间
+			<input name="lTime" type="checkbox" value="" style="margin-left: 10px;"onclick="clickCheckbox()"/>最晚登录时间
+			<input type="text" class="text searchText" style="margin-left: 10px; width: 120px;"/>
+            <input type="button" class="button searchbtn"  rel="0" value="姓名搜索"/>
+		</div>
+		<label class="tip"></label>
+		<div style="text-align: right"><input type="button" onclick="javascript:forExcel(this)" class="addScene button" value="导出Excel" /></div>
+		<table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+		</table>
+		<!--分页-->
+		<div class="pages">
+			<ul>
+			</ul>
+		</div>
+		<!--分页-->
+		<script type="text/javascript" src="js/membersDetail.js"></script>
+		<script type="text/javascript" src="js/outExcel.js"></script>
+	</body>
+	<script>
+//		jeDate({
+//			dateCell:"#indate",//isinitVal:true,
+//			format:"YYYY-MM",
+//			isTime:false, //isClear:false,
+//			minDate:"2015-10-19 00:00:00",
+//			maxDate:"2016-11-8 00:00:00"
+//		})只显示 年月日
+		jeDate({
+			dateCell:"#dateinfo",
+//			format:"YYYY年MM月DD日 hh:mm:ss",
+			format:"YYYY-MM-DD hh:mm:ss",
+			isinitVal:true,
+			isTime:true, //isClear:false,
+			minDate:"2017-01-01 00:00:00",
+			choosefun:function(val){
+				clickTime();
+			},
+			okfun:function(val){
+				clickTime();
+			}
+		})
+		jeDate({
+			dateCell:"#dateLast",
+			format:"YYYY-MM-DD hh:mm:ss",
+			isinitVal:true,
+			isTime:true, 
+			minDate:"2017-01-01 00:00:00",
+			choosefun:function(val){
+				clickTime();
+			},
+			okfun:function(val){
+				clickTime();
+			}
+		})
+	</script>
+</html>

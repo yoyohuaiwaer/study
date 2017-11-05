@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商家账号列表</title>
+    <script src="js/account-list.js"></script>
+</head>
+<body>
+<div style="text-align: right">
+    <input type="button" class="button confirm"  rel="1" value="新增账号"/>
+</div>
+<div class="grid account">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class=""><span>商家ID</span></div>
+            <div class=""><span>邮箱</span></div>
+            <div class=""><span>企业名称</span></div>
+            <div class=""><span>所属行业</span></div>
+            <div class="operation"><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body">
+
+    </div>
+
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除此商家账号吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+</body>
+</html>

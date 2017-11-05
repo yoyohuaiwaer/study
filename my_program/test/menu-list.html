@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/menuList.js"></script>
+
+    <style>
+        .grid-head .order-number{}
+        .breadcrumb li:before {
+            content: '';
+        }
+        .breadcrumb li {
+            position: relative;
+            border-left:1px solid #efeff1;
+            border-right:1px solid #efeff1;
+            border-top:1px solid #efeff1;
+            border-radius: 5px 5px 0 0;
+            margin-right: 10px;
+            line-height: 36px;
+            height: 36px;
+            margin-top: 12px;
+            display: block;
+            float: left;
+
+        }
+        .breadcrumb li:nth-last-child(2),
+        .breadcrumb li:last-child{
+            border-left:1px solid transparent;
+            border-right:1px solid transparent;
+            border-top:1px solid transparent;
+            padding: 0 15px;
+        }
+        #addParent {
+            margin-top: -7px;
+            height: 30px;
+            line-height: 28px;
+            border-radius: 5px;
+            font-family: 'Microsoft Yahei';
+            font-size: 30px;
+            margin-right: 15px;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #d4d4d4;
+            color: #a8a8a8;
+            cursor: pointer;
+        }
+        .breadcrumb li:last-child input {
+            margin-top: -7px;
+        }
+        .breadcrumb li:last-child input[type="text"] {
+            margin-right: 15px;
+        }
+        .breadcrumb li:last-child input[type="button"] {
+            height: 30px;
+            line-height: 30px;
+            width: 50px;
+            font-size: 12px;
+        }
+        .breadcrumb li a,
+        .breadcrumb li span {
+            color: #333;
+        }
+        .breadcrumb li.selected a {
+            color: #333;
+        }
+        .breadcrumb li span:last-child {
+            position: absolute;
+            top: -5px;
+            right: 10px;
+            font-size: 12px;
+            cursor: pointer;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+
+    <div style="text-align: right"><input type="button" onclick="javascript:addMenu(this)" class="addMenu button" value="新增菜单"/></div>
+    <div class="grid">
+        <div class="grid-head">
+            <div class="grid-head-th">
+                <div class="order-number" style="width: 100px;">序号</div>
+                <div class="menu-name" style="width: 250px;">菜单名称</div>
+                <div class="category" style="width: 230px;">动作</div>
+                <div  class="content" style="width: 220px;">内容</div>
+                <div  style="width: 160px;" class="operation">操作</div>
+            </div>
+        </div>
+        <div class="grid-body" >
+        </div>
+        <br>
+        <div class="pages">
+            <ul>
+            </ul>
+        </div>
+    </div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除此菜单吗？</p>
+        <input type="button" class="button deleteMenu" onclick="javascript:deleteMenu(this)" value="确定">
+        <input type="button" class="button deleteParent" onclick="javascript:deleteParent(this)" value="确定">
+        <input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消"/>
+
+    </div>
+
+</div>
+</div>
+</body>
+</html>

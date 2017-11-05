@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>人脸识别异常统计</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+        .breadcrumb li {
+            position: relative;
+            border-left: 1px solid #efeff1;
+            border-right: 1px solid #efeff1;
+            border-top: 1px solid #efeff1;
+            border-radius: 5px 5px 0 0;
+            margin-right: 10px;
+            line-height: 40px;
+            height: 40px;
+            margin-top: 12px;
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 0 20px;
+
+        }
+        .breadcrumb li:before {
+            content: '';
+        }
+        .breadcrumb li a {
+            color: #333;
+        }
+        .showerBox {
+            position: absolute;
+            width: 977px;
+            height: 650px;
+            top: 50%;
+            left: 50%;
+            margin-left: -486px;
+            margin-top: -325px;
+            background: #fff;
+            border-radius: 15px;
+        }
+        .close {
+            position: absolute;
+            line-height: 30px;
+            right: 15px;
+            font-size: 16px;
+            color: #009fe9;
+            cursor: pointer;
+        }
+        .showerBox.img .gallerySlider {
+            height: 590px;
+        }
+        .showImg {
+            /*display: none;*/
+            width: 950px;
+            height: 592px;
+            border: 1px solid #e5e5e5;
+            margin-left: 13px;
+            margin-top: 30px;
+        }
+        .showerBox.img .gallerySlider img{
+            width: 947px;
+            height: 590px;
+        }
+        .successNum img ,
+        .totalNum span {
+            cursor: pointer;
+        }
+        .totalNum span:hover {
+            text-decoration: underline;
+            color: #00a0e9;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 40px;margin-bottom: 15px;">
+    <input type="button" onclick="javascript:setList(this)" title="7" class="addScene button" value="7日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="button" onclick="javascript:setList(this)" title="30" class="addScene button" value="30日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="date" id="startTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px; "/>
+    至<input type="date" id="endTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px;  margin-left: 6px;"/>
+    <label class="tip"></label>
+    <select id="shop" class="text" style="width: 140px;">
+
+    </select>
+    <select id="robot" class="text" style="width: 140px;">
+        <option >选择机器人</option>
+    </select>
+</div>
+<!--<div style="text-align: right"><input type="button" onclick="javascript:forExcel(this)" class="addScene button" value="导出Excel"/></div>-->
+
+<table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+</table>
+<!--分页-->
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<div class="overall" style="">
+    <div class="showerBox img">
+        <div class="close">关闭</div>
+        <div class="gallerySlider">
+            <div class="showImg">
+                <img src="http://internet-app.oss-cn-shenzhen.aliyuncs.com/images/1503023542798.png?Expires=1818383539&amp;OSSAccessKeyId=LTAIoFk711AQZpyR&amp;Signature=rwFNx4vaYltmo24Sm7ka5Nal1%2Fw%3D" alt="">
+            </div>
+        </div>
+    </div>
+<!--分页-->
+<!--<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>-->
+<script type="text/javascript" src="js/faceAbnormalStatistics.js" ></script>
+<!--<script type="text/javascript" src="js/outExcel.js" ></script>-->
+</body>
+</html>

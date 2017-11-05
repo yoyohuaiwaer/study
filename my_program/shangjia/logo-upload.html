@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <title>logo图片上传</title>
+		<style>
+			.loginText {
+				width: 600px;
+			}
+			.welTitle{margin-left: 20px;}
+			.labelTop{vertical-align:top;}
+			.labelMiddle{position: relative; top:-30px}
+			.setTime,
+			.setTimeBox{
+				display: inline-block;
+			}
+			.setTimeBox {
+				position: relative;
+			}
+			.setTime {
+				display: none;
+				position: absolute;
+				width: 260px;
+				top: 48px ;
+				left: 0;
+				border: 1px solid #c3c3c3;
+				background: #ccc;
+				padding: 0 5px;
+			}
+			#qrecordForm > div label {
+				width: 145px;
+			}
+			.hour,.minute,.second {
+				min-width: 50px;
+			}
+			.confirmTime {
+				padding: 5px;
+			}
+			input[readonly] {
+				border: 1px solid #c3c3c3;
+				width: 200px;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<div id="qrecordForm">
+			<div>
+				<label for="title">标题</label>
+				<input type="text" name="title" id="title" class="text" />
+			</div>
+			<div>
+				<label for="welcome">欢迎语</label>
+				<input type="text" name="title" id="welcome" class="text" />
+			</div>
+
+			<div>
+				<label for="welcome">入园时间:</label>
+				<div class="setTimeBox">
+					<input name="time" type="text" id="signinStart" class="text selectTime" readonly>
+					<div class="setTime">
+						<select name="_hour" class="hour"></select>
+						时
+						<select name="_minute" class="minute"></select>
+						分
+						<!--<select name="_second" class="second"></select>
+						秒-->
+						<input type="button"  class="confirmTime" value="确定"/>
+					</div>-
+				</div>
+				<div class="setTimeBox">
+					<input name="time" type="text" id="signinStop" class="text selectTime" readonly>
+					<div class="setTime">
+						<select name="_hour" class="hour"></select>
+						时
+						<select name="_minute" class="minute"></select>
+						分
+						<!--<select name="_second" class="second"></select>
+						秒-->
+						<input type="button" class="confirmTime" value="确定"/>
+					</div>
+				</div>
+
+			</div>
+			<div>
+				<label for="signinGuide" class="labelTop">入园引导词:</label>
+				<input type="text" id="signinGuide" class="text"/>
+			</div>
+			<div>
+				<label for="signinSucTip" class="labelTop">入园验证成功提示语:</label>
+				<input type="text" id="signinSucTip" class="text"/>
+			</div>
+			<div>
+				<label for="signinFailTip" class="labelTop">入园验证失败提示语:</label>
+				<input type="text" id="signinFailTip" class="text"/>
+			</div>
+			<div>
+				<label for="welcome">离园时间:</label>
+				<div class="setTimeBox">
+					<input name="time" type="text" id="signoutStart" class="text selectTime" readonly>
+					<div class="setTime">
+						<select name="_hour" class="hour"></select>
+						时
+						<select name="_minute" class="minute"></select>
+						分
+						<!--<select name="_second" class="second"></select>
+						秒-->
+						<input type="button" class="confirmTime" value="确定"/>
+					</div>-
+				</div>
+				<div class="setTimeBox">
+					<input name="time" type="text" id="signoutStop" class="text selectTime" readonly>
+					<div class="setTime">
+						<select name="_hour" class="hour"></select>
+						时
+						<select name="_minute" class="minute"></select>
+						分
+						<!--<select name="_second" class="second"></select>
+						秒-->
+						<input type="button" class="confirmTime" value="确定"/>
+					</div>
+				</div>
+
+			</div>
+			<div>
+				<label for="signoutGuide" class="labelTop">离园引导词:</label>
+				<input type="text" id="signoutGuide" class="text"/>
+			</div>
+			<div>
+				<label for="signoutSucTip" class="labelTop">离园验证成功提示语:</label>
+				<input type="text" id="signoutSucTip" class="text"/>
+			</div>
+			<div>
+				<label for="signoutFailTip" class="labelTop">离园验证失败提示语:</label>
+				<input type="text" id="signoutFailTip" class="text"/>
+			</div>
+			<div>
+				<label for="rewardTip" class="labelTop">奖励提示语:</label>
+				<input type="text" id="rewardTip" class="text"/>
+			</div>
+			<div class="">
+				<label>启动画面</label>
+				<div class="previewbox">
+					<img src="" alt="" class="preview" />
+				</div>
+				<div class="choseimg change">+<input type="file"></div>
+				<div style="display: inline-block"><img src="" id="imageId"></div>
+				<span class="imgTips">图片格式为jpg|jpeg|png|bmp 小于100k且宽高为1920px*1200px</span>
+			</div>
+			<div class="">
+				<label>对话头像</label>
+				<div class="previewbox">
+					<img src="" alt="" class="preview1" />
+				</div>
+				<div class="choseimg change1">+<input type="file"></div>
+				<div style="display: inline-block"><img src="" id="imageId1"></div>
+				<span class="imgTips1">图片格式为jpg|jpeg|png|bmp 小于100k且宽高为80px*80px</span>
+			</div>
+			<div style="width: 600px; text-align: center; margin-top: 30px;">
+				<input type="button" class="button confirm" value="保存" />
+				<input type="button" class="button minor cancel" value="取消" />
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/logo-upload.js"></script>
+	</body>
+
+</html>

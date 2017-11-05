@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加商品</title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <style>
+        .breadcrumb li:before {
+            content: '';
+        }
+    </style>
+    <script>
+    if($.cookie("read") == '1'){
+        $(".imgTips").empty();
+        $.ajax({
+            url:commUrl+'/menu/findbyid',
+            //type:'GET',
+            //async: false,
+            data:{
+                token:$.cookie("token"),
+                parentId:$(".main-title").attr("title")
+            },
+            success: function(data){
+                data = eval('('+data+')')
+                //console.log(data);
+                $(".breadcrumb").empty();
+                var html = '<li><a href="javascript:void(0);"  onclick="javascript:changePage(this);" title="'+menuUrl+''+data.data[0].url+'" id="'+data.data[0].parentId+'">'+data.data[0].name+'</a>' +
+                        '<li class="selected"><a href="javascript:void(0);"  onclick="javascript:changePage(this);" title="'+menuUrl+''+data.data[1].url+'" id="'+data.data[1].parentId+'">查看商品详情</a></li>' ;
+                $(".breadcrumb").html(html);
+            },
+            error: function(text){
+                alert(text.readyState);
+                alert(text.status);
+            }
+        });
+        $.ajax({
+            url:commUrl+'/item_'+$.cookie("itemId")+'',
+            data:{token:$.cookie("token")},
+            dataType:'json',
+            success:function(data){
+                data = eval('('+data+')');
+                console.log(data);
+                if(data.code == '1'){
+                    $(".subButton").hide();
+                    $(".editButton").show();
+                    $("#name").val(data.data.name);
+                    $("#unit").val(data.data.unit);
+                    $("#price").val(data.data.price);
+                    $("#imageId").show().attr({src:data.data.icon});
+                    $("#desc").val(data.data.desc);
+                    if(data.data.state == '1'){
+                        $("#up").attr({checked:"checked"});
+                    }else if(data.data.state == '0'){
+                        $("#down").attr({checked:"checked"});
+                    }
+
+                }
+            },
+            error: function(text){
+                alert(text.readyState);
+                alert(text.status);
+            }
+        })
+    }else {
+        $.ajax({
+            url:commUrl+'/menu/findbyid',
+            //type:'GET',
+            //async: false,
+            data:{
+                token:$.cookie("token"),
+                parentId:$(".main-title").attr("title")
+            },
+            success: function(data){
+                data = eval('('+data+')')
+                //console.log(data);
+                $(".breadcrumb").empty();
+                var html = '<li><a href="javascript:void(0);"  onclick="javascript:changePage(this);" title="'+menuUrl+''+data.data[0].url+'" id="'+data.data[0].parentId+'">'+data.data[0].name+'</a>' +
+                        '<li class="selected"><a href="javascript:void(0);"  onclick="javascript:changePage(this);" title="'+menuUrl+''+data.data[1].url+'" id="'+data.data[1].parentId+'">'+data.data[1].name+'</a></li>' ;
+                $(".breadcrumb").html(html);
+            },
+            error: function(text){
+                alert(text.readyState);
+                alert(text.status);
+            }
+        });
+    }
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<form action="" method="post" id="qrecordForm">
+    <div>
+        <label for="name">商品名称</label>
+        <input type="text" id="name" name="name" class="text"/>
+        <span class=></span>
+    </div>
+    <div>
+        <label for="unit">单位</label>
+        <input type="text" id="unit" name="unit" class="text"/>
+        <span></span>
+    </div>
+    <div>
+        <label for="price">单价</label>
+        <input type="number" id="price" name="price" class="text" min="0.1"/>
+        <span></span>
+    </div>
+    <div class="" style="height: 162px; line-height: 162px;">
+        <label>菜品图片</label>
+        <div class="choseimg">+<input type="file"></div>
+        <div style="display: inline-block"><img src="" id="imageId"></div>
+        <span class="imgTips">图片格式可为:jpg|jpeg|png|bmp,大小小于300k,宽小于307像素,高小于214像素</span>
+    </div>
+    <div>
+        <label for="desc">菜品介绍</label>
+        <input type="text" class="text" id="desc" name="desc" style="width: 520px"/>
+        <span></span>
+    </div>
+    <div>
+        <label>操作</label>
+        <label for="up"><input type="radio" checked="checked" name="state" id="up" value="1"/>上架</label>
+        <label for="down"><input type="radio" name="state" id="down" value="0"/>下架</label>
+    </div>
+    <div>
+        <input type="button" class="button subButton" onclick="javascript:submitGoods(this)" value="确定"/>
+        <input type="button" class="button editButton" onclick="javascript:editSubmit(this)" value="确定"/>
+        <input type="button" class="button minor" onclick="javascript:resetGoods(this)" value="取消"/>
+        <span class="tips5"></span>
+    </div>
+</form>
+<script src="js/addCommodity.js"></script>
+</body>
+</html>

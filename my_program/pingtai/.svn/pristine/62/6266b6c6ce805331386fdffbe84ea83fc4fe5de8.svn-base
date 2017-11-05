@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>批量上传</title>
+</head>
+<body>
+<div>
+    <input type="button" class="button" id="upload" value="上传"/>
+    <input type="button" class="button" id="download" value="模板下载"/>
+    <span class="tips">请下载模板按照表格内的格式要求填写正确后上传！</span>
+</div>
+<div class="main-tips">
+    <p></p>
+</div>
+</body>
+</html>

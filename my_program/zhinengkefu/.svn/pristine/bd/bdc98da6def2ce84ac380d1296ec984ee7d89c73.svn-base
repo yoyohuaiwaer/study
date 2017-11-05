@@ -1,0 +1,970 @@
+$(document).ready(function() {
+	var href = excelUrl+"/excel/knowledge.xls";
+	$(".downLoad").attr("href",href); //下载模板
+	$.ajax({
+        url:commUrl+'/menu/findbyid',
+        data:{
+            token:$.cookie("token"),
+            parentId:'59a52dbaa790de8893de73f2'
+        },
+        success: function(data){
+            data = eval('('+data+')')
+            console.log(data)
+            if(data.code == '1'){
+            	$(".breadcrumb").empty();
+//              var breadcrumb = '<li class = "selected" ><a href="javascript:void(0);" onclick="javascript:changePage(this);"  title="'+menuUrl+''+data.data[0].url+'" id="'+data.data[0].id+'">'+data.data[0].name+'</a>';
+// 				$(".breadcrumb").html(breadcrumb);
+            }
+        },
+        error: function(text){
+            alert(text.readyState);
+            alert(text.status);
+        }
+    });
+	onFile();
+	setTree(1);
+	listPage(1);
+})
+
+//批量导入
+function onFile() {
+	$(".onfile").change(function() {
+		var file = this.files[0];
+		if(file == undefined) {
+			return;
+		}
+		var fileName = file.name.substring(file.name.lastIndexOf(".") + 1).toLowerCase();
+		if(fileName == "xlsx" || fileName == "xlsm" || fileName == "xltx" || fileName == "xltm" || fileName == "xls") {
+			if(file.size / 1024 < 1000) {
+				showExcelOver();
+				var formData = new FormData();
+				formData.append('knowledge_file', file);
+				$.ajax({
+					type: "POST",
+					url: commUrl + "/knowledge_import?token=" + $.cookie("token"),
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: formData,
+					complete: function(data) {
+						clearExcelOver();
+						var obj = eval('(' + data.responseText + ')');
+						console.log(obj)
+						var msg = obj.msg;
+						if(obj.successNumber > 0) {
+							if(obj.errorNumber > 0) {
+								msg += ',成功通过验证' + obj.successNumber + '条,失败' + obj.errorNumber + '条,详情请下载并查看' + '<a download href=' + obj.errorExcelUrl + '>上传结果</a>'
+							}
+						} 
+						setTree(1);
+						listPage(1);
+						$(".showTips").empty().html(msg);
+					},
+					error: function(text) {
+						clearExcelOver();
+						alert(text.readyState);
+						alert(text.status);
+					}
+				});
+			} else {
+				$(".showTips").empty().html("文件过大");
+			}
+		} else {
+			$(".showTips").empty().html("请上传EXCEL表格类型的文件");
+		}
+	})
+}
+function clearExcelOver() {
+	$(".excelOver").hide();
+}
+
+function showExcelOver() {
+	$(".excelOver").show();
+}
+function setTree(treeLevel,type) {
+	var obj = {
+		level:treeLevel,
+		token: $.cookie("token")
+	}
+	$.ajax({
+		url: commUrl + '/qacates/node' ,
+		data: obj,
+		cache: false,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data)
+			addLeftTree(data.data,type);
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	})
+}
+
+var treeData={};
+//加载左侧树html
+function addLeftTree(datas,type){
+	var html='';
+	var addHtml='';
+	var leftTreeAllNums =0;
+	treeData =datas;
+	$.each(datas, function(i, key) {
+		if(isEdit){
+			if(key.id == editId){
+				editName = key.cateName;
+			}
+		}
+		leftTreeAllNums += key.count;
+		var levelNum = key.cateName+"( "+key.count+" )";
+		var parentId = key.parentId?key.parentId:key.id;
+		var html2 = '';
+		var html3 = '';
+		var html4 = '';
+		var html5 = '';
+		var addHtml2 = '';
+		var addHtml3 = '';
+		var addHtml4 = '';
+		var addHtml5 = '';
+		var rightBtns='<div class="classifyBtn" onclick="classClick(this)" >'+
+						'<button type="button" class="addBigClas">▼</button>'+
+						'<ul class="classifyUl">'+
+							'<li class="addCla" onclick="javascript:showOverall(this)">创建子分类</li>'+
+							'<li class="reviseCla" onclick="javascript:showOverall(this)">修改分类</li>'+
+							'<li class="deletedCla" onclick="javascript:showOverall(this)">删除分类</li>'+
+						'</ul>'+
+					'</div>';
+		var rightLastBtns='<div class="classifyBtn" onclick="classClick(this)" >'+
+						'<button type="button" class="addBigClas">▼</button>'+
+						'<ul class="classifyUl">'+
+							'<li class="reviseCla" onclick="javascript:showOverall(this)">修改分类</li>'+
+							'<li class="deletedCla" onclick="javascript:showOverall(this)">删除分类</li>'+
+						'</ul>'+
+					'</div>';
+		if(key.level=='1')
+		{
+			if(key.subs.length>0){
+				$.each(key.subs, function(i, key) {
+					if(isEdit){
+						if(key.id == editId){
+							editName = key.cateName;
+						}
+					}
+					if(key.level=='2')
+					{
+						html3 = '';
+						addHtml3 = '';
+						if(key.subs.length>0)
+						{
+							$.each(key.subs, function(i, key) {
+								if(isEdit){
+									if(key.id == editId){
+										editName = key.cateName;
+									}
+								}
+								html4='';
+								addHtml4 = '';
+								if(key.level=='3')
+								{
+									if(key.subs.length>0)
+									{
+										$.each(key.subs, function(i, key) {
+											if(isEdit){
+												if(key.id == editId){
+													editName = key.cateName;
+												}
+											}
+											html5='';
+											addHtml5 = '';
+											if(key.level=='4')
+											{
+												if(key.subs.length>0)
+												{
+													$.each(key.subs, function(i, key) {
+														if(isEdit){
+															if(key.id == editId){
+																editName = key.cateName;
+															}
+														}
+														var levelNum = key.cateName+"( "+key.count+" )";
+														var parentId = key.parentId?key.parentId:key.id;
+														html5 += '<li>'+
+															'<span onclick="javascript:clickNode(this)" class="folder " data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+																rightLastBtns+
+															'</span>'
+														'</li>';
+														addHtml5 += '<li class="collapsable lastCollapsable">'+
+															'<span onclick="javascript:getNodeId(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+															'</span>'+
+														'</li>';
+													})
+												}
+											}
+											var levelNum = key.cateName+"( "+key.count+" )";
+											var parentId = key.parentId?key.parentId:key.id;
+											html4 += '<li>'+
+												'<span onclick="javascript:clickNode(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+													rightBtns+
+												'</span>'+
+												'<ul>'+html5+'</ul>'+
+											'</li>';
+											addHtml4 += '<li>'+
+												'<span onclick="javascript:getNodeId(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+												'</span>'+
+												'<ul>'+addHtml5+'</ul>'+
+											'</li>';
+										})
+									}
+								}
+								var levelNum = key.cateName+"( "+key.count+" )";
+								var parentId = key.parentId?key.parentId:key.id;
+								html3 += '<li>'+
+									'<span onclick="javascript:clickNode(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+										rightBtns+
+									'</span>'+
+									'<ul>'+html4+'</ul>'+
+								'</li>';
+								addHtml3 += '<li>'+
+									'<span onclick="javascript:getNodeId(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+									'</span>'+
+									'<ul>'+addHtml4+'</ul>'+
+								'</li>';
+							})
+						}
+					}
+					var levelNum = key.cateName+"( "+key.count+" )";
+					var parentId = key.parentId?key.parentId:key.id;
+					html2 += '<li>'+
+						'<span onclick="javascript:clickNode(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+							rightBtns+
+						'</span>'+
+						'<ul>'+html3+'</ul>'+
+					'</li>';
+					addHtml2 += '<li>'+
+						'<span onclick="javascript:getNodeId(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+						'</span>'+
+						'<ul>'+addHtml3+'</ul>'+
+					'</li>';
+				})
+
+			}
+			
+			html +='<li data-count="'+key.count+'">'+
+				'<span onclick="javascript:clickNode(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+					rightBtns+
+				'</span>'+
+				'<ul>'+html2+'</ul>'+
+			'</li>';
+			
+			addHtml+='<li data-count="'+key.count+'">'+
+				'<span onclick="javascript:getNodeId(this)" class="folder" data-cateName="'+key.cateName+'" data-parentId="'+parentId+'" data-level="'+key.level+'"  id="' + key.id + '">'+levelNum+
+				'</span>'+
+				'<ul>'+addHtml2+'</ul>'+
+			'</li>';
+		}
+		
+	})
+	
+	if(type=='add')
+	{
+		$(".anotherTree").html(addHtml);
+		$(".anotherTree").treeview();	
+	}else{
+		$("#tree").html(html);
+		$("#tree").treeview();
+	}
+	$('.leftTreeAllNums').html("全部分类( "+leftTreeAllNums+" )");
+
+}
+
+function listPage(page, isSearch,_id) {
+	var obj = {};
+	page = page ? page : 1;
+	obj = {
+		question:isSearch,
+		id:_id,
+		token: $.cookie("token"),
+		page: page,
+		row: '10',
+		sortId: 'createTime',
+		sortType: 'DESC'
+	}
+	$.ajax({
+		url: commUrl + '/qacates' ,
+		data: obj,
+		cache: false,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data)
+			$(".grid-body").empty();
+			var html = '<tr class="grid-head-th">' +
+				'<th >序号</th>' +
+				'<th>问题</th>' +
+				'<th >相似问句  </th>' +
+				'<th >创建时间 </th>' +
+				'<th class="noLoginNum" >操作</th>' +
+				'</tr>';
+			var sort = 0;
+			var page = '';
+			var similarNum=0;
+			if(data.code == '1' && data.data.datas.length>0) {
+				$.each(data.data.datas, function(i, key) {
+//					if(key.question!='' || key.cateName)
+					if( key.hasOwnProperty('question'))
+					{
+						if(key.question!='' )
+						{
+							var title = key.question?key.question:key.cateName;
+							sort = i + 1;
+							similarNum = key.similar.length;
+							html += '<tr> <td>' + sort + '</td> ' +
+								'<td style="width:280px; max-width:280px;"> ' + title + '</td> ' +
+								'<td><a href="javascript:void(0);"  onclick="javascript:similarQuestions(this)" class="gridBtn" id="' + key.id + '" data-question="' + title + '">'+similarNum+'</a></td> ' +
+								'<td>' + key.createTime + '</td> ' +
+								'<td ><a href="javascript:void(0);"  onclick="javascript:checkInfo(this)" class="gridBtn" data-parentid="' + key.parentId + '"  id="' + key.id + '" data-question="' + title + '">编辑</a><a href="javascript:void(0);" onclick="javascript:deleted(this)" class="gridBtn" id="' + key.id + '" >删除</a></td>' +
+								'</tr>'
+						}
+					}
+					
+				})
+				
+				if(data.data.page == '1') {
+					page = '<li class="prevPage readonly" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li>' +
+						' <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定"/></li>'
+
+				} else if(data.data.page == data.data.pageCount) {
+					page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li> ' +
+						'<li class="nextPage readonly" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)"  value="确定"/></li>'
+				} else {
+					page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li> ' +
+						'<li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定" /></li>'
+				}
+			}
+			if(data.code=='-1')
+			{
+				alert(data.msg+" 请重新登录")
+			}
+			$(".pages ul").html(page);
+			$(".grid").html(html);
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	})
+}
+function prevPage(e) {
+    $(e).next("li").find(".onpage").text();
+
+    if($(e).next("li").find(".onpage").text() == '1'){
+        $(e).addClass("readonly");
+    }
+    else {
+        var page = $(e).next("li").find(".onpage").text() - 1;
+		listPage(page,'',$('.topTitle').attr('id'));
+    }
+}
+
+function nextPage(e){
+    if($(e).prev("li").find(".onpage").text() == $(e).prev("li").find(".pagecount").text()){
+        $(e).addClass("readonly");
+    }
+    else {
+        //alert($(e).prev("li").find(".onpage").text());
+        var page = $(e).prev("li").find(".onpage").text() - 0 + 1;
+		listPage(page,'',$('.topTitle').attr('id'));
+    }
+}
+//输入框跳转页面
+function turnPage(e){
+     if(parseInt($(e).prev(".nowPage").val() )<= 1){
+	     var page = 1;
+	     listPage(page,'',$('.topTitle').attr('id'));
+     }else if(parseInt($(e).prev(".nowPage").val() )>= parseInt($(".pagecount").text())){
+	     var page = $(".pagecount").text();
+	     listPage(page,'',$('.topTitle').attr('id'));
+     }else{
+	     var page = $(e).prev(".nowPage").val();
+	     listPage(page,'',$('.topTitle').attr('id'));
+     }
+}
+//分类新增 修改 删除
+function classClick(value) {
+	var id =$(value).parent().attr('id');
+	var parentID = $(value).parent().data('parentid');
+	var classifyUl = $('.classifyUl');
+	for(var i = 0; i < classifyUl.length; i++) {
+		if($(classifyUl[i]).parent().parent().attr('id') == id)
+		{
+			var isshow = $(classifyUl[i]).css('display');
+			$(classifyUl[i]).css('display', isshow == 'none' ? 'block' : "none");
+		}else
+		{
+			$(classifyUl[i]).css('display', 'none');
+		}
+	}
+}
+
+var popapObj = {};
+//全部分类右边的
+function showTopOverall(e){
+	popapObj.level=1;
+	popapObj.type='addCla';
+	popapObj.parentid =undefined; 
+	popapObj.curId =undefined; 
+	$(".fenlei").show();
+	$('.popapTitle').html('创建分类')
+	$(".isDeleted").css('display', 'none');
+	$(".popapInput").css('display', 'block');
+	$(".popapInput").val("");
+}
+//分类下拉菜单点击
+function showOverall(e) {
+	
+	var parentid = $(e).parent().parent().parent().data('parentid');
+	var curId = $(e).parent().parent().parent().attr('id');
+	var level = $(e).parent().parent().parent().data('level');
+	popapObj.parentid =parentid; 
+	popapObj.curId =curId; 
+	popapObj.level =level; 
+	var className = $(e).attr('class');
+	popapObj.type = className;
+	$(".fenlei").show();
+	switch(className){
+		case "addCla": 
+			popapObj.curId = undefined; 
+			popapObj.level =level+1; 
+			popapObj.parentid =curId; 
+			$('.popapTitle').html('创建分类')
+			$(".isDeleted").css('display', 'none');
+			$(".popapInput").css('display', 'block');
+			$(".popapInput").val("");
+		break;
+		case "reviseCla": 
+			$('.popapTitle').html('修改分类');
+			$(".isDeleted").css('display', 'none');
+			$(".popapInput").css('display', 'block');
+			$(".popapInput").val($(e).parent().parent().parent().data("catename"));
+		break;
+		case "deletedCla": 
+		case "deletedCla last":
+			$('.popapTitle').html('删除分类')
+			$(".isDeleted").css('display', 'block');
+			$(".popapInput").css('display', 'none');
+		break;
+	}
+}
+function clearOverall(e) {
+	$(".fenlei").hide();
+}
+function popopEnsure(e) {
+	var cateName = $(".popapInput").val();
+	popapObj.cateName = cateName;
+	popapObj.level=undefined?1:popapObj.level;
+	if(popapObj.type=='addCla')
+	{
+		if(popapObj.cateName=='')
+		{
+			alert('请输入分类名称')
+			return;
+		}
+	}
+	console.log(popapObj)
+//	删除分类问答节点
+	if(popapObj.type=='deletedCla' || popapObj.type=='deletedCla last')
+	{
+		$.ajax({
+		url:commUrl+'/qacates/d',
+			type: 'POST',
+			data:{
+				token:$.cookie("token"),
+				id:popapObj.curId
+			},
+			cache:false,
+			success: function(data){
+				data = eval('('+data+')');
+				console.log(data)
+				if(data.code == '1'){
+					$(".fenlei").hide();
+					$("#tree").html('');
+					setTree(1);
+					$('.topTitle').html($('.leftTreeAllNums').html())
+					listPage(1);
+				}
+			},
+			error: function(e){
+				console.log(e)
+				alert('出错啦~！');
+			}
+		})
+	}else{
+		//	新增或修改分类问答节点
+		$.ajax({
+			url:commUrl+'/qacates/node',
+			type: 'POST',
+			data:{
+				token:$.cookie("token"),
+				cateName:popapObj.cateName,
+				id:popapObj.curId,
+				level:popapObj.level,
+				parentId:popapObj.parentid
+			},
+			cache:false,
+			success: function(data){
+				data = eval('('+data+')');
+				if(data.code == '1'){
+					$(".fenlei").hide();
+					var treeObj ={
+						level:1
+					}
+					$("#tree").html('');
+					setTree(1);
+					if(popapObj.type=='reviseCla')
+					{
+						$('.topTitle').html(popapObj.cateName)
+					}
+					listPage(1,'',$('.topTitle').attr('id'));
+				}
+			},
+			error: function(e){
+				console.log(e)
+				alert('出错啦~！');
+			}
+		})
+	}
+}
+
+//隐藏相似问句遮罩层
+function hideSimilarQueOver(e){
+	$(".similarQueOverall").hide();
+}
+//填充相似问句
+function getsimilarQue(ques,curid)
+{
+	if(ques =='')
+	{
+		alert('请输入问句');
+	}
+	var obj = {};
+	obj = {
+		id:curid,
+		question:ques,
+		industry:$.cookie("industry"),
+		token: $.cookie("token")
+	}
+	$('.faq-question').html(ques);
+	$.ajax({
+		url: commUrl + '/qa/similar/p',
+		data: obj,
+		cache: false,
+		dataType: 'json',
+//		contentType: 'application/json',
+		type: 'POST',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			var html='';
+			$('.similarAnsList').empty();
+			$('.newSimilarList').empty();
+			for(var i =0;i<data.length;i++)
+			{
+				html+= '<li class="similarLi" >'+
+								'<span>'+data[i]+'</span>'+
+								'<input type="checkbox" name="sim" class="elCheckbox"  value="' + data[i] + '" >'+
+							'</li>'
+				$('.similarAnsList').html(html)
+				$('.newSimilarList').html(html)
+			}
+			if(data.code=='-1')
+			{
+				alert(data.msg+" 请重新登录")
+			}
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	})
+}
+//添加一条相似问句
+function addSimFun(e){
+	var val = $('.addSimInput').val();
+	if(val=='')
+	{
+		return;
+	}
+	var arr = $('.hasSims li');
+	for(var i =0;i<arr.length;i++)
+	{
+		var spanHtml = $(arr[i]).find("span").html();
+		if(spanHtml == val)
+		{
+			alert("已经存在相同问句");
+			return;
+		}
+	}
+	var html='';
+	html = '<li class="similarLi">'+
+					'<span style="color:#333;">'+val+'</span>'+
+					'<input type="checkbox" name="addsim" class="elCheckbox" checked value="' + val + '" >'+
+				'</li>'
+	$('.hasSims').append(html);
+}
+function isShowTreeTwo(e)
+{
+	var isshow = $('.anotherTree').css('display');
+	$('.anotherTree').css('display', isshow == 'none' ? 'inline-block' : "none");
+}
+
+function isShowEditTree(e)
+{
+	if(sendData.hasOwnProperty('cateName'))
+	{
+		alert('该问题不能修改分类');
+		return;
+	}
+	var isshow = $('.anotherTree').css('display');
+	$('.anotherTree').css('display', isshow == 'none' ? 'inline-block' : "none");
+}
+
+var isEdit=false;
+var isSim=false;
+var editName='';
+var editId ='';
+//编辑问题
+function checkInfo(e){
+	editId = $(e).data('parentid');
+	id = $(e).attr('id');
+	if($(e).data('parentid') == 'undefined')
+	{
+		editId = $(e).attr('id');
+	}
+	isEdit = true;
+	isSim = false;
+	$(".similarQueOverall").show();
+	$("#simlarEdit").show();
+	$("#simlarOne").hide();
+	$("#simlarAdd").hide();
+	$('.anotherTree').css('display','none');
+	getCurrQues(id);
+	getNewsimilarQue(id);
+	getTreeName();
+}
+	
+//新增问题
+function addQuestion(e){
+	isEdit = false;
+	isSim = false;
+	editName='';
+	editId = '';
+	$(".similarQueOverall").show();
+	$("#simlarEdit").hide();
+	$("#simlarOne").hide();
+	$("#simlarAdd").show();
+	$('.anotherTree').css('display','none');
+	$(".newSimilarList").empty();
+	getNewsimilarQue();
+}
+function getSimFun(e){
+	getsimilarQue($('.newQuesInput').val());
+}
+
+//相似问句
+function similarQuestions(e){
+	var id = $(e).attr('id');
+	isEdit = false;
+	isSim = true;
+	editName='';
+	editId = '';
+	var question = $(e).data('question');
+	$(".similarQueOverall").show();
+	$("#simlarAdd").hide();
+	$("#simlarEdit").hide();
+	$("#simlarOne").show();
+	$(".addSimInput").val("");
+	$(".similarAnsList").empty();
+	getCurrQues(id);
+	getsimilarQue(question,id);
+	
+}
+//获取弹出层树结构
+function getNewsimilarQue()
+{
+	$(".treeTitleInput").val("");
+	$(".questionInput").val("");
+	$(".newQuesInput").val("");
+	$(".editQuesInput").val("");
+	$(".answerText").val("");
+	$(".newAnswerText").val("");
+	$(".editAnswerText").val("");
+	setTree(1,'add');
+}
+function clickAllFL(e)
+{
+	$('.topTitle').html($('.leftTreeAllNums').html())
+	listPage(1);
+}
+
+function clickNode(e){
+	$('.topTitle').html($(e).data('catename'))
+	$('.topTitle').attr('id',$(e).attr('id'))
+	listPage(1,'',$(e).attr('id'));
+}
+
+function getNodeId(e){
+	
+	var id  = $(e).attr('id');
+	var parentId = $(e).data('parentid');
+	if(isEdit)
+	{
+		$(".editTreeTitleInput").val($(e).data('catename'))
+		$(".editTreeTitleInput").attr('id',id)
+	}else{
+		$(".treeTitleInput").attr('id',id)
+		$(".treeTitleInput").val($(e).data('catename'))
+	}
+	
+	$('.anotherTree').css('display', 'none');
+}
+//根据ID获取某一条问答
+var sendData=[];
+function getCurrQues(id){
+	sendData=[];
+	var getData={
+		id:id,
+		gen:0,
+		token:$.cookie("token"),
+		page: 1,
+		row: '10',
+		sortId: 'createTime',
+		sortType: 'DESC'
+	}
+	$.ajax({
+		url: commUrl + '/qacates' ,
+		data: getData,
+		cache: false,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			sendData = data.data.datas[0];
+			if(isSim)
+			{
+				var html='';
+				$('.hasSims').empty();
+				$.each(sendData.similar, function(i, key) {
+					html+= '<li class="similarLi">'+
+									'<span style="color:#333;">'+key+'</span>'+
+									'<input type="checkbox" name="sim" class="elCheckbox" checked value="' + key + '" >'+
+								'</li>'
+					$('.hasSims').html(html)
+				})
+				$('.hasSimilarNum').html('已有相似问句( '+sendData.similar.length+' )')
+			}
+			if(isEdit)
+			{
+				$('.editQuesInput').val(sendData.question);
+				$('.editAnswerText').val(sendData.answers[0]['text'])
+			}
+		},
+		error: function(text) {
+			alert(text.readyState);	
+			alert(text.status);
+		}
+	})
+}
+
+//新增问题保存
+function okBtn(e){
+	var list = [];
+	if(isSim)
+	{
+		$("input[name='sim']:checkbox:checked").each(function(){ 
+			 list.push($(this).val())
+		})
+		var addList = [];
+		$("input[name='addsim']:checkbox:checked").each(function(){ 
+			 addList.push($(this).val())
+		})
+		var arr = list.concat(addList);
+		sendData.similar = [];
+		sendData.similar = arr;
+	}else if(isEdit)
+	{
+		sendData.question = $('.editQuesInput').val();
+		sendData.answers[0]['text'] = $('.editAnswerText').val();
+		sendData.parentId = $(".editTreeTitleInput").attr('id');
+	}else{
+		if($('.newAnswerText').val()=='')
+		{
+			alert('请输入默认答案');
+			return;
+		}
+		if($('.newQuesInput').val()=='')
+		{
+			alert('请输入标准问句');
+			return;
+		}
+		if($(".treeTitleInput").attr('id') == undefined)
+		{
+			alert('请选择分类');
+			return;
+		}
+		
+		var send = {};
+		send.answers=[];
+		var ans = {text:$('.newAnswerText').val()};
+		send.answers.push(ans);
+		send.question =$('.newQuesInput').val();
+		send.parentId = $(".treeTitleInput").attr('id');
+		$(".newSimilarList input[name='sim']:checkbox:checked").each(function(){ 
+			 list.push($(this).val())
+		})
+		send.similar = list;
+		sendData = send;
+	}
+	console.log(sendData);
+	$.ajax({
+		url: commUrl + '/qacates?token='+$.cookie("token"),
+		data: JSON.stringify(sendData),
+		contentType: 'application/json',
+		dataType:'json',
+		type: 'POST',
+		success: function(data) {
+			console.log(data)
+			$(".similarQueOverall").hide();
+			$("#tree").html('');
+			setTree(1);
+			listPage(1,'',$('.topTitle').attr('id'));
+		},
+		error: function(text) {
+			alert(text.readyState);	
+			alert(text.status);
+		}
+	})
+}
+
+//新增问题取消
+function cancelBtn(e){
+	addObj={};
+	$(".similarQueOverall").hide();
+}
+
+
+function getTreeName(){
+	$.each(treeData, function(i, key) {
+		if(isEdit){
+			if(key.id == editId){
+				editName = key.cateName;
+			}
+		}
+		if(key.level=='1')
+		{
+			if(key.subs.length>0){
+				$.each(key.subs, function(i, key) {
+					if(isEdit){
+						if(key.id == editId){
+							editName = key.cateName;
+						}
+					}
+					if(key.level=='2')
+					{
+						html3 = '';
+						addHtml3 = '';
+						if(key.subs.length>0)
+						{
+							$.each(key.subs, function(i, key) {
+								if(isEdit){
+									if(key.id == editId){
+										editName = key.cateName;
+									}
+								}
+								html4='';
+								addHtml4 = '';
+								if(key.level=='3')
+								{
+									if(key.subs.length>0)
+									{
+										$.each(key.subs, function(i, key) {
+											if(isEdit){
+												if(key.id == editId){
+													editName = key.cateName;
+												}
+											}
+											html5='';
+											addHtml5 = '';
+											if(key.level=='4')
+											{
+												if(key.subs.length>0)
+												{
+													$.each(key.subs, function(i, key) {
+														if(isEdit){
+															if(key.id == editId){
+																editName = key.cateName;
+															}
+														}
+													})
+												}
+											}
+										})
+									}
+								}
+							})
+						}
+					}
+				})
+
+			}
+		}
+	})
+	if(isEdit)
+	{
+		$(".editTreeTitleInput").attr('placeholder',editName);
+		$(".editTreeTitleInput").attr('id',editId);
+	}else{
+		$(".treeTitleInput").val(editName)
+	}
+}
+function searchFun(e){
+	var str = $('.searchInput').val();
+	if(str =='')
+	{
+		alert('请输入搜索内容');
+		return;
+	}
+	listPage(1,str);
+}
+var deleQuedata={}
+function deleted(e){
+	var id = $(e).attr('id');
+	deleQuedata.id = id;
+	deleQuedata.token = $.cookie("token");
+	$(".deleQue").show();
+	
+}
+function clearOq(e) {
+	$(".deleQue").hide();
+}
+function deleteQues(e)
+{
+	$.ajax({
+		url: commUrl + '/qacates/d',
+		data: deleQuedata,
+		dataType:'json',
+		type: 'POST',
+		success: function(data) {
+			console.log(data)
+			$(".deleQue").hide();
+			$("#tree").html('');
+			setTree(1);
+			listPage(1,'',$('.topTitle').attr('id'));
+		},
+		error: function(text) {
+			alert(text.readyState);	
+			alert(text.status);
+		}
+	})
+}

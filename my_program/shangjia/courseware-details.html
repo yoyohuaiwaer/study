@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/ossSdk.js"></script>
+    <style>
+        .tagsBox {
+            display: inline-block;
+            position: relative;
+            height:30px;
+            white-space: nowrap;
+            margin-right: 5px;
+            margin-bottom: 10px;
+            vertical-align: top;
+
+        }
+        .deletTagsBox {
+            position: absolute;
+            display: inline-block;
+            right: 5px;
+            top: 5px;
+            color: #c3c3c3;
+            line-height: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+            cursor: pointer;
+        }
+        .tagsContent {
+            display: inline-block;
+            min-width: 80px;
+            display: none;
+            border: 1px solid #00a0ea;
+            border-radius: 5px;
+            height: 30px;
+            box-sizing: border-box;
+            line-height: 30px;
+            cursor: pointer;
+            padding: 0 7px;
+            padding-right: 20px;
+        }
+        input[disabled]{
+            border-width:0 ;
+        }
+    </style>
+</head>
+<body>
+
+<div class="add">
+
+    <div class="adItem">
+        <label for="seller">归属:&nbsp;&nbsp;</label>
+        <select name="seller" id="seller">
+            <option value="pubic">公共</option>
+            <option value="persinal">私人</option>
+        </select>
+        <select name="tid" id="tid" style="display: none">
+        </select>
+    </div>
+    <div class="adItem" style="margin: 10px 0 0 0;">
+        <label>课件:</label>
+        <div class="choseimg change">
+            +
+            <input type="file" class="file_upload" id="file_upload" multiple accept="">
+        </div>
+        <span style="color: #ff6633">课件可以是视频,音频,ppt</span>
+        <ul class="imageBox" style="margin-left: 120px;">
+
+           <!-- <li class="tagsBox">
+                <span class="deletTagsBox" style="display: inline-block">x</span>
+                <span class="tagsContent" data-id="58f9604f6b897ea" data-time="2017-04-21 09:28:55" style="display:inline-block;">水果</span>
+            </li>-->
+        </ul>
+    </div>
+    <div class="adItem">
+        <label>强制覆盖:&nbsp;&nbsp;</label>
+        <label>
+            <input name="rewrite" type="radio" value="0" checked="">否
+        </label>
+        <label style="width: 70px; ">
+            <input name="rewrite" type="radio" value="1" >是
+        </label>
+
+    </div>
+</div>
+<div class="edit">
+    <div class="adItem">
+        <label for="sellerName">课件名:&nbsp;&nbsp;</label>
+        <input type="text" class="text" id="sellerName" disabled/>
+    </div>
+    <div class="adItem">
+        <label for="sellerName">课件内容:&nbsp;&nbsp;</label>
+        <div  class="showMultimedia" style="display: inline-block">
+            <audio controls="" id="audio" style="vertical-align: middle;" src="" data-time="0" style="display: none"></audio>
+            <video id="videoId" style="width: 200px;display: none" controls="" src="" data-time="0"></video>
+            <a href="" id="pptId" style="display: none; text-decoration: underline;"></a>
+        </div>
+
+    </div>
+    <!--<div class="adItem">
+        <label for="seller">归属:&nbsp;&nbsp;</label>
+        <select name="seller" id="seller">
+            <option value="pubic">公共</option>
+            <option value="persinal">私人</option>
+        </select>
+        &#45;&#45;
+        <select name="tid" id="tid" style="display: none">
+
+        </select>
+    </div>
+    <div class="adItem">
+        <label for="seller">归属:&nbsp;&nbsp;</label>
+        <select name="seller" id="seller">
+            <option value="pubic">公共</option>
+            <option value="persinal">私人</option>
+        </select>
+        &#45;&#45;
+        <select name="tid" id="tid" style="display: none">
+
+        </select>
+    </div>
+    <div class="adItem">
+        <label for="seller">归属:&nbsp;&nbsp;</label>
+        <select name="seller" id="seller">
+            <option value="pubic">公共</option>
+            <option value="persinal">私人</option>
+        </select>
+        &#45;&#45;
+        <select name="tid" id="tid" style="display: none">
+
+        </select>
+    </div>-->
+</div>
+<div class="toolbar">
+    <input type="button" class="button confirm" value="确定" />
+    <input type="button" class="button minor cancel" value="取消" />
+</div>
+
+
+<div class="overall">
+    <div class="popap" style="height: 200px;">
+        <p>正在上传资源中,请稍候......</p>
+    </div>
+</div>
+<script src="js/courseware-details.js"></script>
+</body>
+</html>

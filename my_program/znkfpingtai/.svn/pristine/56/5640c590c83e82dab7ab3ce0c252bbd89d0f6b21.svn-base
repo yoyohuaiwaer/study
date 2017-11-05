@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商家问答列表</title>
+    <script type="text/javascript" src="js/sellerQA-list.js"></script>
+    <style>
+        .breadcrumb li:before {
+            position: absolute;
+            content: '';
+            left: -5px;
+            color: #d7d7d8;
+        }
+    </style>
+</head>
+<body>
+<div class="grid seller">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class=""><span>序号</span></div>
+            <div class=""><span>行业</span></div>
+            <div class=""><span>商家ID</span></div>
+            <!--<div class=""><span>场景</span></div>-->
+            <div class=""><span>问答条数</span></div>
+        </div>
+    </div>
+    <div class="grid-body">
+
+    </div>
+
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+</body>
+</html>

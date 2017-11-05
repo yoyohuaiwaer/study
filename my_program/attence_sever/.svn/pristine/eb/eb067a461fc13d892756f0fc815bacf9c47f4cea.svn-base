@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子账号列表</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+        .grid.terrace .grid-body-tr > div:first-child,
+        .grid.terrace .grid-head-th > div:first-child,
+        .grid.terrace .grid-body-tr > div:nth-child(2),
+        .grid.terrace .grid-head-th > div:nth-child(2),
+        .grid.terrace .grid-body-tr > div:first-child span,
+        .grid.terrace .grid-head-th > div:first-child span,
+        .grid.terrace .grid-body-tr > div:nth-child(2) span,
+        .grid.terrace .grid-head-th > div:nth-child(2) span{
+            width: 200px;
+        }
+        .grid.terrace .grid-body-tr > div:nth-child(3),
+        .grid.terrace .grid-head-th > div:nth-child(3),
+        .grid.terrace .grid-body-tr > div:nth-child(3) span,
+        .grid.terrace .grid-head-th > div:nth-child(3) span{
+            width: 180px;
+        }
+        .grid.terrace .grid-body-tr > div:nth-child(4),
+        .grid.terrace .grid-head-th > div:nth-child(4),
+        .grid.terrace .grid-body-tr > div:nth-child(4) span,
+        .grid.terrace .grid-head-th > div:nth-child(4) span{
+            width: 200px;
+        }
+     /*   .grid.terrace .grid-body-tr > div:nth-child(5),
+        .grid.terrace .grid-head-th > div:nth-child(5),
+        .grid.terrace .grid-body-tr > div:nth-child(5) span,
+        .grid.terrace .grid-head-th > div:nth-child(5) span{
+            width: 100px;
+        }*/
+        .grid.terrace .grid-body-tr > div:last-child,
+        .grid.terrace .grid-head-th > div:last-child,
+        .grid.terrace .grid-body-tr > div:last-child span,
+        .grid.terrace .grid-head-th > div:last-child span{
+            width: 180px;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: right">
+    <input type="button" class="button confirm" rel="1" value="新增账号"/>
+</div>
+
+<div class="grid terrace">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class=""><span>用户名</span></div>
+            <div class=""><span>商家</span></div>
+            <div class=""><span>状态</span></div>
+            <div class="operation"><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body">
+
+    </div>
+
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除词条问答吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<script src="js/terraceAccount-list.js"></script>
+</body>
+</html>

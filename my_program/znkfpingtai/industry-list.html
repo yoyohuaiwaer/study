@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>行业库列表</title>
+    <style>
+        .breadcrumb li:before {
+            position: absolute;
+            content: '';
+            left: -5px;
+            color: #d7d7d8;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: right"><input type="button"  class="addIndustry button" value="新增行业"/></div>
+<div class="grid industry">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class="order-number">序号</div>
+            <div class="industry">行业</div>
+            <!--<div class="scene">默认回答</div>-->
+            <!--<div class="answer-number">场景个数</div>-->
+            <div class="operation">操作</div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除此个行业吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+
+    </div>
+
+</div>
+<script type="text/javascript" src="js/industry-list.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>出勤概况</title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+        .breadcrumb li:before {
+            position: absolute;
+            content: '';
+            left: -5px;
+            color: #d7d7d8;
+        }
+        .info,
+        .detailsCounts,
+        .returnYear,
+        .returnMonth{
+            color: #00a0e9;
+        }
+        .operation a {
+            cursor: pointer;
+            padding: 0 8px;
+            font-size: 14px;
+            color: #00a0e9;
+        }
+    </style>
+</head>
+<body>
+<div  class="yearsFilter">
+    <div style="height: 40px;margin-bottom: 15px;">
+        <select id="years"></select>
+        <select id="shop" data-type="year" class="text" style="width: 140px; display: none;">
+        </select>
+        <span>当天数据于第二天凌晨3点更新</span>
+    </div>
+    <div style="text-align: right"><input type="button" onclick="javascript:forExcel(this)" class="addScene button" value="导出Excel"/></div>
+    <table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+    </table>
+
+</div>
+<div class="monthFilter" style="display: none;">
+    <div style="height: 40px;margin-bottom: 15px;">
+        <select id="monthShop" data-type="month" class="text"  style="width: 140px; display: none;">
+        </select>
+        <select id="monthStatus"></select>
+        <span>当天数据于第二天凌晨3点更新</span>
+    </div>
+    <a class="returnYear">返回</a>
+    <table id="grid1" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0"></table>
+</div>
+<div class="filterStatus" style="display: none">
+    <div style="height: 40px;margin-bottom: 15px;">
+        <select id="filterS" class="text" onchange="" style="width: 140px;">
+            < <option>出勤类型</option>
+            <option value="normal">正常</option>
+            <option value="abnormal">未到</option>
+            <option value="late">迟到</option>
+            <option value="leave">请假</option>
+            <option value="early">早退</option>
+        </select>
+    </div>
+    <a class="returnMonth">返回</a>
+    <table id="grid2" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0"></table>
+</div>
+
+<!--分页-->
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<!--分页-->
+<script type="text/javascript" src="js/attendanceCounts.js" ></script>
+<script type="text/javascript" src="js/outExcel.js" ></script>
+</body>
+</html>

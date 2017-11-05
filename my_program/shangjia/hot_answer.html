@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--<link rel="stylesheet" href="css/common.css" />
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script type="text/javascript" src="js/jquery.cookie.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>-->
+		<script type="text/javascript" src="js/hotAnswer.js" ></script>
+		<style>
+	        .breadcrumb li:before {
+	            position: absolute;
+	            content: '';
+	            left: -5px;
+	            color: #d7d7d8;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div>
+		    <div class="grid">
+		        <div class="order-head order-body">
+		            <div class="grid-head-th">
+		                <div class="index" style="width: 60px;">序号</div>
+		                <div class="list" style="width:400px">问题</div>
+		                <!--<div class="answer" style="width: 700px">答案</div>-->
+		            </div>
+		        </div>
+		        <div class="grid-body order-body" >
+		        </div>
+		    </div>
+		    <div class="overall">
+			    <div class="popap">
+			        <p>保存成功</p>
+			        <input type="button" class="button " onclick="javascript:clearOverall(this)" value="确定">
+			    </div>
+			</div>
+			<div>
+		        <input type="button" class="button subButton"  onclick="javascript:saveList(this)" value="确认"/>
+		        <input type="button" class="button subButton"  onclick="javascript:resetAddAnswers(this)" value="取消"/>
+		        <label class="tip3"></label>
+		    </div>
+		</div>
+	</body>
+</html>

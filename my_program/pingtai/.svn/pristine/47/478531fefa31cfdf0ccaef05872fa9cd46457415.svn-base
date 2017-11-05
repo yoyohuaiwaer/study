@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .grid-body-tr > div {
+            height: 80px;
+            line-height: 80px;
+        }
+        img{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: right">
+    <div class="search-box" style="display: inline-block; margin-right: 15px;">
+        <select name="column" id="column" data-rel="1">
+            <option value="" selected="selected">选择栏目</option>
+        </select>
+    </div>
+    <input type="button" class="button Column" data-id="" value="栏目管理" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+    <input type="button" class="button tags" data-id="" tags-type="courseware" value="标签管理" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+    <input type="button" class="button addcourseware" data-id="" value="新增课件" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+</div>
+<div class="grid">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div style="width: 50px"><span>序号</span></div>
+            <div style="width: 200px"><span>文件名</span></div>
+            <div style="width: 150px"><span>栏目</span></div>
+            <div style="width: 200px"><span>标签</span></div>
+            <div style="width: 120px"><span>图片</span></div>
+            <div style="width: 240px"><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除该课件吗？</p>
+        <input type="button" class="button deleteTagsConfirm" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<script type="text/javascript" src="js/courseware-list.js"></script>
+</body>
+</html>

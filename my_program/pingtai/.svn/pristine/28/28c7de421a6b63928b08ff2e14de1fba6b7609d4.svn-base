@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增/更改版本</title>
+    <!--<link href="css/common.css" rel="stylesheet">-->
+    <link rel="shortcut icon" href="http://112.74.14.173/images/showCompanyBrowser.ico" type="image/x-icon">
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/version-detials.js"></script>-->
+</head>
+<body>
+<div>
+
+    <form action="" method="get" id="qrecordForm">
+        <div>
+            <label for="cate">平台:</label>
+            <select name="cate" id="cate">
+                <option value="0">行业助手</option>
+                <option value="1">海关助手</option>
+            </select>
+            <label id="tip1" for="cate"></label>
+        </div>
+        <div>
+            <label for="type">分类:</label>
+            <select name="type" id="type">
+                <option value="0">移动端 </option>
+                <option value="1">机器人端</option>
+            </select>
+            <label id="tip2" for="type"></label>
+        </div>
+        <div>
+            <label for="apk">APK:</label>
+            <div class="choseimg change" style="margin: 0; height: 30px; width: 100px; line-height: 30px; font-size: 14px; padding: 0 15px; color: #666; border-radius: 5px;">
+                上传文件
+                <input type="file" name="question" id="apk" class="apk" value="上传"/>
+            </div>
+
+            <img src="" alt="" id="apkSrc" style="width: 40px; height: 40px; display: none; vertical-align: middle;"/>
+            <label id="tip3" for="apk"></label>
+        </div>
+        <div>
+            <label for="number">版本号:</label>
+            <input type="text" name="question" id="number" class="text"/>
+            <label id="tip4" for="number"></label>
+        </div>
+        <div>
+            <label for="desc">升级描述:</label>
+            <textarea name="" id="desc" style="border:1px solid #c3c3c3; border-radius: 5px; width: 520px;  height: 100px; vertical-align: middle;"></textarea>
+            <label id="tip5" for="desc"></label>
+        </div>
+        <div>
+            <label for="type">分类:</label>
+            <label for=""><input type="radio" name="necessary" data-value="0" value="false" checked/>普通升级</label>
+            <label for=""><input type="radio" name="necessary" data-value="1" value="true" />强制升级</label>
+            <div id="tip6"></div>
+        </div>
+        <div class="t_r">
+            <input type="button" value="保存" class="button confirm" id="保存"/>
+            <input type="button" value="取消" class="button minor cancel" id="取消" />
+        </div>
+        <div id="tip7"></div>
+    </form>
+</div>
+<div class="overall" >
+    <div class="popap" style="height: 200px;">
+        <p>APK正在上传中,请稍候......</p>
+    </div>
+</div>
+<script type="text/javascript" src="js/version-detials.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--<link href="css/common.css" rel="stylesheet">
+	    <script type="text/javascript" src="js/jquery.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+	    <style>
+	        .breadcrumb li:before {
+	            position: absolute;
+	            content: '';
+	            left: -5px;
+	            color: #d7d7d8;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div style="height: 40px;margin-bottom: 15px;">
+			<input type="button" onclick="javascript:setList(this)" title="7" class="addScene button" value="7日" style="float: left;margin-right: 20px; width: 40px;"/>
+			<input type="button" onclick="javascript:setList(this)" title="30" class="addScene button" value="30日" style="float: left;margin-right: 20px; width: 40px;"/>
+			<input type="date" id="startTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px; "/>
+		    至<input type="date" id="endTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px;  margin:0 20px 0 6px;"/>
+		    <label class="tip"></label>
+			<select class="text" id="sucOrError" style="width: 140px;" onchange="javascript:chooseIsSuccess(this)">
+				<option selected="selected">全部</option>
+				<option>成功问答</option>
+				<option>失败问答</option>
+			</select>
+		</div>
+	    <table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+	    </table>
+	    <!--分页-->
+	    <div class="pages">
+	        <ul>
+	        </ul>
+	    </div>
+	    <!--分页-->
+	    <script type="text/javascript" src="js/quesAnswerStatistics.js" ></script>
+	</body>
+</html>

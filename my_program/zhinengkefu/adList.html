@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script type="text/javascript" src="js/jquery.cookie.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<style>
+	        .breadcrumb li:before {
+	            position: absolute;
+	            content: '';
+	            left: -5px;
+	            color: #d7d7d8;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div style="height: 40px;text-align: right">
+			<select name="" id="type" style="margin-right: 15px">
+				<option>素材类型</option>
+				<option value="image">图片</option>
+				<option value="text">文本</option>
+				<option value="test">测试</option>
+				<option value="video">视频</option>
+			</select>
+			<input type="text" class="text searchText" placeholder="搜索素材名">
+			<input type="button" class="button searchbtn" rel="0" value="搜索">
+			<input type="button" title="0" class="editGoods button" data-id="" value="添加素材" style="float: right;margin-bottom: 15px;margin-right: 0px;"/>
+		</div>
+		<div class="grid">
+	        <div class="order-head order-body">
+	            <div class="grid-head-th">
+	                <div class="index" style="width: 70px;">序号</div>
+	                <div class="title" style="width: 300px">标题</div>
+					<div class="title" style="width: 100px">类型</div>
+	                <div class="startTime" style="width: 300px">创建时间</div>
+		            <div class="goodsOperation" style="width: 190px">操作</div>
+	            </div>
+	        </div>
+	        <div class="grid-body order-body" >
+	        </div>
+	    </div>
+		<div class="overall">
+		    <div class="popap">
+		        <p>确定要删除该条素材吗？</p>
+		        <input type="button" class="button deleteQuestion"  value="确定">
+		        <input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消"/>
+		    </div>
+		</div>
+		  <!--分页-->
+		<div class="pages">
+		    <ul>
+		    </ul>
+		</div>
+		<!--分页-->
+		<script type="text/javascript" src="js/adList.js" ></script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script type="text/javascript" src="js/jquery.cookie.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+	</head>
+	<style>
+		.pic img{
+			width: 86px;
+			height: 65px;
+		}
+	</style>
+	<body>
+		<div style="height: 40px;text-align: right">
+			<select id="selectSearch">
+				<option value="memberName">会员姓名</option>
+				<option value="phone">会员电话</option>
+				<option value="memberNo">会员号</option>
+				<option value="memberType">会员类型</option>
+				<option value="sex">会员性别</option>
+			</select>
+			<input type="text" class="text searchText"/>
+            <input type="button" class="button searchbtn"  rel="0" value="搜索"/>
+			<input type="button" onclick="javascript:addQuestion(this)" title="0" class="addScene button" value="添加会员" style="float: right;margin-bottom: 15px;margin-right: 0px;"/>
+		</div>
+		<div class="grid">
+	        <div class="grid-head goods">
+	            <div class="grid-head-th">
+	                <div style="width: 70px;height: 45px;">序号</div>
+	                <div style="width: 150px;height: 45px;">会员号</div>
+	                <div style="width: 100px;height: 45px;">会员分类</div>
+		            <div style="width: 150px;height: 45px;">会员名字</div>
+		            <div style="width: 100px;height: 45px;">姓别</div>
+		            <div style="width: 100px;height: 45px;">联系电话</div>
+		            <div style="width: 150px;height: 45px;">会员相片</div>
+		            <div style="width: 140px;height: 45px;">操作</div>
+	            </div>
+	        </div>
+	        <div class="grid-body goods" >
+	        </div>
+	    </div>
+		<div class="overall">
+		    <div class="popap">
+		        <p>确定要删除该条信息吗？</p>
+		        <input type="button" class="button deleteQuestion" onclick="javascript:deleteGoods(this)" value="确定">
+		        <input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消"/>
+		    </div>
+		</div>
+		  <!--分页-->
+		<div class="pages">
+		    <ul>
+		    </ul>
+		</div>
+		<!--分页-->
+		<script type="text/javascript" src="js/memebersList.js" ></script>
+	</body>
+</html>

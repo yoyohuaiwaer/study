@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <!--<script type="text/javascript" src="js/breadcrumb.js"></script>-->
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <!--<script type="text/javascript" src="js/index.js"></script>-->
+    <!--<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>-->
+
+
+</head>
+<body>
+<input type="file" name="upload" id="upload" multiple/>
+<form id="test">
+
+
+
+</form>
+<script type="text/javascript">
+    $('#upload').on('change',function(){
+        console.log(this.files.length)
+        var paths = this.files
+        debugger;
+
+        if(this.files.length == 0){
+         alert('请选择文件');
+            return
+        }
+        var html = '';
+
+        for(var i = 0; i < paths.length; i++){
+            //html += '<input type="file" name="upload" id="input'+i+'">';
+            var formData = new FormData();
+            formData.append('file1', paths[i]);
+            var imgUrl = 'http://10.10.23.67:8080/server/uploadCoursewareFile';//田璞本机
+            //var imgUrl = 'http://120.77.3.70:8080/server/upload';
+            $.ajax({
+                type: "POST", //必须用post
+                url: imgUrl,
+                crossDomain: true,
+                cache: false,
+                asyn: false,
+                jsonp: "jsoncallback",
+                data: formData,
+                contentType: false, //必须
+                processData: false,
+                complete: function(data) {
+                    console.log(data.responseText);
+                    debugger;
+                     var json = eval('(' + data.responseText + ')');
+                     $('#imageId').attr('src', json.imgurl);
+                     var img = $("#imageId"); //获取img元素
+                     var picRealWidth, picRealHeight;
+                     $("<img>") // 在内存中创建一个img标记
+                     .attr("src", $(img).attr("src"))
+                     .load(function() {
+                     picRealWidth = this.width;
+                     picRealHeight = this.height;
+                     $(".imgTips").empty().css({
+                     color: "green"
+                     }).html("");
+                     $('#imageId').show().attr('src', json.imgurl);
+                     $('#imageId').css('display', 'inline-block');
+                     });
+                }
+            });
+        }
+    })
+</script>
+</body>
+</html>

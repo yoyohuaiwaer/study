@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+        #cont1 {
+            height: 50px;
+            line-height: 50px;
+            padding: 10px 0;
+        }
+        textarea {
+            width: 840px;
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        function newPage(){
+            $.get('menu-list.html',function(response){
+                $(".main").empty().html(response);
+            })
+        }
+
+        $(document).ready(function(){
+            var parentId = $.cookie("currentMenuId");
+            var sonId = $.cookie("currentSonMenuId");
+            var parentName = $.cookie("currentMenuName");
+            var breadcrumb = '';
+            if(sonId == '' || sonId == null){
+                breadcrumb += '<li><a href="javascript:void(0);" onclick="newPage();" >'+parentName+'</a></li><li class="selected"><span >新建子菜单</span></li>';
+            }else{
+                breadcrumb += '<li><a href="javascript:void(0);" onclick="newPage();" >'+parentName+'</a></li><li class="selected"><span >修改子菜单</span></li>';
+                $.ajax({
+                    url:commUrl+'/appmenu/findmenus_'+sonId,
+                    type:'GET',
+                    data:{
+                        token:$.cookie("token")
+                    },
+                    success: function(data){
+                        console.log(data);
+                        data = eval('(' + data + ')')
+                        $("#menuName").val(data.data.name);
+                        var cate = data.data.category;
+                        $("#category").val(cate);
+                        if(cate == 1){
+                            $("#cont1").show();
+                            $("#cont2").hide();
+                            $("#cont").val(data.data.content);
+                        }else{
+                            $("#cont1").hide();
+                            $("#cont2").show();
+                            $("#cont2").val(data.data.content);
+                        }
+                    },
+                    error: function(text){
+                        alert(text.readyState);
+                        alert(text.status);
+                    }
+                })
+
+                $.cookie('currentSonMenuId', '', { expires: -1 });
+            }
+            $(".breadcrumb").html(breadcrumb);
+
+            $("#submit").click(function(){
+                if($("#menuName").val() == null){
+                    alert("请输入菜单名");
+                    return;
+                }
+                var content = '';
+                if($("#category").val() == 2){
+                    content = $("#cont2").val();
+                }else{
+                    content = $("#cont").val();
+                }
+
+                    $.ajax({
+                        url:commUrl+'/appmenu/save',
+                        type:'POST',
+                        data:{
+                            token:$.cookie("token"),
+                            name:$("#menuName").val(),
+                            category:$("#category").val(),
+                            lv:2,
+                            parentId:parentId,
+                            content:content,
+                            id:sonId
+
+                        },
+                        success: function(data){
+                            console.log(data);
+                            data = eval('(' + data + ')')
+                            if(data.code == '1'){
+                                newPage();
+                            }
+                        },
+                        error: function(text){
+                            alert(text.readyState);
+                            alert(text.status);
+                        }
+                    })
+            })
+            $("#reset").click(function(){
+                newPage();
+            })
+
+        });
+        function viewContent(e){
+           if(e.value == '2'){
+               $("#cont1").hide();
+               $("#cont2").show();
+           }else{
+               $("#cont1").show();
+               $("#cont2").hide();
+           }
+        }
+    </script>
+</head>
+<body>
+<div>
+
+    <form action="" method="get" id="qrecordForm">
+        <div>
+            <label for="menuName">菜单名称:</label>
+            <input type="text" name="menuName" id="menuName" class="text"/>
+            <label id="tip1" for="menuName"></label>
+        </div>
+        <div>
+            <label for="category">跳转方式:</label>
+            <select name="category" id="category" onchange="viewContent(this)" class="text" style="width: 60px;">
+                <option value="1" selected="selected">消息</option>
+                <option value="2">跳转</option>
+            </select>
+            <select name="cont2" id="cont2" style="display: none">
+                <option value="CallActivity">呼叫界面</option>
+                <option value="MainActivity">聊天界面</option>
+                <option value="MenuActivity">点菜界面</option>
+                <option value="VoiceSettingActivity">订单详情界面</option>
+            </select>
+        </div>
+        <div name="cont1" id="cont1" >
+            <label>内容:</label>
+            <textarea name="cont" id="cont" cols="20" rows="4" style="resize: none;"></textarea>
+        </div>
+        <div class="t_r">
+            <input type="button" value="保存" class="button" id="submit"/>
+            <input type="button" value="取消" class="button minor" id="reset" />
+        </div>
+        <div id="tip5"></div>
+    </form>
+</div>
+</body>
+</html>

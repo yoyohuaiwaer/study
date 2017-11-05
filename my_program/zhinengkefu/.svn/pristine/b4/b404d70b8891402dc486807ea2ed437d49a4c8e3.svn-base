@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <style>
+        .breadcrumb li:before {
+            content: '';
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url:commUrl+'/menu/findbyid',
+                //type:'GET',
+                //async: false,
+                data:{
+                    token:$.cookie("token"),
+                    parentId:$(".main-title").attr("title")
+                },
+                success: function(data){
+                    data = eval('('+data+')')
+                    //console.log(data);
+                    $(".breadcrumb").empty();
+                    var html = '<li class="selected">' +
+                            '<a href="javascript:void(0);"  onclick="javascript:changePage(this);" title="'+menuUrl+''+data.data[0].url+'" id="'+data.data[0].parentId+'">'+data.data[0].name+'</a></li>' ;
+                    $(".breadcrumb").html(html);
+                },
+                error: function(text){
+                    alert(text.readyState);
+                    alert(text.status);
+                }
+            });
+            $.ajax({
+                url:commUrl+'/item',
+                data:{
+                    token:$.cookie("token"),
+                    page:'1',
+                    row:'10',
+                    sortId:'createTime',
+                    sortType:'DESC'
+                },
+                dataType:'json',
+                success:function(data){
+                    //console.log(data);
+                    data = eval('('+data+')');
+                    //console.log(data.code);
+                    $(".grid-body").empty();
+                    var html = '';
+                    var sort = 0;
+                    var page = '';
+                    if(data.code == '1'){
+                        $.each(data.data.datas,function(i,key){
+                            sort = i + 1;
+                            if(key.state == '1'){
+                                html += '<div class="grid-body-tr"> <div class="number">'+sort+'</div> ' +
+                                        '<div class="name">'+key.name+'</div> ' +
+                                        '<div class="unit">'+key.unit+'</div> ' +
+                                        '<div class="price">'+key.price+'</div> ' +
+                                        '<div class="pic"><img src="'+key.icon+'" alt=""/></div>' +
+                                        ' <div class="info"><span>'+key.desc+'</span></div> ' +
+                                        '<div class="operation">' +
+                                        '<a href="javascript:void(0);" onclick="javascript:goodsState(this)" class="goodsState" title="'+key.meid+'" id="'+key.id+'" name ="'+key.state+'">上架</a>' +
+                                        '<a href="javascript:void(0);" onclick="javascript:editGoods(this)" class="editGoods" title="1" id="'+key.id+'" name="'+key.meid+'">编辑</a>' +
+                                        '<a href="javascript:void(0);"  onclick="javascript:showOverall(this)" class="deleteGoods" id="'+key.id+'">删除</a></div> </div>'
+                            }else {
+                                html += '<div class="grid-body-tr"> <div class="number">'+sort+'</div> ' +
+                                        '<div class="name">'+key.name+'</div> <div class="unit">'+key.unit+'</div>' +
+                                        ' <div class="price">'+key.price+'</div> <div class="pic"><img src="'+key.icon+'" alt=""/></div>' +
+                                        ' <div class="info"><span>'+key.desc+'</span></div>' +
+                                        ' <div class="operation">' +
+                                        '<a href="javascript:void(0);" onclick="javascript:goodsState(this)" class="goodsState" title="'+key.meid+'" id="'+key.id+'" name ="'+key.state+'">下架</a>' +
+                                        '<a href="javascript:void(0);" onclick="javascript:editGoods(this)" class="editGoods" title="1"   id="'+key.id+'" name="'+key.meid+'" >编辑</a>' +
+                                        '<a href="javascript:void(0);"  onclick="javascript:showOverall(this)" class="deleteGoods" id="'+key.id+'">删除</a></div> </div>'
+                            }
+
+                        })
+                        if(data.data.pageCount == '1'){
+                            page = '';
+                        }
+                        else {
+                            page = '<li class="prevPage readonly" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">'+data.data.page+'</span>/<span class="pagecount">'+data.data.pageCount+'</span> </li>' +
+                                    ' <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)"  value="确定"/></li>';
+                        }
+                    }
+                    $(".pages ul").html(page);
+                    $(".grid-body").html(html);
+                },
+                error: function(text){
+                    alert(text.readyState);
+                    alert(text.status);
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+<input type="button" onclick="javascript:addQuestion(this)" title="0" class="addScene button" value="新增商品" style="float: right;margin-bottom: 15px;margin-right: 0px;"/>
+<div class="grid">
+    <div class="grid-head goods">
+        <div class="grid-head-th">
+            <div class="number" style="height: 45px;">序号</div>
+            <div class="name" style="height: 45px;">菜名</div>
+            <div class="unit" style="height: 45px;">单位</div>
+            <div class="price" style="height: 45px;">单价</div>
+            <div class="pic" style="height: 45px;">菜品图片</div>
+            <div class="info" style="height: 45px;">菜品介绍</div>
+            <div class="goodsOperation" style="height: 45px;">操作</div>
+        </div>
+    </div>
+    <div class="grid-body goods">
+        <div class="grid-body-tr">
+            <div class="number">序号</div>
+            <div class="name">菜名</div>
+            <div class="unit">单位</div>
+            <div class="price">单价</div>
+            <div class="pic">菜品图片</div>
+            <div class="info">删除</div>
+            <div class="goodsOperation">修改</div>
+        </div>
+    </div>
+</div>
+<div class="pages">
+    <ul>
+        <li class="prevPage" onclick="javascript:prevPage(this)">&lsaquo;</li>
+        <li class="onpage">
+            <input type="text" class="onpage" readonly/>
+            <input type="text" class="pageCount" readonly/>
+        </li>
+        <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li>
+    </ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除词条问答吗？</p>
+        <input type="button" class="button deleteQuestion" onclick="javascript:deleteGoods(this)" value="确定">
+        <input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消"/>
+    </div>
+</div>
+<script src="js/commodityList.js"></script>
+</body>
+</html>

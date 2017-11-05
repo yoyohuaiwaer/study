@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+</head>
+<body>
+<div id="layout">
+    <header id="header">
+        <div class="head-center">
+            <div class="logo">
+                <img src="images/logo.gif" alt=""/>
+                <span>商家业务运营系统 <span style="font-size: 16px; color: #ccc;">1.30版</span></span>
+            </div>
+            <ul class="user">
+               <li class="user-photo">
+                   <img src="images/userinit.jpg" alt=""/>
+               </li>
+                <li class="user-name"><a href="javascript:void (0);"></a></li>
+                <li class="user-indrustry"><a href="javascript:void (0);"></a></li>
+                <li class="user-email"></li>
+                <li class="user-login"><a href="javascript:logout(this)"  class="logout">退出登录</a></li>
+            </ul>
+        </div>
+    </header>
+    <section id="main">
+        <section id="main-left">
+            <div id="tree1">
+                <div class="tree" id="treenon" >
+
+                </div>
+                <div class="tree">
+                    <ul class="tree-menus" id="tree-menu1">
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="main-right">
+            <h2 class="main-title"></h2>
+            <ul class="breadcrumb">
+            </ul>
+            <div class="main"></div>
+        </section>
+    </section>
+    <footer id="footer"></footer>
+</div>
+</body>
+</html>

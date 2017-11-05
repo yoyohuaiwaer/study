@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <link href="css/common.css" rel="stylesheet">
+    <script src="js/login.js"></script>
+
+    <style>
+        body {
+            background: #fff;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="login-box">
+    <h2>商家业务管理后台</h2>
+    <form method="post" id="loginuser">
+        <div  class="mb-none">
+            <input type="text" name="username" id="username" value="用户"/>
+        </div>
+        <div class="tips tipsueser"></div>
+        <div class="mb-none">
+            <input type="password" name="password" id="password" value="密码"/>
+        </div>
+        <div class="tips tipspassword"></div>
+        <div class="mb-none">
+            <input type="text" id="strCode" name="strCode" value="验证码"/>
+            <span><img  style="margin-left: 30px;width: 100px" src="" alt="" id="codeImage"/></span>
+        </div>
+        <div class="tips tipscode"></div>
+        <div>
+            <input type="submit" id="submit" value="登录"/>
+        </div>
+         <div style="width: 173px;padding-right: 0;display: inline-block;">
+            <input type="checkbox" class="remberme"/>记住用户名
+            <a href="#">忘记密码</a>
+        </div>
+        <div style="display: inline-block;width: 230px;padding-left: 0;padding: 0;text-align: right;">
+            建议使用chorme,firefox浏览器
+        </div>
+
+    </form>
+</div>
+
+
+<style>
+</style>
+
+</body>
+</html>

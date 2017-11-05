@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <script type="text/javascript" src="js/sceneList.js"></script>
+    <style >
+    	.breadcrumb li:before {
+            content: '';
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!--<div style="text-align: right"><input type="button" onclick="javascript:addScene(this)" class="addScene button" value="新增场景"/></div>-->
+    <div class="grid">
+        <div class="grid-head">
+            <div class="grid-head-th">
+                <div class="order-number">序号</div>
+                <div class="industry">行业</div>
+                <div class="scene">场景</div>
+                <div class="answer-number">问答条数</div>
+                <div class="operation">操作</div>
+            </div>
+        </div>
+        <div class="grid-body" >
+        </div>
+    </div>
+    <div class="overall">
+        <div class="popap">
+            <p>确定要删除此个场景吗？</p>
+            <input type="button" class="button deleteScene" onclick="javascript:deleteList(this)" value="确定">
+            <input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消"/>
+            
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,465 @@
+$(document).ready(function() {
+	//commUrl = 'http://10.10.23.67:8080/qh_server';
+	classId();
+	if(parseInt($.cookie("read")) > 0) {
+		$.ajax({
+			url: commUrl + '/menu/findbyid',
+			data: {
+				token: $.cookie("token"),
+				parentId: '58462023b2a99afa74c51396'
+			},
+			success: function(data) {
+				data = eval('(' + data + ')');
+				$(".breadcrumb").empty();
+				var html = '<li ><a href="javascript:void(0);" onclick="javascript:changePage(this);" title="' + menuUrl + '' + data.data[0].url + '" id="' + data.data[0].id + '">' + data.data[0].name + '</a>' +
+					'<li class="selected"><a href="javascript:void(0);"   title="' + menuUrl + '' + 'addMembers.html' + '" id="' + data.data[0].parentId + '">编辑会员详情</a></li>';
+				$(".breadcrumb").html(html);
+			},
+			error: function(text) {
+				alert(text.readyState);
+				alert(text.status);
+			}
+		});
+		$.ajax({
+			url: commUrl + '/member/findMemberById',
+			data: {
+				token: $.cookie("token"),
+				id: $.cookie('read')
+			},
+			cache: false,
+			type: 'GET',
+			dataType: 'json',
+			success: function(data) {
+				data = eval('(' + data + ')');
+				console.log(data);
+				//debugger;
+				if(data.code == '1') {
+					var key = data.data
+					//$.each(data.data.datas, function(i, key) {
+
+						if(key.id == $.cookie('read')) {
+							createTime = key.createTime
+							$('#phone').val(key.phone);
+							$('#name').val(key.name).attr({'data-id':key.id ,'data-createTime':key.createTime});
+							$("#classId").find("option[value='"+ key.classId+ "']").attr({selected: "selected"});
+							$("#type").find("option[value='" + key.type+"']").attr({selected: "selected"});
+							$("#sex").find("input[value='" + key.sex + "']").attr({
+								checked: "checked"
+							});
+							if(key.members == ''){
+								$('.menbers').html('暂无关联会员');
+							}else {
+								var html = '';
+								$.each(key.members,function(i,key){
+									if(key.name == undefined){
+										html += '<a href="javascript:void(0)" class="menbersId" data-id="'+key.id+'" data-name="'+key.name+'" data-phone="'+key.phone+'">未命名会员'+i+'</a>';
+									}else{
+										html += '<a href="javascript:void(0)" class="menbersId" data-id="'+key.id+'" data-name="'+key.name+'" data-phone="'+key.phone+'">'+key.name+'</a>';
+									}
+
+								});
+								$('.menbers').html(html);
+							}
+
+							if(key.faceUrls)
+							{
+								for(var i = 0; i < key.faceUrls.length; i++) {
+									var curID = "imageStr" + (i);
+									var layerId = "layer"+ i;
+									document.getElementById(curID).src = key.faceUrls[i];
+									document.getElementById(curID).style.display = 'inline-block';
+									document.getElementById(layerId).style.display = 'inline-block';
+								}
+							}
+						}
+
+					//});
+				}
+			},
+			error: function(text) {
+				alert(text.readyState);
+				alert(text.status);
+			}
+		})
+	} else {
+		//getMemId();
+		//initAd();
+	}
+
+	//function getMemId() {
+	//	$.ajax({
+	//		url: commUrl + '/member/getMemberNo',
+	//		data: {
+	//			token: $.cookie("token")
+	//		},
+	//		cache: false,
+	//		type: 'GET',
+	//		success: function(data) {
+	//			$("#memId").html(data);
+	//		},
+	//		error: function(text) {
+	//			alert(text.readyState);
+	//			alert(text.status);
+	//		}
+	//	})
+	//}
+    //
+	//function initAd() {
+	//	$.ajax({
+	//		url: commUrl + '/menu/findbyid',
+	//		cache: false,
+	//		data: {
+	//			token: $.cookie("token"),
+	//			parentId: '58462023b2a99afa74c51396'
+	//		},
+	//		success: function(data) {
+	//			data = eval('(' + data + ')');
+	//			$(".breadcrumb").empty();
+	//			var html = '<li ><a href="javascript:void(0);" onclick="javascript:changePage(this);" title="' + menuUrl + '' + data.data[0].url + '" id="' + data.data[0].id + '">' + data.data[0].name + '</a>' +
+	//				'<li class="selected"><a href="javascript:void(0);"   title="' + menuUrl + '' + 'addMembers.html' + '" id="' + data.data[0].parentId + '">编辑会员详情</a></li>';
+	//			$(".breadcrumb").html(html);
+	//		},
+	//		error: function(text) {
+	//			alert(text.readyState);
+	//			alert(text.status);
+	//		}
+	//	});
+	//}
+	//音频
+	$(".changeAudio input").change(function() {
+		var file = this.files[0];
+		if(file == undefined) {
+			return;
+		}
+		var formData = new FormData();
+		formData.append('file', file);
+		var fileName = file.name.substring(file.name.lastIndexOf(".") + 1).toLowerCase();
+		if(fileName == "wav") {
+			if(file.size / 1024 < 3000) {
+				showOverall();
+				$.ajax({
+					type: "POST", //必须用post  
+					url: videoUrl,
+					crossDomain: true,
+					jsonp: "jsoncallback",
+					data: formData,
+					contentType: false, //必须  
+					processData: false,
+					//不能用success，否则不执行  
+					complete: function(data) {
+						$('#audioId').css('display', 'inline-block');
+						clearOverall();
+						var json = eval('(' + data.responseText + ')');
+						$('#audioId').attr('src', json.videourl);
+					},
+					error: function(data) {
+						clearOverall();
+						$('#audioId').attr('src', '');
+						$('#audioId').css('display', 'none');
+						console.log(data);
+					}
+				});
+			} else {
+				$('#audioId').attr('src', '');
+				$('#audioId').css('display', 'none');
+				$(".audioTips").empty().css({
+					color: "red"
+				}).html("音频大小不能大于3m");
+			}
+		} else {
+			$(".audioTips").empty().css({
+				color: "red"
+			}).html("音频格式不正确，格式应为：wav");
+		}
+
+	});
+
+	//图片
+	$(".changeImg input").change(function() {
+		var imgList = checkImgLength();
+		
+		var filesList = this.files;
+		if(filesList.length > 5) {
+			$(".tip").empty().css({
+				color: "red"
+			}).html("最多可以上传5张图片");
+			return false;
+		}
+		var curIndex = 0;
+		var isHasDel =false;
+		var realList = [];
+		for(var imgI = 0;imgI<imgList.length;imgI++)
+		{
+			if(imgList[imgI]==" ")
+			{
+				isHasDel = true;
+				curIndex = imgI;
+			}else{
+				realList.push(imgList[imgI])
+			}
+		}
+		if(realList.length >= 5) {
+			$(".tip").empty().css({
+				color: "red"
+			}).html("最多可以上传5张图片");
+			return false;
+		}
+		if (curIndex==0 && !isHasDel) {
+			curIndex = imgList.length;
+		} 
+		for(var i = 0; i < filesList.length; i++) {
+			loadImg(filesList[i])
+		}
+		function loadImg(file) {
+			var fileName = file.name.substring(file.name.lastIndexOf(".") + 1).toLowerCase();
+			if(fileName == "jpg" || fileName == "jpeg" || fileName == "png" || fileName == "bmp") {
+				if(file.size / 1024 < 1000) {
+					showOverall();
+					var formData = new FormData();
+					formData.append('file1', file);
+					var curID = "imageStr" + curIndex;
+					var layerId = "layer"+ curIndex;
+					$.ajax({
+						type: "POST", //必须用post
+						url: imgUrl,
+						crossDomain: true,
+						cache: false,
+						jsonp: "jsoncallback",
+						data: formData,
+						contentType: false, //必须
+						processData: false,
+						complete: function(data) {
+							var json = eval('(' + data.responseText + ')');
+							document.getElementById(curID).src = json.imgurl;
+							document.getElementById(layerId).src = "images/delected.png";
+							//$('imageStr'+curID).attr('src', json.imgurl);
+							var img = document.getElementById(curID); //获取img元素
+							var picRealWidth, picRealHeight;
+							$("<img>") // 在内存中创建一个img标记
+								.attr("src", $(img).attr("src"))
+								.load(function() {
+									picRealWidth = this.width;
+									picRealHeight = this.height;
+									$(".imgTips").empty().css({
+										color: "green"
+									}).html("");
+									document.getElementById(curID).src = json.imgurl;
+									document.getElementById(curID).style.display = 'inline-block';
+									document.getElementById(layerId).style.display = 'inline-block';
+									clearOverall();
+								});
+							
+						}
+					});
+				} else {
+					clearOverall();
+					if(document.getElementById(curID))
+					{
+						document.getElementById(curID).src = "";
+						document.getElementById(curID).style.display = 'none';
+						document.getElementById(layerId).style.display = 'none';
+					}
+					$(".imgTips").empty().css({
+						color: "red"
+					}).html("图片大小不能大于1M");
+				}
+			} else {
+				if(document.getElementById(curID)) {
+					document.getElementById(curID).src = "";
+					document.getElementById(curID).style.display = 'none';
+					document.getElementById(layerId).style.display = 'none';
+				}
+				$(".imgTips").empty().css({
+					color: "red"
+				}).html("图片格式不正确，格式应为：jpg,jpeg,png,bmp");
+			}
+		}
+
+	});
+
+})
+function classId(){
+	$.ajax({
+		url: commUrl + '/teacher/classGroupList',
+		//type: 'POST',
+		cache: false,
+		data: {
+			token: $.cookie("token")
+		},
+		//dataType: 'json',
+		//contentType: 'application/json; charset=UTF-8',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data);
+			if(data.code == '1') {
+				var str = ''
+				$.each(data.data,function(i,key){
+					str +='<option value="'+key.id+'">'+key.className+'</option>'
+				});
+                 $('#classId').html(str);
+			}
+		},
+		error: function(text){
+
+		}
+	})
+}
+function cancelAdFun(e) {
+	$.ajax({
+		url: 'membersList.html',
+		datatype: 'html',
+		cache: false,
+		success: function(data) {
+			$(".main").empty().html(data);
+		}
+	})
+}
+
+function addAdFun(e) {
+	//var memNo = $('#id').html();
+	var mphone = $('#phone').val();
+	var mname = $('#name').val();
+	var msex = $("input[name='sex']:checked").val();
+	var mclassID = $('#classId option:selected').attr('value');
+	var mclassName = $('#classId option:selected').html();
+	var mType = $('#type option:selected').val();
+	var id = $.cookie('read');
+	var createTime = $('#name').attr('data-createTime');
+	var maudio = [];
+	//var  bbb  = $('#identity').val();
+	//if($('#audioId').attr('src') != undefined) {
+	//	maudio.push($('#audioId').attr('src'))
+	//}
+	var imgArr = [];
+	$('.imageBox .photo').each(function() {
+		var src = $(this).attr('src');
+		if(src != ""&& src!=" ") {
+			imgArr.push(src)
+		}
+	})
+	var menbers = [];
+
+	if($('.menbers').html() !== '暂无关联会员'){
+		$('.menbers a').each(function(){
+			var ob = {};
+			if($(this).attr('data-name') == undefined){
+				ob.name = '';
+			}else {
+				ob.name = $(this).attr('data-name');
+			}
+			ob.id = $(this).attr('data-id');
+			ob.phone = $(this).attr('data-phone');
+			menbers.push(ob);
+		})
+	}
+	//console.log(menbers);
+	//debugger;
+	if(mname == '') {
+		$(".tip").empty().css({
+			color: "red"
+		}).html("请添加姓名");
+		return false;
+	}
+	if(imgArr.length <= 0) {
+		$(".tip").empty().css({
+			color: "red"
+		}).html("请添加会员相片");
+		return false;
+	}
+
+	$(".tip").empty();
+	var obj = {}
+	if($('#name').attr('data-id') == '') {
+		obj = {
+			//memberNo: memNo,
+			phone: mphone,
+			name: mname,
+			sex: msex,
+			classId:mclassID,
+			className:mclassName,
+			type: mType,
+			//vprUrls: maudio,
+			faceUrls: imgArr,
+			members:menbers
+
+		}
+		//debugger;
+	} else {
+		obj = {
+			//memberNo: memNo,
+			phone: mphone,
+			name: mname,
+			sex: msex,
+			classId:mclassID,
+			className:mclassName,
+			type: mType,
+			id: id,
+			faceUrls: imgArr,
+			members:menbers,
+			createTime: createTime
+			//createTime:createTime
+		}
+		//debugger;
+	}
+	//console.log(obj);
+	//debugger;
+	$.ajax({
+		url: commUrl + '/member/updateMember?token=' + $.cookie("token"),
+		type: 'POST',
+		cache: false,
+		data: JSON.stringify(obj),
+		dataType: 'json',
+		contentType: 'application/json; charset=UTF-8',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			if(data.code == '1') {
+				newPage();
+			}else{
+				alert(data.data)
+			}
+
+		}
+	})
+}
+
+function newPage() {
+	$.get('membersList.html', {
+		token: $.cookie("token"),
+		scene: $.cookie("scene")
+	}, function(response) {
+		$(".main").empty().html(response);
+	})
+}
+
+function clearOverall() {
+	$(".overall").hide();
+}
+
+function showOverall() {
+	$(".overall").show();
+}
+
+function checkImgLength() {
+	var imgList = [];
+	$('.imageBox .photo').each(function() {
+		var src = $(this).attr('src');
+		if(src != "") {
+			imgList.push(src)
+		}
+	})
+	return imgList;
+}
+function delcfm(e){
+	var list = checkImgLength();
+	var curImg = $(e).parent().find("img")
+	curImg.css("display","none")
+	$('.imageBox .photo').each(function(i,key) {
+		if(i ==$(e).attr('title') )
+		{
+			var src = $(this).attr('src');
+		}
+	})
+	
+	curImg.attr('src', " ");
+	list = checkImgLength();
+}

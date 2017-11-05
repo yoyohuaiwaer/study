@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>舞蹈动作编辑</title>
+    <style>
+        .sportsText{
+            display: inline-block;
+        }
+        .adItem > div a:not([class="overshow"]){
+            margin-right: 10px;
+        }
+        .adItem > div a.overshow{
+            font-size: 24px;
+            font-weight: 500;
+            color: #999;
+        }
+        .overall .popap {
+            height: 730px;
+            width:820px;
+            margin-left: -410px;
+            margin-top: -315px;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: left;
+        }
+        h4 {
+            line-height: 20px;
+            height: 20px;
+            margin: 0;
+        }
+        .overall .popap label{
+            line-height: 25px;
+            height: 25px;
+            width: 80px !important;
+        }
+        .overall .popap >div {
+            height: 40px;
+            line-height: 40px;
+        }
+
+
+
+        .imageBox img {
+            display: none;
+        }
+
+        .photo {
+            width: 120px;
+            height: 120px;
+        }
+
+        .imageBox {
+            display: inline-block;
+            position: absolute;
+        }
+
+        .imageBox li {
+            width: 140px;
+            height: 120px;
+            float: left;
+            position: relative;
+        }
+
+        .closeLayer {
+            z-index: 99;
+            position: absolute;
+            right: 20px;
+            top: 0px;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div id="qrecordForm">
+        <div class="adItem">
+            <label for="name">名称:&nbsp;&nbsp;</label>
+            <input type="text" class="text" id="name" style="width: 340px;" placeholder="20字以内" maxlength="20">
+        </div>
+        <div class="adItem" style="margin: 0 0 10px 0;">
+            <label>动作:</label>
+            <div  style="margin: 0; display: inline-block">
+                <div><div class="sportsText" id="movePack"></div><a class="overshow">添加动作</a></div>
+            </div>
+            <span class="videoTips"></span>
+        </div>
+        <div class="adItem">
+            <label>互动语:&nbsp;&nbsp;</label>
+            <input type="text" id="" class="text interaction tips"  style="width: 416px;">
+        </div>
+        <div class="adItem">
+            <label></label>
+            <input type="text" class="text interaction tips" style="width: 416px;">
+        </div>
+        <div class="adItem">
+            <label></label>
+            <input type="text" class="text interaction tips"  style="width: 416px;">
+        </div>
+        <div class="adItem">
+            <label>触发词:&nbsp;&nbsp;</label>
+            <input type="text" id="trigers" class="text"  style="width: 416px;">
+            <span style="color: red;">每个触发词之间用';'隔开</span>
+        </div>
+        <div class="adItem" style="margin: 0 0 10px 0;">
+            <label>背景图:</label>
+            <div class="choseimg changeImg" style="margin: 0;">
+                +
+                <input type="file" style="width: 120px; ">
+            </div>
+            <ul class="imageBox">
+                <li>
+                    <img src="" id="imageStr0" class="photo">
+                    <div class="closeLayer" onclick="javascript:delcfm(this)" href="#" title="0">
+                        <img id="layer0" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr1" class="photo">
+                    <div class="closeLayer" onclick="javascript:delcfm(this)" href="#" title="1">
+                        <img id="layer1" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr2" class="photo">
+                    <div class="closeLayer" onclick="javascript:delcfm(this)" href="#" title="2">
+                        <img id="layer2" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr3" class="photo">
+                    <div class="closeLayer" onclick="javascript:delcfm(this)" href="#" title="3">
+                        <img id="layer3" src="images/delected.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="" id="imageStr4" class="photo">
+                    <div class="closeLayer" onclick="javascript:delcfm(this)" href="#" title="4">
+                        <img id="layer4" src="images/delected.png">
+                    </div>
+                </li>
+            </ul>
+            <p class="imgTips">最多可以上传5张图片,图片格式为jpg|jpeg|png|bmp 小于2M</p>
+        </div>
+        <div class="adItem" style="margin: 0 0 10px 0;">
+            <label>频次:</label>
+            <div  style="margin: 0; display: inline-block">
+                <label><input type="radio" class="radio" name="interval" value="30" checked="checked">30秒</label>
+                <label><input type="radio" class="radio" name="interval" value="45">45秒</label>
+                <label><input type="radio" class="radio" name="interval" value="60">60秒</label>
+            </div>
+            <span class="videoTips"></span>
+        </div>
+        <div class="adItem" style="margin: 0 0 10px 0;">
+            <label>播放模式:</label>
+            <div  style="margin: 0; display: inline-block">
+                <label><input type="radio" class="radio" name="mode" value="1" checked="checked">顺序播放</label>
+                <label><input type="radio" class="radio" name="mode" value="2">随机播放</label>
+            </div>
+            <span class="videoTips"></span>
+        </div>
+        <label class="tip"></label>
+        <div class="toolbar">
+            <input type="button" class="button confirm" value="确定">
+            <input type="button" class="button minor cancelConfirm" value="取消">
+        </div>
+        <div class="overall" style="">
+            <div class="popap" style="">
+                <h4>头部动作</h4>
+                <div class="inputBox">
+                    <label><input type="radio" class="direction" name="headDirection" data-part="333" data-direction="3" data-speed="3" data-angle="888">正常</label>
+                    <label><input type="radio" class="direction" name="headDirection" data-part="333" data-direction="1" data-speed="3" data-angle="30">抬头</label>
+                    <label><input type="radio" class="direction" name="headDirection" data-part="333" data-direction="1" data-speed="3" data-angle="7">低头</label>
+                    <label><input type="radio" class="direction" name="headDirection" data-part="333" data-direction="2" data-speed="3" data-angle="180">左摇头</label>
+                    <label><input type="radio" class="direction" name="headDirection" data-part="333" data-direction="2" data-speed="3" data-angle="0">右摇头</label>
+                </div>
+                <h4>左耳灯光</h4>
+                <div class="inputBox">
+                    <label><input type="radio" class="light" name="headLLight" data-part="44444" data-LedMode="20" data-LedDelay="" data-LedNumber="">闪绿灯</label>
+                    <label><input type="radio" class="light" name="headLLight" data-part="44444" data-LedMode="21" data-LedDelay="" data-LedNumber="">闪粉灯</label>
+                    <label><input type="radio" class="light" name="headLLight" data-part="44444" data-LedMode="22" data-LedDelay="" data-LedNumber="">闪紫灯</label>
+                    <label><input type="radio" class="light" name="headLLight" data-part="44444" data-LedMode="23" data-LedDelay="" data-LedNumber="">闪蓝灯</label>
+                    <label><input type="radio" class="light" name="headLLight" data-part="44444" data-LedMode="25" data-LedDelay="5" data-LedNumber="3">三色闪</label>
+                    <label><input type="radio" class="light" name="headLLight" data-part="44444" data-LedMode="32" data-LedDelay="10" data-LedNumber="6">六色闪</label>
+                </div>
+                <h4>右耳灯光</h4>
+                <div class="inputBox">
+                    <label><input type="radio" class="light" name="headRLight" data-part="55555" data-LedMode="20" data-LedDelay="" data-LedNumber="">闪绿灯</label>
+                    <label><input type="radio" class="light" name="headRLight" data-part="55555" data-LedMode="21" data-LedDelay="" data-LedNumber="">闪粉灯</label>
+                    <label><input type="radio" class="light" name="headRLight" data-part="55555" data-LedMode="22" data-LedDelay="" data-LedNumber="">闪紫灯</label>
+                    <label><input type="radio" class="light" name="headRLight" data-part="55555" data-LedMode="23" data-LedDelay="" data-LedNumber="">闪蓝灯</label>
+                    <label><input type="radio" class="light" name="headRLight" data-part="55555" data-LedMode="25" data-LedDelay="5" data-LedNumber="3">三色闪</label>
+                    <label><input type="radio" class="light" name="headRLight" data-part="55555" data-LedMode="32" data-LedDelay="10" data-LedNumber="6">六色闪</label>
+                </div>
+                <h4>左手动作</h4>
+                <div class="left">
+                    <label><input type="radio" class="direction" name="handLDirection" data-part="222" data-direction="1" data-speed="3" data-angle="90">抬手</label>
+                    <label><input type="radio" class="direction" name="handLDirection" data-part="222" data-direction="1" data-speed="3" data-angle="0">举手</label>
+                    <label><input type="radio" class="direction" name="handLDirection" data-part="222" data-direction="1" data-speed="3" data-angle="180">下垂</label>
+                    <label><input type="radio" class="direction" name="handLDirection" data-part="222" data-direction="1" data-speed="3" data-angle="270">后摆</label>
+                    <!--<label><input type="radio" class="radio direction" name="handDirection" data-part="222" data-direction="1" data-speed="3" data-angle="30" checked="">右摇头</label>-->
+                </div>
+                <h4>左手灯光</h4>
+                <div class="inputBox">
+                    <label><input type="radio" class="light" name="handLLight" data-part="22222" data-LedMode="20" data-LedDelay="" data-LedNumber="">闪绿灯</label>
+                    <label><input type="radio" class="light" name="handLLight" data-part="22222" data-LedMode="21" data-LedDelay="" data-LedNumber="">闪粉灯</label>
+                    <label><input type="radio" class="light" name="handLLight" data-part="22222" data-LedMode="22" data-LedDelay="" data-LedNumber="">闪紫灯</label>
+                    <label><input type="radio" class="light" name="handLLight" data-part="22222" data-LedMode="23" data-LedDelay="" data-LedNumber="">闪蓝灯</label>
+                    <label><input type="radio" class="light" name="handLLight" data-part="22222" data-LedMode="25" data-LedDelay="5" data-LedNumber="3">三色闪</label>
+                    <label><input type="radio" class="light" name="handLLight" data-part="22222" data-LedMode="32" data-LedDelay="10" data-LedNumber="6">六色闪</label>
+                </div>
+                <h4>右手动作</h4>
+                <div class="right">
+                    <label><input type="radio" class="direction" name="handRDirection" data-part="222" data-direction="2" data-speed="3" data-angle="90">抬手</label>
+                    <label><input type="radio" class="direction" name="handRDirection" data-part="222" data-direction="2" data-speed="3" data-angle="0">举手</label>
+                    <label><input type="radio" class="direction" name="handRDirection" data-part="222" data-direction="2" data-speed="3" data-angle="180">下垂</label>
+                    <label><input type="radio" class="direction" name="handRDirection" data-part="222" data-direction="2" data-speed="3" data-angle="270">后摆</label>
+                </div>
+                <h4>右手灯光</h4>
+                <div class="inputBox">
+                    <label><input type="radio" class="light" name="handRLight" data-part="33333" data-LedMode="20" data-LedDelay="" data-LedNumber="">闪绿灯</label>
+                    <label><input type="radio" class="light" name="handRLight" data-part="33333" data-LedMode="21" data-LedDelay="" data-LedNumber="">闪粉灯</label>
+                    <label><input type="radio" class="light" name="handRLight" data-part="33333" data-LedMode="22" data-LedDelay="" data-LedNumber="">闪紫灯</label>
+                    <label><input type="radio" class="light" name="handRLight" data-part="33333" data-LedMode="23" data-LedDelay="" data-LedNumber="">闪蓝灯</label>
+                    <label><input type="radio" class="light" name="handRLight" data-part="33333" data-LedMode="25" data-LedDelay="5" data-LedNumber="3">三色闪</label>
+                    <label><input type="radio" class="light" name="handRLight" data-part="33333" data-LedMode="32" data-LedDelay="10" data-LedNumber="6">六色闪</label>
+                </div>
+                <h4>脚步动作</h4>
+                <div class="foot">
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="1" data-speed="3" data-angle="10">前进</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="7" data-speed="3" data-angle="10">左移</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="8" data-speed="3" data-angle="10">右移</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="9" data-speed="3" data-angle="90">左转90°</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="9" data-speed="3" data-angle="180">左转180°</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="9" data-speed="3" data-angle="360">左转360°</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="10" data-speed="3" data-angle="90">右转90°</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="10" data-speed="3" data-angle="180">右转180°</label>
+                    <label><input type="radio" class="direction" name="footDirection" data-part="111" data-direction="10" data-speed="3" data-angle="360">右转360°</label>
+                    <!--<label><input type="radio" class="direction foot" name="footDirection" data-part="111" data-direction="2" data-speed="3" data-angle="30">后退</label>-->
+                </div>
+                <h4>拍子</h4>
+                <div class="sleepBox">
+                    <label><input type="radio" class="sleep" name="sleep" value="10">1秒</label>
+                    <label><input type="radio" class="sleep" name="sleep" value="20">2秒</label>
+                    <label><input type="radio" class="sleep" name="sleep" value="30">3秒</label>
+                </div>
+                <div class="toolbar">
+                    <input type="button" class="button addDirection" value="确定" data-id="">
+                    <input type="button" class="button randomDirection" value="随机动作" data-id="">
+                    <input type="button" class="button minor cancelAdd" value="取消">
+                    <input type="button" class="button minor deleDirection" value="删除">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overall1" >
+        <div class="popap" style="height: 200px;">
+            <p>图片正在上传中,请稍候......</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/sports-details.js"></script>
+
+</div>
+</body>
+</html>

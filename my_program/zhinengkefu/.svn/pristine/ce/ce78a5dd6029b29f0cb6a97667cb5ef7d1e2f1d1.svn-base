@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script type="text/javascript" src="js/jquery.cookie.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		
+		<style>
+	        .breadcrumb li:before {
+	            position: absolute;
+	            content: '';
+	            left: -5px;
+	            color: #d7d7d8;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div style="height: 40px;text-align: right">
+			<label style="margin-right: 20px;">客服在线中...</label>
+			<div class="search-box" style="display: inline-block; margin-right: 20px;">
+		        <select name="kfstate" id="kfstate" >
+		            <option value="free" selected="selected">空闲</option>
+				    <option value="busyness" >忙碌</option>
+		        </select>
+		    </div>
+			<!--<button id="rtCall">发送消息</button>-->
+		</div>
+		 <table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0"></table>
+		<div class="overall">
+		    <div class="popap">
+		        <p>确定要删除该条素材吗？</p>
+		        <input type="button" class="button deleteQuestion" onclick="javascript:deleteGoods(this)" value="确定">
+		        <input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消"/>
+		    </div>
+		</div>
+		  <!--分页-->
+		<div class="pages">
+		    <ul>
+		    </ul>
+		</div>
+		
+		<script type="text/javascript" src="js/customerServiceCenter.js" ></script>
+	</body>
+</html>

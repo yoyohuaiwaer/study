@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创编故事审核</title>
+</head>
+<body>
+<div style="text-align: right">
+    <div class="search-box" style="display: inline-block; margin-right: 15px;">
+        <select name="column" id="status" data-rel="1">
+            <option selected="selected">选择状态</option>
+            <option value="0">私有</option>
+            <option value="1">审核中</option>
+            <option value="2">公开</option>
+        </select>
+    </div>
+    <!--<input type="button" class="button Column" data-id="" value="栏目管理" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+    <input type="button" class="button tags" data-id="" tags-type="courseware" value="标签管理" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+    <input type="button" class="button addcourseware" data-id="" value="新增课件" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>-->
+</div>
+<div class="grid">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div style="width: 80px"><span>序号</span></div>
+            <div style="width: 250px"><span>故事名</span></div>
+            <div style="width: 200px"><span>图片</span></div>
+            <div style="width: 100px"><span>状态</span></div>
+            <div style="width: 330px"><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除该课件吗？</p>
+        <input type="button" class="button deleteTagsConfirm" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<script src="js/reviewStory.js"></script>
+</body>
+</html>

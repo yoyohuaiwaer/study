@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/common.css" rel="stylesheet">
+	    <script type="text/javascript" src="js/jquery.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+	    <style>
+	    	.main-title{
+	    		display: none;
+	    	}
+	    	.dialogTopTitle {
+	    		border-bottom: 1px solid #efeff1;
+	    		padding-bottom: 4px;
+	    		font-size: 16px;
+	    		line-height: 60px;
+	    	}
+	        .dialogTop li{
+	        	font-size: 14px;
+	        	display: inline-block;
+	        	width: 186px;
+	        	height: 148px;
+	        	text-align: left;
+	        	border-bottom: 1px solid #efeff1;
+	        }
+	        .dialogNum{
+	        	color: #00a0e9;
+	        	font-size: 38px;
+	        }
+	        .dialogBottom{
+	        	padding-top: 20px;
+	        	padding-bottom: 7px;
+	        }
+	        .dialogBottomTitle{
+	        	padding-bottom: 4px;
+	    		font-size: 16px;
+	    		margin-right: 20px;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div>
+			<div class="dialogTopTitle">今日数据</div>
+			<ul class="dialogTop">
+				<li>
+					<div style="padding-top: 30px; padding-bottom: 30px;">在线会话时长</div>
+					<div class="dialogNum duration"></div>
+				</li>
+				<li>
+					<div style="padding-top: 30px; padding-bottom: 30px;">转人工率</div>
+					<div class="dialogNum callRate"></div>
+				</li>
+				<li>
+					<div style="padding-top: 30px; padding-bottom: 30px;">人工接通率</div>
+					<div class="dialogNum connectRate"></div>
+				</li>
+				<li>
+					<div style="padding-top: 30px; padding-bottom: 30px;">提问量</div>
+					<div class="dialogNum problemNumber"></div>
+				</li>
+				<li>
+					<div style="padding-top: 30px; padding-bottom: 30px;">回答正确率</div>
+					<div class="dialogNum accuracy"></div>
+				</li>
+			</ul>
+			<div class="dialogBottom">
+				<label class="dialogBottomTitle">整体趋势</label>
+				<input type="date" id="startTime" onchange="javascript:setStartList()" class="text" style="width: 140px; "/>至
+			    <input type="date" id="endTime" onchange="javascript:setStartList()" class="text" style="width: 140px;  margin-left: 6px;"/>
+			    <label class="tip"></label>
+			</div>
+		</div>
+		<!--<div style="text-align: right"><input type="button" onclick="javascript:forExcel(this)" class="addScene button" value="导出Excel"/></div>-->
+	    <table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+	    </table>
+	    <!--分页-->
+	    <div class="pages">
+	        <ul>
+	        </ul>
+	    </div>
+	    <!--分页-->
+	    <script type="text/javascript" src="js/dialogStatistics.js" ></script>
+	    <script type="text/javascript" src="js/outExcel.js" ></script>
+	</body>
+</html>

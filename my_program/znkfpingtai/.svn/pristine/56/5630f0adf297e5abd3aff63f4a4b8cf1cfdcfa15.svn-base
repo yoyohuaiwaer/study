@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+		document.write(Date())
+		var date= new Date();
+			console.log(date.getFullYear())
+		</script>
+	</body>
+</html>

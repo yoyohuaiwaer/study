@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		 <link rel="stylesheet" href="css/jquery.treeview.css" />
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/jquery.treeview.js"></script>
+		<script type="text/javascript" src="js/knowledgeBase.js"></script>
+		<style>
+			.piliangBtn{
+				font-size: 14px;
+				background: #00a0ea;
+				line-height: 32px; 
+				text-align: center; 
+				height: 32px; 
+				color: #FFFFFF; 
+				border-radius: 5px; 
+				width: 100px; 
+				border: none;
+			}
+			.bigClaTitle {
+				height: 582px;
+				width: 240px;
+				padding-top: 8px;
+				display: inline-block;
+				border-right: 1px solid #efeff1;
+			}
+			.addBigClas {
+				display: inline-block;
+				text-align: center;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				border-color: #d8d8d8;
+				background: #FFFFFF;
+				border-width: 1px;
+				color: #d8d8d8;
+				border-style: solid;
+			}
+			.classifyBtn {
+				padding: 0 3px;
+				cursor: pointer;
+				display: inline-block;
+			}
+			.popapInput {
+				width: 70%;
+				line-height: 35px;
+				border-radius: 5px;
+				border: 1px solid #8fa1b3;
+				margin: 0px auto;
+			}
+			
+			.pbutton {
+				margin-top: 60px;
+			}
+			.tableBox {
+				display: inline-block;
+				width: 700px;
+				position: absolute;
+				margin-top: 0px;
+				margin-left: 10px;
+			}
+			.classifyUl {
+				line-height: 22px;
+				position: absolute;
+				z-index: 999;
+				border: 1px solid #d8d8d8;
+				font-size: 14px;
+				width: 100px;
+				display: none;
+				color: #333;
+			}
+			.classifyUl li{
+				background:url();
+			}
+			.similarQueOverall {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, .5);
+				z-index: 99;
+				transition: background-color .3s ease-out;
+				height: 100%;
+			}
+			.simiLeft {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: calc( 100% - 560px);
+				height: 100%;
+			}
+			
+			.similarContent {
+				position: absolute;
+				overflow-y: auto;
+				box-sizing: border-box;
+				width: 560px;
+				height: 100%;
+				background-color: #fff;
+				right: 0;
+				top: 0;
+				transition: all .3s ease-out;
+				padding: 40px 30px;
+			}
+			
+			.similarBox {
+				padding: 0;
+				height: 100%;
+				margin: -40px -30px;
+			}
+			
+			.similarBoxCon {
+				height: 85%;
+				padding: 20px 30px 0px 30px;
+				overflow-y: auto;
+				color: #8fa1b3;
+				font-size: 14px;
+			}
+			.faq-title {
+				padding-bottom: 15px;
+			}
+			
+			.faq-question {
+				font-size: 20px;
+				padding-bottom: 10px;
+				color: #333;
+			}
+			.similarLi {
+				font-size: 14px;
+				line-height: 40px;
+				height: 40px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			.similarLi span {
+				width: 420px;
+				display: inline-block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.similarLi input {
+				position: absolute;
+				left: 430px;
+				top: 12px;
+			}
+			.elCheckbox {
+				width: 18px;
+				height: 18px;
+			}
+			.anotherTree{
+				display: none;
+				position: absolute;
+			    background: #fff;
+			    z-index: 2;
+			    width: 490px;
+			    box-sizing: border-box;
+			    max-height: 300px;
+			    overflow: auto;
+			    border: 1px solid #dce1e6;
+			    top: 30px;
+			    left: 0px;
+			    border-radius: 3px;
+			    padding: 3px 3px;
+			    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+			}
+			
+			#simlarOne {
+				display: none;
+			}
+			#simlarAdd{
+				display: none;
+			}
+			#simlarEdit{
+				display: none;
+			}
+			.topTitle{
+				line-height: 60px;
+				float: left;
+				font-size: 20px;
+			}
+			.btns {
+				text-align: center;
+			}
+			.ansQue{
+				margin-bottom: 20px;
+			}
+			
+			.ansQue p {
+				margin-bottom: 10px;
+			}
+			.downLoad{
+				background: #00a0e9;
+				color: #FFFFFF;
+				border-radius: 3px;
+				border: 1px solid #00a0e9;
+				line-height: 28px;
+				width: 84px;
+				text-align: center;
+				display: inline-block;
+				margin-left: 20px;
+				margin-right: 7px;
+			}
+			.downLoad:hover{
+				color: #FFFFFF;
+			}
+			.main-title{
+				padding-left: 20px;
+				padding-bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 60px;text-align: right; border-bottom: 1px solid  #efeff1; padding-bottom: 8px;">
+			<span class="topTitle" id=''>全部分类</span>
+			<input type="text" class="text searchText searchInput" />
+			<input type="button" class="button searchbtn " style="margin-right: 20px;" onclick="javascript:searchFun(this)" rel="0" value="搜索" />
+			<input type="button" onclick="javascript:addQuestion(this)" title="0" class="addScene button" value="新建问题" style="margin-right: 20px;" />
+			<div class=" choseimg piliangBtn" >
+				批量导入
+				<input type="file" class=" confirm onfile " accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+			</div>
+			<a  class="downLoad" download>下载模板</a>
+			<p class="showTips" style="color: red; font-size: 14px;"></p>
+		</div>
+		<div class="bigClaTitle" >
+			<div style="margin-bottom: 22px; font-size: 18px;">
+				<span class="leftTreeAllNums" onclick="javascript:clickAllFL(this)"></span><!--全部分类(242)-->
+				<button type="button" class="addBigClas" onclick="javascript:showTopOverall(this)">+</button>
+			</div>
+			<ul id="tree" class="filetree" style="width: 240px; display: inline-block;"></ul>
+		</div>
+		
+		<div class="tableBox">
+			<table id="grid" class="grid" width="700px" border="1" cellspacing="0" cellpadding="0" style="width: 700px;">
+			</table>
+			<!--分页-->
+			<div class="pages">
+				<ul>
+				</ul>
+			</div>
+			<!--分页-->
+		</div>
+		<div class="overall fenlei">
+			<div class="popap">
+				<p class="popapTitle" style="line-height: 110px;">创建分类</p>
+				<input class="popapInput" type="text" placeholder="请输入分类名称" maxlength="8"/>
+				<div class="isDeleted">你确定删除该分类吗?</div>
+				<input type="button" class="pbutton button deleteQuestion" onclick="javascript:popopEnsure(this)" value="确定">
+				<input type="button" class="pbutton button minor" onclick="javascript:clearOverall(this)" value="取消" />
+			</div>
+		</div>
+		
+		<div class="overall1 excelOver" >
+			<div class="popap" style="height: 200px;">
+				<p>正在上传中,请稍候......</p>
+			</div>
+		</div>
+		
+		<div class="similarQueOverall">
+			<div class="simiLeft" onclick="javascript:hideSimilarQueOver(this)"></div>
+			<div class="similarContent">
+				<!--相似问题弹层-->
+				<div id="simlarOne" class="similarBox">
+					<div class="similarBoxCon">
+						<div>
+							<p class=" faq-title">标准问句</p>
+							<p class=" faq-question questionInput"></p>
+						</div>
+						<div>
+							<p class=" similarLi hasSimilarNum"></p>
+							<div >
+								<input type="text" class="text searchText addSimInput" placeholder="点击添加相似问法" style="width: 330px;">
+								<input type="button" class="button "  onclick="addSimFun()" value="添加" />
+								<ul class="hasSims"></ul>
+							</div>
+							<ul class="similar-lists"></ul>
+							<p class="similarLi  faq-title ">推荐相似问句</p>
+							<ul class="similarAnsList"></ul>
+						</div>
+
+					</div>
+				</div>
+				
+				<!--新加问题-->
+				<div id="simlarAdd" class="similarBox">
+					<div class="similarBoxCon">
+						<ul class="simlarAddUl" >
+							<li class="ansQue">
+								<p>分类</p>
+								<div style="position: relative;">
+									<input type="text" onclick="isShowTreeTwo()" class="text searchText treeTitleInput" placeholder="点击选择分类 >" style="width: 490px; font-size: 14px;">
+									<ul  class="anotherTree"></ul>
+								</div>
+							</li>
+							<li class="ansQue">
+								<p>标准问句</p>
+								<input type="text" class="text searchText newQuesInput" placeholder="填写标准问句" style="width: 360px; font-size: 14px;">
+								<input type="button" class="button "  onclick="getSimFun()" value="获取相似问句" />
+							</li>
+							<li class="ansQue">
+								<p>默认答案</p>
+								<textarea class="text newAnswerText" style="width: 490px; height: 180px; font-size: 14px;resize:none;"></textarea>
+							</li>
+						</ul>
+						<p class="color-grey similarLi">推荐相似问句</p>
+						<ul class="color-grey newSimilarList"></ul>
+					</div>
+				</div>
+				
+				<!--编辑问题-->
+				<div id="simlarEdit" class="similarBox">
+					<div class="similarBoxCon">
+						<ul class="simlarAddUl" >
+							<li class="ansQue">
+								<p>分类</p>
+								<div style="position: relative;">
+									<input   type="text" onclick="isShowEditTree()" class="text searchText editTreeTitleInput" placeholder="点击选择分类 >" style="width: 490px; font-size: 14px;">
+									<ul  class="anotherTree"></ul>
+								</div>
+							</li>
+							<li class="ansQue">
+								<p>标准问句</p>
+								<input type="text" class="text searchText editQuesInput" placeholder="填写标准问句" style="width: 490px; font-size: 14px;">
+							</li>
+							<li class="ansQue">
+								<p>默认答案</p>
+								<textarea class="text editAnswerText" style="width: 490px; height: 180px; font-size: 14px; resize:none;"></textarea>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="btns">
+					<input type="button" class="button searchbtn " rel="0" value="保存" onclick="javascript:okBtn(this)"/>
+					<input type="button" class="button minor " value="取消" onclick="javascript:cancelBtn(this)"/>
+				</div>
+			</div>
+
+		</div>
+		
+	    
+	    <script type="text/javascript">
+	    	 $("#tree").treeview();
+	    	 $(".anotherTree").treeview();
+	    </script>
+		
+	</body>
+</html>

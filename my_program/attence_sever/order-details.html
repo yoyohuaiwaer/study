@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        .loginText {
+            width: 600px;
+        }
+
+        .welTitle {
+            margin-left: 20px;
+        }
+
+        .labelTop {
+            vertical-align: top;
+        }
+
+        .labelMiddle {
+            position: relative;
+            top: -30px
+        }
+
+        .setTime,
+        .setTimeBox {
+            display: inline-block;
+        }
+
+        .setTimeBox {
+            position: relative;
+        }
+
+        .setTime {
+            display: none;
+            position: absolute;
+            width: 260px;
+            top: 48px;
+            left: 0;
+            border: 1px solid #c3c3c3;
+            background: #ccc;
+            padding: 0 5px;
+        }
+
+        #qrecordForm > div label {
+            width: 145px;
+        }
+
+        .hour, .minute, .second {
+            min-width: 50px;
+        }
+
+        .confirmTime {
+            padding: 5px;
+        }
+
+        input[readonly] {
+            border: 1px solid #c3c3c3;
+            width: 200px;
+            background: #eee;
+        }
+
+        .selectOption {
+            z-index: 900;
+        }
+
+        .selectBox {
+            width: 200px;
+        }
+
+
+
+
+        .industrys {
+            display: inline-block;
+            height: auto;
+            line-height: 30px;
+            width: 450px;
+        }
+        .industrys-box {
+            margin-bottom: 15px;
+        }
+        .industrys-box span {
+            display: inline-block;
+            width: 60px;
+        }
+        .industrys-box label{
+            width: auto!important;
+            margin-right: 20px;
+        }
+        .industrys-box input[type="checkbox"]{
+            margin-left: 0;
+        }
+        .industrys-input {
+            display: inline-block;
+            width: 630px;
+            border:1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 15px;
+        }
+        .checked-box {
+            border:1px solid #ccc;
+            display: inline-block;
+            vertical-align: top;
+            width: 290px;
+            min-height: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="qrecordForm">
+    <div>
+        <label for="name">班次名称</label>
+        <input type="text" name="title" id="name" class="text">
+    </div>
+    <div class="chooseCompany" style="display: none;">
+        <label>选择公司</label>
+        <select name="producer" id="producer">
+
+        </select>
+    </div>
+    <!--<div class="qa-list">
+        <label for="adIds">员工:</label>
+        <div class="selectBox" id="adIds">
+            <div class="optionSelected"><span class="select-font">选择员工</span><span class="suport-icon icon-drop_down"></span></div>
+            <ul class="selectOption" style="display: none;"></ul>
+        </div>
+    </div>-->
+    <div>
+        <label for="welcome">时间范围:</label>
+
+        <div class="setTimeBox">
+            <input name="time" type="text" id="signinStart" class="text selectTime" readonly="">
+
+            <div class="setTime" id="startTime" style="display: none;">
+                <select name="_hour" class="hour"></select>
+                时
+                <select name="_minute" class="minute"></select>
+                分
+                <!--<select name="_second" class="second"></select>
+                秒-->
+                <input type="button" class="confirmTime" value="确定">
+            </div>
+            -
+        </div>
+        <div class="setTimeBox">
+            <input name="time" type="text" id="signinStop" class="text selectTime" readonly="">
+
+            <div class="setTime" id="endTime" style="display: none;">
+                <select name="_hour" class="hour"></select>
+                时
+                <select name="_minute" class="minute"></select>
+                分
+                <!--<select name="_second" class="second"></select>
+                秒-->
+                <input type="button" class="confirmTime" value="确定">
+            </div>
+        </div>
+        <span class="Timetips"></span>
+    </div>
+    <div>
+        <label style="vertical-align: top;">排班类型</label>
+        <label style="width: 90px"><input type="radio" class="radio" name="status" value="0" checked="">正常班次</label><span>（如周一至周六，朝九晚六）</span>&#12288
+        <label style="width: 90px"><input type="radio" class="radio" name="status" value="1">个性化班次</label><span>（如三班倒中，早班设置）</span>
+    </div>
+    <div class="replay"><label style="width: 145px;display: inline-block;"></label>
+        <div class="industrys-input">
+            <div style="width: 645px; border-bottom: 1px solid #ccc; margin: 0 -15px; height: 40px; line-height: 40px; padding-left: 15px;">
+                <label><input type="radio" class="radio" name="chooseReplay" value="0" checked="">按周重复</label>
+            </div>
+            <label for="Mon"><input type="checkbox" name="time" class="checkbox" id="Mon" value="2">周一</label>
+            <label for="Tue"><input type="checkbox" name="time" class="checkbox" id="Tue" value="3">周二</label>
+            <label for="Wed"><input type="checkbox" name="time" class="checkbox" id="Wed" value="4">周三</label>
+            <label for="Thu"><input type="checkbox" name="time" class="checkbox" id="Thu" value="5">周四</label>
+            <label for="Fri"><input type="checkbox" name="time" class="checkbox" id="Fri" value="6">周五</label>
+            <label for="Sat"><input type="checkbox" name="time" class="checkbox" id="Sat" value="7">周六</label>
+            <label for="Sun"><input type="checkbox" name="time" class="checkbox" id="Sun" value="1">周日</label>
+        </div>
+    </div>
+    <div style="display: none">
+        <label>迟到范围值</label>
+        <select name="lateTime" id="lateTime">
+            <option value="0">无</option>
+            <option value="5">5分钟</option>
+            <option value="10">10分钟</option>
+            <option value="10">15分钟</option>
+        </select>
+    </div>
+    <div style="width: 600px; text-align: center; margin-top: 30px;">
+        <input type="button" class="button confirm" value="保存">
+        <input type="button" class="button minor cancel" value="取消">
+    </div>
+</div>
+<script src="js/order-details.js"></script>
+</body>
+</html>

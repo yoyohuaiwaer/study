@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新增广告</title>
+		<link href="css/common.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	</head>
+
+	<body>
+	<div id="qrecordForm">
+		<div class="adItem">
+			<label for="title">标题:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="title" style="width: 340px;" placeholder="20字以内" maxlength="20" />
+		</div>
+		<div class="adItem">
+			<label for="content">内容:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="content" style="width: 416px;" placeholder="30字以内" maxlength="30" />
+		</div>
+		<!--<div class="adItem" id="timeWrap">
+		<label for="startTime">起止时间:&nbsp;&nbsp;</label>
+		<form action="" method="get" id="startTime" class="timeContent">
+			<input type="text" placeholder="年" maxlength="4" required max="9999" min="2016" style="width: 30px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">年
+			<input type="text" placeholder="月" maxlength="2" required max="13" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">月
+			<input type="text" placeholder="日" maxlength="2" required max="32" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">日
+			<input type="text" placeholder="时" maxlength="2" required max="24" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">时
+			<input type="text" placeholder="分" maxlength="2" required max="60" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">分
+		</form>
+		<label style="color: #C3C3C3; width: 8px;">-</label>
+		<form action="" method="get" id="endTime" class="timeContent">
+			<input type="text" placeholder="年" maxlength="4" required max="9999" min="2016" style="width: 30px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">年
+			<input type="text" placeholder="月" maxlength="2" required max="13" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">月
+			<input type="text" placeholder="日" maxlength="2" required max="32" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">日
+			<input type="text" placeholder="时" maxlength="2" required max="24" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">时
+			<input type="text" placeholder="分" maxlength="2" required max="60" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">分
+		</form>
+	</div>-->
+		<div class="adItem">
+			<label for="url">跳转URL地址:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="url" style="width: 416px;" />
+		</div>
+		<div class="adItem" style="margin: 10px 0 0 0;">
+			<label>素材图:</label>
+			<div class="choseimg change">
+				+
+				<input type="file" class="file_upload">
+			</div>
+			<div style="display: inline-block;">
+				<img src="" id="imageId">
+				<!--<img src="" id="imageId" style="width: 120px; height: 120px;">-->
+			</div>
+			<span class="imgTips">图片格式为jpg|jpeg|png|bmp 小于200k且宽高为334px*199px</span>
+		</div>
+		<div class="adItem" style="margin: 0 0 10px 0;">
+			<label>上传视频:</label>
+			<div class="choseimg change" style="margin: 0;">
+				+
+				<input type="file" class="video" style="width: 120px; ">
+			</div>
+			<div style="display: inline-block; position: relative; width: 220px;height: 120px; top:55px;">
+				<video id="videoId"  style="width: 200px"controls></video>
+			</div>
+			<span class="videoTips">视频格式为rmvb|avi|wmv|mpg|mp4 小于3m </span>
+		</div>
+		<label class="tip"></label>
+		<div class="toolbar">
+			<input type="button" class="button confirm" value="确定" onclick="javascript:addAdFun(this);" />
+			<input type="button" class="button minor" value="取消" onclick="javascript:cancelAdFun(this);" />
+		</div>
+		<div class="overall" >
+			<div class="popap" style="height: 200px;">
+				<p>正在上传视频中,请稍候......</p>
+			</div>
+		</div>
+	</div>
+		<script type="text/javascript" src="js/add-ad.js"></script>
+		<script type="text/javascript" src="js/timePublic.js"></script>
+	</body>
+
+</html>

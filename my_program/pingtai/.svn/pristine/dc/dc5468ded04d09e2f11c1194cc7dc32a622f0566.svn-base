@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="grid-body" >
+</div>
+
+<div>
+	<a onclick="addTag(this)" style="display: inline-block; width:50px;height: 50px;line-height: 50px; text-align: center; border: 1px solid #666666; font-size: 20px; position: relative;">
+		+
+	</a>&nbsp;新加标签
+</div>
+<label class="tip"></label>
+<div class="toolbar" style="margin-top: 20px;">
+    <input type="button" class="button confirm" value="确定" onclick="javascript:addAdFun(this);"/>
+    <input type="button" class="button minor" value="取消" onclick="javascript:cancelAdFun(this);"/>
+</div>
+<script type="text/javascript" src="js/goodsDetails.js" ></script>
+</body>
+</html>

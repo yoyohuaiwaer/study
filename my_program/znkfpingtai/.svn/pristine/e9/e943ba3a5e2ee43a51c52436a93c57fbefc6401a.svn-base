@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多媒体详情页</title>
+</head>
+<style>
+    #qrecordForm > div label:not(:first-child){
+        width: auto;
+        margin-right: 30px;
+    }
+</style>
+<body>
+<div>
+    <form action="" method="get" id="qrecordForm">
+        <div>
+            <label for="ID">ID:</label>
+            <input type="text" id="ID" class="text" readonly/>
+            <label id="tip1" for="ID"></label>
+        </div>
+        <div>
+            <label for="name">名称:</label>
+            <input type="text" name="name" id="name" class="text"/>
+            <label id="tip2" for="name"></label>
+        </div>
+        <div>
+            <label for="column">*分栏:</label>
+            <select name="column" id="column" style="width: 200px"></select> -- <select name="classify" id="classify" style="width: 200px;"></select>
+            <label id="tip3" for="column"></label>
+        </div>
+       <!-- <div>
+            <label for="classify">*分类:</label>
+            <select name="classify" id="classify"></select>
+            <label id="tip4" for="classify"></label>
+        </div>-->
+        <div>
+            <label for="from">*来源:</label>
+            <input type="text" name="from" id="from" class="text" readonly/>
+            <label id="tip5" for="from"></label>
+        </div>
+        <div>
+            <label for="author">*作者:</label>
+            <input type="text" name="author" id="author" class="text"/>
+            <label id="tip6" for="author"></label>
+        </div>
+        <div>
+            <label for="category">*类型:</label>
+            <input type="text" name="category" id="category" readonly class="text"/>
+            <label id="tip7" for="category"></label>
+        </div>
+        <div class="adItem" style="margin: 0 0 10px 0; height: 120px;">
+            <label style="height: 120px; line-height: 120px;">播放:</label>
+            <div style="display: inline-block; position: relative; width: 220px;height: 120px;">
+                <audio controls id="audio" style="vertical-align: middle;"></audio>
+                <video id="videoId"  style="width: 200px"controls></video>
+            </div>
+        </div>
+        <div class="adItem" style="margin: 10px 0 0 0;">
+            <label >封面图：</label>
+            <div class="choseimg change">
+                +
+                <input type="file" class="file_upload">
+            </div>
+            <div style="display: inline-block;">
+                <img src="" id="imageId" style="display: inline-block; height: 120px; width: 120px;">
+                <!--<img src="" id="imageId" style="width: 120px; height: 120px;">-->
+            </div>
+            <span class="imgTips">图片格式为jpg|jpeg|png|bmp 小于300k且宽高为336px*336px</span>
+        </div>
+        <div>
+            <label for="desc">简介：</label>
+            <textarea name="desc" id="desc" style="width: 700px; vertical-align: middle; border-radius: 5px; border: 1px solid #c3c3c3; line-height: 30px;"></textarea>
+        </div>
+        <div>
+            <label>状态：</label>
+            <label for="up"><input type="radio" checked="checked" name="status" id="up" value="1"/>上线</label>
+            <label for="down"><input type="radio" name="status" id="down" value="0"/>下线</label>
+        </div>
+
+        <div class="t_r">
+            <input type="button" value="保存" class="button confirm" id="保存"/>
+            <input type="button" value="取消" class="button minor cancel" id="取消" />
+        </div>
+        <div id="tip9"></div>
+    </form>
+    <div class="overall" >
+        <div class="popap" style="height: 200px;">
+            <p>图片正在上传中,请稍候......</p>
+        </div>
+    </div>
+    <script src="js/multimedia-detail.js"></script>
+</div>
+</body>
+</html>

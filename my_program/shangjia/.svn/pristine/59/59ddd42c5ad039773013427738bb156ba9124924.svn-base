@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问答列表</title>
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <script type="text/javascript" src="js/questionList.js"></script>
+
+<style>
+    .grid {
+        width: 960px;
+    }
+    .grid-head-th > div.industry,
+    .grid-body-tr > div.industry {
+        width: 250px;
+    }
+    .grid-head-th > div.operation,
+    .grid-body-tr > div.operation {
+        width: 160px;
+    }
+    .grid-head-th > div.scene,
+    .grid-body-tr > div.scene {
+        width: 300px;
+    }
+    .grid-body-tr > div.scene span {
+        width: 300px;
+    }
+    .grid-head-th > div.order-number,
+    .grid-body-tr > div.order-number {
+        width: 100px;
+    }
+    .grid-head-th > div.adContent,
+    .grid-body-tr > div.adContent {
+        width: 150px;
+    }
+</style>
+</head>
+<body>
+<div>
+    <div style="text-align: right">
+        <div class="search-box" style="display: inline-block">
+            <select name="search" id="search" class="text" style="width: 80px;">
+                <option value="question" selected="selected">关键词</option>
+                <option value="answer">答案</option>
+            </select>
+            <input type="text" class="text searchText"/>
+            <input type="button" class="button searchbtn"  rel="0" value="搜索"/>
+        </div>
+
+        <input style="display: none;" type="button" onclick="javascript:addQuestion(this)" class="addQuestion button" value="新增问答"/></div>
+    <div class="grid">
+        <div class="grid-head">
+            <div class="grid-head-th">
+                <div class="order-number">&#12288;序号</div>
+                <div class="industry">关键词(组)</div>
+                <div class="scene">答案</div>
+                <div class="adContent">广告标题</div>
+                <div class="operation">操作</div>
+            </div>
+        </div>
+        <div class="grid-body">
+            <!--<div class="grid-body-tr">
+                <div class="order-number">'+sort+'</div>
+                <div class="industrybox"><span title="'+id+'">'+question+'</span></span></div>
+                <div class="scene"><a href="javascrip:void(0);" onclick="javascript:readQuestion(this)" >'+value.text+'</a></div>
+                <div class="operation"> <a href="javascript:void(0);" onclick="javascript:editQustion(this)" class="editQustion" title="'+key.name+'">修改</a><a href="javascript:void(0);" onclick="javascript:deleteQuestion(this)" title="'+key.name+'">删除</a></div> </div>-->
+        </div>
+    </div>
+    <div class="pages">
+        <ul>
+        </ul>
+    </div>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除词条问答吗？</p>
+        <input type="button" class="button deleteQuestion" onclick="javascript:deleteQuestion(this)" value="确定">
+        <input type="button" class="button minor" onclick="javascript:clearOverall(this)" value="取消"/>
+    </div>
+</div>
+</body>
+</html>

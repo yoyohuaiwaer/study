@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div style="text-align: right">
+    <div class="search-box" style="display: inline-block">
+        <select name="scene" id="scene" data-rel="2">
+            <!--<option value="none" selected="selected">选择场景</option>-->
+        </select>
+    </div>
+    <input type="button" class="button addTree" value="新增" rel="1"/>
+</div>
+<div class="grid tree">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div><span>序号</span></div>
+            <div><span>行业</span></div>
+            <div><span>起始问题</span></div>
+            <div><span>关键词（组）</span></div>
+            <div class="operation"><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body">
+
+    </div>
+
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除此条多层？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<script src="js/tree-list.js"></script>
+</body>
+</html>

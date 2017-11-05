@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备列表</title>
+<style>
+    .grid.device .grid-head-th > div:first-child,
+    .grid.device .grid-body-tr > div:first-child,
+    .grid.device .grid-head-th > div:first-child span,
+    .grid.device .grid-body-tr > div:first-child span{
+        width: 50px;
+    }
+    /*.grid.device .grid-head-th > div:first-child span,
+    .grid.device .grid-body-tr > div:first-child span {
+        width: 30px;
+    }*/
+    .grid.device .grid-head-th > div:nth-child(2),
+    .grid.device .grid-body-tr > div:nth-child(2) {
+        width: 210px;
+    }
+    .grid.device .grid-head-th > div:nth-child(2) span,
+    .grid.device .grid-body-tr > div:nth-child(2) span {
+        width: 210px;
+    }
+    .grid.device .grid-head-th > div:nth-child(3),
+    .grid.device .grid-body-tr > div:nth-child(3),
+    .grid.device .grid-head-th > div:nth-child(4),
+    .grid.device .grid-body-tr > div:nth-child(4),
+    .grid.device .grid-head-th > div:last-child,
+    .grid.device .grid-body-tr > div:last-child,
+    .grid.device .grid-head-th > div:nth-child(3) span,
+    .grid.device .grid-body-tr > div:nth-child(3) span,
+    .grid.device .grid-head-th > div:nth-child(4) span,
+    .grid.device .grid-body-tr > div:nth-child(4) span,
+    .grid.device .grid-head-th > div:last-child span,
+    .grid.device .grid-body-tr > div:last-child span {
+        width: 200px;
+    }
+</style>
+</head>
+<body>
+<div class="grid device">
+    <div class="order-head">
+        <div class="grid-head-th">
+            <div><span>序号</span></div>
+            <div><span>设备号</span></div>
+            <div><span>使用班级</span></div>
+            <div><span>使用者</span></div>
+            <div><span>联系方式</span></div>
+            <!--<div><span>状态</span></div>-->
+            <!--<div><span>归属</span></div>-->
+            <!--<div><span>操作</span></div>-->
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<!--分页-->
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<!--分页-->
+<script src="js/device-list.js"></script>
+</body>
+</html>

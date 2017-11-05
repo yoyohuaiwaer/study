@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<div style="height: 40px;">
+		<input type="button" onclick="javascript:addGoods(this)" title="0" class="addScene button" value="新增商品" style="float: right;margin-bottom: 15px;margin-right: 0px;"/>
+        <input type="button" onclick="" title="0" class="addTag button" value="新增标签" style=" float: right; margin-bottom: 15px;margin-right:10px;;"/>
+	</div>
+    <table class="grid" cellspacing="0">
+        <thead  >
+        	<tr class="grid-head-th"></tr>
+        </thead>
+        <tbody class="table-body" >
+        </tbody>
+    </table>
+    <!--分页-->
+    <div class="pages">
+        <ul>
+        </ul>
+    </div>
+    <div class="overall">
+	    <div class="popap">
+	        <p>确定要删除这个商品吗？</p>
+	        <input type="button" onclick="javascript:deleteGoods(this)" class="button deleted" value="确定">
+	        <input type="button" onclick="javascript:clearOverall(this)" class="button minor hideOverflow"  value="取消"/>
+	
+	    </div>
+	</div>
+    <!--分页-->
+    <script type="text/javascript" src="js/goodsList.js" ></script>
+</body>
+</html>

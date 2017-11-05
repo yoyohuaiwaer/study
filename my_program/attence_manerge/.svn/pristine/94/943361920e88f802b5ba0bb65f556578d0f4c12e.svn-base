@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<div style="height: 40px;margin-bottom: 15px;">
+    <input type="button" onclick="javascript:setList(this)" title="7" class="addScene button" value="7日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="button" onclick="javascript:setList(this)" title="30" class="addScene button" value="30日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="date" id="startTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px; "/>
+    至<input type="date" id="endTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px;  margin-left: 6px;"/>
+    <label class="tip"></label>
+    <select id="shop" class="text" onchange="javascript:setTypeSelect(this)" style="width: 140px;">
+    </select>
+</div>
+<!--<div style="text-align: right"><input type="button" onclick="javascript:forExcel(this)" class="addScene button" value="导出Excel"/></div>-->
+
+<div id="demoBox" style="height:600px; width: 960px"></div>
+
+<table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+</table>
+<!--分页-->
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<!--分页-->
+<script src="js/userStatistics.js"></script>
+</body>
+</html>

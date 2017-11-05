@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<style type="text/css">
+			body {
+				font-size: 12px;
+			}
+			
+			h5,
+			h6 {
+				margin: 0;
+				font-weight: normal;
+			}
+			
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.piliangBtn{
+				font-size: 14px;
+				background: #00a0ea;
+				line-height: 32px; 
+				text-align: center; 
+				height: 32px; 
+				color: #FFFFFF; 
+				border-radius: 5px; 
+				width: 100px; 
+				border: none;
+			}
+			#tree_wrap {
+				display: inline-block;
+				width: 240px;
+				height: 800px;
+				border-right: 1px solid #efeff1;
+			}
+			
+			#tree_wrap li ,#anotherTree li ,#editTree li{
+				padding-left: 15px;
+				line-height: 24px;
+				margin-bottom: 20px;
+			}
+			
+			.controlSymbol {
+				color: #00a0e9;
+				border: 1px solid #00a0e9;
+				cursor: pointer;
+				text-align: center;
+				width: 17px;
+				height: 17px;
+				line-height: 15px;
+				display: inline-block;
+				font-size: 14px;
+				border-radius: 10px;
+			}
+			
+			.classifyBtn {
+				padding: 0 3px;
+				cursor: pointer;
+				display: inline-block;
+			}
+			
+			.classifyUl {
+				line-height: 14px;
+				padding: 10px 0px 5px 5px;
+				background-color: #fff;
+				position: absolute;
+				z-index: 999;
+				border: 1px solid #d8d8d8;
+				font-size: 14px;
+				margin-left: 0;
+				width: 80px;
+				display: none;
+			}
+			
+			#tree_wrap .classifyUl li ,#anotherTree .classifyUl li ,#editTree .classifyUl li{
+				padding-left: 0;
+			}
+			
+			.popapInput {
+				width: 70%;
+				line-height: 35px;
+				border-radius: 5px;
+				border: 1px solid #8fa1b3;
+				margin: 0px auto;
+			}
+			
+			.pbutton {
+				margin-top: 60px;
+			}
+			
+			.isDeleted {
+				font-size: 20px;
+			}
+			
+			.bigClaTitle {
+				font-size: 18px;
+				border-right: 1px solid #efeff1;
+				width: 240px;
+				padding-top: 8px;
+				margin-bottom: 22px;
+			}
+			
+			.addBigClas {
+				display: inline-block;
+				text-align: center;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				border-color: #d8d8d8;
+				background: #FFFFFF;
+				border-width: 1px;
+				color: #d8d8d8;
+				border-style: solid;
+			}
+			
+			.tableBox {
+				display: inline-block;
+				width: 700px;
+				position: absolute;
+				margin-top: 0px;
+				margin-left: 10px;
+			}
+			
+			.similarQueOverall {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, .5);
+				z-index: 99;
+				transition: background-color .3s ease-out;
+				height: 100%;
+			}
+			
+			.simiLeft {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: calc( 100% - 560px);
+				height: 100%;
+			}
+			
+			.similarContent {
+				position: absolute;
+				overflow-y: auto;
+				box-sizing: border-box;
+				width: 560px;
+				height: 100%;
+				background-color: #fff;
+				right: 0;
+				top: 0;
+				transition: all .3s ease-out;
+				padding: 40px 30px;
+			}
+			
+			.similarBox {
+				padding: 0;
+				height: 100%;
+				margin: -40px -30px;
+			}
+			
+			.similarBoxCon {
+				height: 85%;
+				padding: 40px 30px;
+				overflow-y: auto;
+			}
+			
+			.faq-title {
+				padding-bottom: 15px;
+				font-size: 14px;
+			}
+			
+			.color-grey {
+				color: #8fa1b3!important;
+			}
+			
+			.el-button {
+				min-width: 100px;
+				padding-top: 0;
+				padding-bottom: 0;
+				line-height: 38px;
+				border-radius: 2px;
+			}
+			
+			.similar-lists {
+				margin: 10px 0 20px 0;
+				line-height: 40px;
+				padding-right: 10px;
+			}
+			
+			.mod-body .right {
+				float: right;
+			}
+			
+			.faq-question {
+				font-size: 20px;
+				padding-bottom: 30px;
+			}
+			
+			.elCheckbox {
+				width: 18px;
+				height: 18px;
+			}
+			
+			.similarLi {
+				font-size: 14px;
+				line-height: 40px;
+				height: 40px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			.similarLi span {
+				width: 420px;
+				display: inline-block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.similarLi input {
+				position: absolute;
+				left: 430px;
+				top: 12px;
+			}
+			
+			.btns {
+				margin-top: 40px;
+				text-align: center;
+			}
+			
+			#simlarOne {
+				display: none;
+			}
+			#simlarAdd{
+				display: none;
+			}
+			#simlarEdit{
+				display: none;
+			}
+			
+			.simlarAddUl li {
+				margin-bottom: 20px;
+			}
+			
+			.simlarAddUl p {
+				margin-bottom: 10px;
+			}
+			.hhtitle{
+				display: none;
+			}
+			.anotherTree{
+				display: none;
+				position: absolute;
+			    background: #fff;
+			    z-index: 2;
+			    width: 490px;
+			    box-sizing: border-box;
+			    max-height: 300px;
+			    overflow: auto;
+			    border: 1px solid #dce1e6;
+			    top: 35px;
+			    left: 0px;
+			    border-radius: 3px;
+			    padding: 3px 3px;
+			    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+			}
+			.anotherTree li{
+				margin-bottom: 0;	
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="height: 60px;text-align: right; border-bottom: 1px solid  #efeff1; padding-bottom: 8px;">
+			<input type="text" class="text searchText" />
+			<input type="button" class="button searchbtn" rel="0" value="搜索" />
+			<input type="button" onclick="javascript:addQuestion(this)" title="0" class="addScene button" value="新建问题" style="margin-right: 20px;" />
+			<div class=" choseimg piliangBtn" >
+				批量导入
+				<input type="file" class=" confirm onfile " accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+			</div>
+			<p class="showTips" style="color: red; font-size: 14px;"></p>
+		</div>
+
+		<div id="tree_wrap">
+			<div class="bigClaTitle" onclick="javascript:showTopOverall(this)">
+				<span class="leftTreeAllNums"></span><!--全部分类(242)-->
+				<button type="button" class="addBigClas">+</button>
+			</div>
+			<ul class="leftTreeUl"></ul>
+		</div>
+		<div class="tableBox">
+			<table id="grid" class="grid" width="700px" border="1" cellspacing="0" cellpadding="0" style="width: 700px;">
+			</table>
+			<!--分页-->
+			<div class="pages">
+				<ul>
+				</ul>
+			</div>
+			<!--分页-->
+		</div>
+
+		<div class="overall">
+			<div class="popap">
+				<p class="popapTitle" style="line-height: 110px;">创建分类</p>
+				<input class="popapInput" type="text" placeholder="请输入分类名称" />
+				<div class="isDeleted">你确定删除该分类吗?</div>
+				<input type="button" class="pbutton button deleteQuestion" onclick="javascript:popopEnsure(this)" value="确定">
+				<input type="button" class="pbutton button minor" onclick="javascript:clearOverall(this)" value="取消" />
+			</div>
+		</div>
+
+		<div class="similarQueOverall">
+			<div class="simiLeft" onclick="javascript:hideSimilarQueOver(this)"></div>
+			<div class="similarContent">
+				<!--相似问题弹层-->
+				<div id="simlarOne" class="similarBox">
+					<div class="similarBoxCon">
+						<div>
+							<p class="color-grey faq-title">标准问句</p>
+							<p class=" faq-question">商家不发货怎么办？</p>
+						</div>
+						<div>
+							<p class="color-grey similarLi">已有相似问句(1)</p>
+							<div class="add-input-container">
+								<input type="text" class="text searchText" placeholder="点击添加相似问法" style="width: 330px;">
+								<input type="button" class="button searchbtn" rel="0" value="添加" />
+							</div>
+							<ul class="similar-lists">
+								<li class="similarLi ">
+									<span>
+										你好，商家没有发货怎么办
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+							</ul>
+							<p class="similarLi color-grey faq-title">推荐相似问句(已选0条)</p>
+							<ul class="color-grey ">
+								<li class="similarLi">
+									<span>
+										我买的米粉在闲置里买的，卖家迟迟不发货怎么办，看怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我在闲置上买的东西，卖家一直不发货怎么办？ 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										下了单的东西，商家说不发货了怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										下了单的东西，商家说不发货了怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我在闲置上买的东西，卖家一直不发货怎么办？ 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我买的米粉在闲置里买的，卖家迟迟不发货怎么办，看怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我在闲置上买的东西，卖家一直不发货怎么办？ 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我买的米粉在闲置里买的，卖家迟迟不发货怎么办，看怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				<!--新加问题-->
+				<div id="simlarAdd" class="similarBox">
+					<div class="similarBoxCon">
+						<ul class="simlarAddUl" >
+							<li>
+								<p>分类</p>
+								<div style="position: relative;">
+									<input id="treeTitleInput" type="text" onclick="isShowTreeTwo()" class="text searchText" placeholder="点击选择分类 >" style="width: 490px; font-size: 14px;">
+									<ul id="anotherTree" class="anotherTree">
+										<li>
+											<h5 class="one">
+												<label>售前</label>
+											</h5>
+											<ul class="hhtitle">
+												<li>
+													<h6 class="two">
+														<label>尺码咨询</label>
+													</h6>
+													<ul class="hhtitle">
+														<li>
+															<h6 class="three"> 
+																<label>大尺码咨询</label>
+															</h6>
+															<ul class="hhtitle">
+																<li>
+																	<h6 class="four">
+																		<label>较大尺码咨询</label>
+																	</h6>
+																	<ul class="hhtitle">
+																		<li>
+																			<h6 class="five noSpan">
+																				<label>胖大尺码</label>
+																			</h6>
+																		</li>
+																		<li>
+																			<h6 class="five noSpan">
+																				<label>较大尺码</label>
+																			</h6>
+																		</li>
+																	</ul>
+																</li>
+																<li >
+																	<h6 class="four noSpan">
+																		<label>大尺码</label>
+																	</h6>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<h6 class="three noSpan">
+																<label>小尺码咨询</label>
+															</h6>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<h6 class="two noSpan">
+														<label>价格咨询</label>
+													</h6>
+												</li>
+												<li>
+													<h6 class=" two noSpan">
+														<label>发票咨询</label>
+													</h6>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<h5 class="one">
+												<label>售中</label>
+											</h5>
+											<ul class="hhtitle">
+												<li>
+													<h6 class="two noSpan">
+														<label>催发货咨询</label>
+													</h6>
+												</li>
+												<li>
+													<h6 class="two">
+														<label>物流查询</label>
+													</h6>
+													<ul class="hhtitle">
+														<li>
+															<h6 class="three noSpan">
+																<label>胖大尺码</label>
+															</h6>
+														</li>
+														<li>
+															<h6 class="three noSpan">
+																<label>胖大尺码</label>
+															</h6>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<p>标准问句</p>
+								<input type="text" class="text searchText" placeholder="填写标准问句" style="width: 490px; font-size: 14px;">
+							</li>
+							<li>
+								<p>默认答案</p>
+								<textarea class="text " style="width: 490px; height: 180px; font-size: 14px;"></textarea>
+							</li>
+						</ul>
+						<p class="color-grey similarLi">推荐相似问句(已选0条)</p>
+						<ul class="color-grey ">
+								<li class="similarLi">
+									<span>
+										我买的米粉在闲置里买的，卖家迟迟不发货怎么办，看怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我在闲置上买的东西，卖家一直不发货怎么办？ 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										下了单的东西，商家说不发货了怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										下了单的东西，商家说不发货了怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我在闲置上买的东西，卖家一直不发货怎么办？ 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我买的米粉在闲置里买的，卖家迟迟不发货怎么办，看怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我在闲置上买的东西，卖家一直不发货怎么办？ 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										商家不发货怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+								<li class="similarLi">
+									<span>
+										我买的米粉在闲置里买的，卖家迟迟不发货怎么办，看怎么办 
+									</span>
+									<input type="checkbox" class="elCheckbox" value="">
+								</li>
+
+							</ul>
+					</div>
+				</div>
+				
+				<!--编辑问题-->
+				<div id="simlarEdit" class="similarBox">
+					<div class="similarBoxCon">
+						<ul class="simlarAddUl" >
+							<li>
+								<p>分类</p>
+								<div style="position: relative;">
+									<input id="editTreeInput" type="text" onclick="isShowEditTree()" class="text searchText" placeholder="点击选择分类 >" style="width: 490px; font-size: 14px;">
+									<ul id="editTree" class="anotherTree" >
+										<li>
+											<h5 class="one">
+												<label>售前</label>
+											</h5>
+											<ul class="hhtitle">
+												<li>
+													<h6 class="two">
+														<label>尺码咨询</label>
+													</h6>
+													<ul class="hhtitle">
+														<li>
+															<h6 class="three">
+																<label>大尺码咨询</label>
+															</h6>
+															<ul class="hhtitle">
+																<li>
+																	<h6 class="four">
+																		<label>较大尺码咨询</label>
+																	</h6>
+																	<ul class="hhtitle">
+																		<li>
+																			<h6 class="five noSpan">
+																				<label>胖大尺码1</label>
+																			</h6>
+																		</li>
+																		<li>
+																			<h6 class="five noSpan">
+																				<label>胖大尺码2</label>
+																			</h6>
+																		</li>
+																	</ul>
+																</li>
+																<li><label>大尺码</label></li>
+															</ul>
+														</li>
+														<li><label>小尺码咨询</label></li>
+													</ul>
+												</li>
+												<li><label>价格咨询</label></li>
+												<li>
+													<h6 class="noSpan">
+														<label>发票咨询</label>
+													</h6>
+												</li>
+											</ul>
+										</li>
+										<!--<li>
+											<h5 class="one">
+												<label>售中</label>
+											</h5>
+											<ul class="hhtitle">
+												<li>
+													<label>催发货咨询</label>
+												</li>
+												<li>
+													<h6>
+														<label>物流查询</label>
+													</h6>
+													<ul class="hhtitle">
+														<li><label>胖大尺码</label></li>
+														<li><label>胖大尺码</label></li>
+													</ul>
+												</li>
+											</ul>
+										</li>-->
+									</ul>
+								</div>
+							</li>
+							<li>
+								<p>标准问句</p>
+								<input type="text" class="text searchText" placeholder="填写标准问句" style="width: 490px; font-size: 14px;">
+							</li>
+							<li>
+								<p>默认答案</p>
+								<textarea class="text " style="width: 490px; height: 180px; font-size: 14px;"></textarea>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="btns">
+					<input type="button" class="button searchbtn" rel="0" value="保存" />
+					<input type="button" class="button minor" value="取消" />
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="js/knowledgeBase.js"></script>
+		<script type="text/javascript" src="js/outExcel.js"></script>
+	</body>
+
+</html>

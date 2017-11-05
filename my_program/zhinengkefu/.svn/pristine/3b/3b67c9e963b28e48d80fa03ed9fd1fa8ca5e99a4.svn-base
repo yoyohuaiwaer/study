@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备列表</title>
+
+</head>
+<body>
+<!--device-->
+<div class="grid">
+    <div class="order-head">
+        <div class="grid-head-th">
+            <!--<div><span>序号</span></div>
+            <div><span>设备号</span></div>
+            <div><span>启用日期</span></div>
+            <div><span>到期时间</span></div>
+            <div><span>使用方式</span></div>
+            <div><span>状态</span></div>
+            <div><span>归属</span></div>
+            <div><span>操作</span></div>-->
+            <div style="width: 100px"><span>序号</span></div>
+            <div style="width: 300px"><span>设备号</span></div>
+            <div style="width: 300px"><span>设备别名</span></div>
+            <div style="width: 260px"><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<!--分页-->
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<!--分页-->
+<div class="overall" style="display: none;">
+    <div class="popap">
+        <p><input type="text" class="text newScene" id="newScene" value="" /></p>
+        <input type="button" class="button addScene" data-id="" value="确定">
+        <input type="button" class="button minor hideOverflow1" value="取消" />
+    </div>
+</div>
+<script src="js/device-list.js"></script>
+</body>
+</html>

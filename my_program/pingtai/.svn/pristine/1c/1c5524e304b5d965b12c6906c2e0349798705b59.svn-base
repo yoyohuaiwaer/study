@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+        .mb20 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="mb20" style="margin-top: 40px;">
+    <label for="column">栏目:</label>
+    <select name="column" id="column" data-rel="1">
+        <!--<option value="" selected="selected">选择栏目</option>-->
+    </select>
+    <span class="column-tips"></span>
+</div>
+<div class="mb20" style="margin-top: 40px;">
+    <label for="classify">专辑名:</label>
+    <input type="text" class="text tagsType" id="classify" data-time="" value=""/><span class="column-tips"></span>
+</div>
+<div  class="mb20">
+    <label>标签:</label>
+    <div class="selectBox" id="adIds">
+        <div class="optionSelected"><span class="select-font">选择标签</span><span class="suport-icon icon-drop_down"></span></div>
+        <ul class="selectOption" style="display: none;">
+        </ul>
+    </div>
+</div>
+<!--<div  class="mb20">
+    <label for="columnDesc">简介</label>
+    <textarea name="" id="columnDesc" cols="70" rows="8" style="padding: 5px; line-height: 20px; border: 1px solid #c3c3c3; border-radius: 5px;"></textarea>
+</div>-->
+<input type="button" class="button Confirm" value="确定" data-id="">
+<input type="button" class="button minor cancel"  value="取消"/>
+
+<script type="text/javascript" src="js/multimediaColumn-details.js"></script>
+</body>
+</html>

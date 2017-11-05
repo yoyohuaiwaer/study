@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url:commUrl+'/menu/findbyid',
+                //type:'GET',
+                //async: false,
+                data:{
+                    token:$.cookie("token"),
+                    parentId:$(".main-title").attr("title")
+                },
+                success: function(data){
+                    data = eval('('+data+')')
+                    //console.log(data);
+                    $(".breadcrumb").empty();
+                    $(".breadcrumb").html('<li class="selected"><span href="javascript:void(0);" title="'+menuUrl+''+data.data[0].url+'" id="'+data.data[0].parentId+'">'+data.data[0].name+'</span></li>');
+                },
+                error: function(text){
+                    alert(text.readyState);
+                    alert(text.status);
+                }
+            });
+            $("#oldpwd").blur(function(){
+                //var param=$("#oldpassword").val();
+                if($(this).val() == ''){
+                    $("#tip1").html("<font color=\"red\" size=\"2\">旧密码不能为空</font>");
+                }
+            });
+            $("#newpwd").blur(function(){
+                var num=$("#newpwd").val().length;
+                if(num<6){
+                    $("#tip2").html("<font color=\"red\" size=\"2\">密码最少为六位</font>");
+                }
+                else if(num>18){
+                    $("#tip2").html("<font color=\"red\" size=\"2\">密码最长为十八位</font>");
+                }
+                else{
+                    $("#tip2").html("<font color=\"green\" size=\"2\"> 正确</font>");
+                }
+            }) ;
+            $("#confirm_password").blur(function(){
+                var tmp=$("#newpwd").val();
+                var num=$("#confirm_password").val().length;
+                if($("#confirm_password").val()!=tmp){
+                    $("#tip3").html("<font color=\"red\" size=\"2\">两次密码不一致</font>");
+                }
+                else{
+                    if(num>=6&&num<=18){
+                        $("#tip3").html("<font color=\"green\" size=\"2\">正确</font>");
+                    }
+                    else{
+                        $("#tip3").html("<font color=\"red\" size=\"2\">密码位数小于6位或大于十八位</font>");
+                    }
+                }
+            });
+            $("#btn").click(function(e){
+                var flag=true;
+                var old=$("#oldpwd").val();
+                var pass=$("#newpwd").val();
+                var pass2=$("#confirm_password").val();
+                var num1=$("#newpwd").val().length;
+                var num2=$("#confirm_password").val().length;
+                if(num1!=num2||num1<6||num2<6||num1>18||num2>18||pass!=pass2){
+                    flag=false;
+                }
+                else{
+                    flag=true;
+                }
+                if(flag){
+                    $.ajax({
+                        url:commUrl+"/user/changpwd",
+                        type:"POST",
+                        data:{ oldpwd:old, newpwd:pass,token:$.cookie('token')},
+                        success:function(e){
+                            e = eval('(' + e + ')');//json字符串转为json对象
+                           if(e.code == '-1'){
+                                $("#tip4").show().html("<font color=\"red\" size=\"3\">用户未登录</font>");
+                                $("#tip4").delay(2000).empty();
+                                window.location.href = menuUrl+'index.html';
+                            }
+                           else if(e.code == '-2'){
+                               $("#tip4").show().html("<font color=\"red\" size=\"3\">"+e.msg+"</font>");
+                           }
+                            else if(e.code == '1'){
+                                alert(e.msg);
+                                $("#tip4").show().html(e.msg);
+                                $("#tip4").delay(2000).hide();
+                               $.get(commUrl+'/login/loginout',{token:$.cookie('token')},function(response){
+                                   response = eval('(' + response + ')')
+                                   if(response.code == '1'){
+                                       window.location.href = menuUrl+'index.html';
+                                   };
+                               })
+                            }
+                        }
+                    });
+                }
+                else{
+
+                    $("#tip4").show().html("<font color=\"red\" size=\"3\">请参考指示修正</font>");
+                }
+                e.preventDefault();
+            });
+        });
+
+    </script>
+</head>
+<body bgcolor="#fff">
+<div>
+
+    <form action="" method="get" id="signupForm">
+        <div>
+            <label for="oldpwd">输入旧密码</label>
+            <input type="password" name="oldpwd" id="oldpwd"/>
+            <label id="tip1" for="oldpwd"></label>
+        </div>
+        <div>
+            <label for="newpwd">输入新密码</label>
+            <input type="password" name="newpwd" id="newpwd"/>
+            <label id="tip2" for="newpwd"></label>
+        </div>
+        <div>
+            <label for="confirm_password">确认新密码</label>
+            <input type="password" name="confirm_password" id="confirm_password"/>
+            <label id="tip3" for="confirm_password"></label>
+        </div>
+        <div class="t_r">
+            <input type="submit" value="保存" class="button" id="btn"/>
+            <input type="reset" value="取消" class="button minor"/>
+        </div>
+        <div id="tip4"></div>
+    </form>
+</div>
+</body>
+</html>

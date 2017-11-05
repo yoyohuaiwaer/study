@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多媒体统计</title>
+</head>
+<body>
+<div style="height: 40px;margin-bottom: 15px;">
+    <input type="button" onclick="javascript:setList(this)" title="7" class="addScene button" value="7日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="button" onclick="javascript:setList(this)" title="30" class="addScene button" value="30日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="date" id="startTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px; "/>
+    至<input type="date" id="endTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px;  margin:0 20px 0 6px;"/>
+    <label class="tip"></label>
+    <select id="shop" class="text" onchange="javascript:setTypeSelect(this)" style="width: 140px;">
+    </select>
+</div>
+<div class="grid">
+    <div class="order-head order-body">
+        <div class="grid-head-th">
+            <div class="answer" style="width: 500px;">项目</div>
+            <div class="num" style="width: 210px;">次数</div>
+            <div class="percent" style="width: 250px;">占比</div>
+        </div>
+    </div>
+    <div class="grid-body order-body" >
+    </div>
+</div>
+<!--分页-->
+<!--<div class="pages">
+    <ul>
+    </ul>
+</div>-->
+<!--分页-->
+<script type="text/javascript" src="js/multiMediaStatistics.js" ></script>
+</body>
+</html>

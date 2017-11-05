@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备列表</title>
+
+</head>
+<body>
+<div class="grid device">
+    <div class="order-head">
+        <div class="grid-head-th">
+            <div><span>序号</span></div>
+            <div><span>设备号</span></div>
+            <div><span>启用日期</span></div>
+            <div><span>到期时间</span></div>
+            <div><span>使用方式</span></div>
+            <div><span>状态</span></div>
+            <div><span>归属</span></div>
+            <div><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<!--分页-->
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<!--分页-->
+<script src="js/device-list.js"></script>
+</body>
+</html>

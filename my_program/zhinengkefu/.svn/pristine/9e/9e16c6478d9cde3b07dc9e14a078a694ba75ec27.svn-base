@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="css/common.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/jquery.treeview.css" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/jquery.treeview.js"></script>
+		<style>
+			.cursort {
+				width: 41px;
+			}
+			
+			.curtime {
+				width: 120px;
+			}
+			
+			.curquestion {
+				width: 250px;
+			}
+			
+			.curaudio {
+				width: 61px;
+			}
+			
+			.buttonList {
+				width: 240px;
+			}
+			
+			.buttonList a {
+				padding: 0 10px;
+			}
+			
+			.btns {
+				text-align: center;
+			}
+			
+			.mrAnswer {
+				display: none;
+			}
+			.fenleiPanl{
+				display: none;
+			}
+			
+			#tree {
+				display: none;
+				position: absolute;
+				background: #fff;
+				z-index: 2;
+				width: 490px;
+				box-sizing: border-box;
+				max-height: 300px;
+				overflow: auto;
+				border: 1px solid #dce1e6;
+				top: 30px;
+				left: 0px;
+				border-radius: 4px;
+				padding: 3px 3px;
+				transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+			}
+			.btnbig{
+				width: 242px; 
+				height: 32px;
+				margin-right: 0px;
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div style="height: 40px;text-align: right">
+			<label style="margin-right: 20px;" id="kfIsOn">客服在线中...</label>
+			<div class="search-box" style="display: inline-block; margin-right: 20px;">
+				<select name="kfstate" id="kfstate">
+					<option value="free" selected="selected">空闲</option>
+					<option value="busyness">忙碌</option>
+				</select>
+			</div>
+			<div class="search-box" style="display: inline-block">
+				<select name="scene" id="scene" data-rel="2">
+					<option value="昨天" selected="selected">昨天</option>
+					<option value="7天">7天</option>
+					<option value="30天">30天</option>
+					<option value="90天">90天</option>
+				</select>
+			</div>
+
+		</div>
+
+		<div class="grid synonym">
+			<div class="grid-head">
+				<div class="grid-head-th">
+					<div class="cursort"><span>序号</span></div>
+					<div class="curtime"><span>日期</span></div>
+					<div class="curquestion"><span>问题</span></div>
+					<div class="curaudio"><span>音频</span></div>
+					<div class="curquestion"><span>答案</span></div>
+					<div class=""><span>操作</span></div>
+				</div>
+			</div>
+			<div class="grid-body">
+			</div>
+		</div>
+		<div class="pages">
+			<ul>
+			</ul>
+		</div>
+		<div class="overall">
+			<div class="popap">
+				<p>确定要删除该条会话吗？</p>
+				<input type="button" class="button deleted" value="确定">
+				<input type="button" class="button minor hideOverflow" value="取消" />
+			</div>
+		</div>
+
+		<div class="similarQueOverall">
+			<div class="simiLeft" onclick="javascript:hideSimiOver(this)"></div>
+			<div class="similarContent">
+				<!--编辑问题-->
+				<div class="similarBox">
+					<div class="similarBoxCon">
+						<div class="ansQue">
+							<p>问题</p>
+							<div style="position: relative;">
+								<input type="text" class="text editTreeTitleInput" placeholder="默认问题" style="width: 485px; font-size: 14px;/">
+								<ul class="anotherTree"></ul>
+							</div>
+						</div>
+						
+						<div class="ansQue simAns">
+							<div class="btns" style="padding-bottom: 34px; margin-top: 14px; display: inline-block; border-bottom: 1px solid #dce1e6;">
+								<input type="button" style="border-radius: 4px 0px 0px 4px;"  class="button searchbtn btnbig" value="已有答案回答" onclick="javascript:setAnsPanl(this)" />
+								<input type="button" style="border-radius: 0px 4px 4px 0px;" class="button minor btnbig" value="编辑答案回答" onclick="javascript:setEditAnsPanl(this)" />
+							</div>
+							<div class="simB" style="margin-top: 34px;">
+								<input type="text" class="text searchInput" style="width: 370px; margin-bottom: 34px;" placeholder="请输入您查询的内容"/>
+								<input type="button" class="button searchbtn " style="margin-bottom: 34px;" onclick="javascript:searchFun(this)" rel="0" value="搜索" />
+								<ul class="similarAnsList"></ul>
+							</div>
+						</div>
+						<div class="ansQue fenleiPanl">
+							<p>分类</p>
+							<div style="position: relative;">
+								<input type="text" onclick="isShowTree()" class="text treeTitleInput" placeholder="点击选择分类 >" style="width: 485px; font-size: 14px;">
+								<ul id="tree"></ul>
+							</div>
+						</div>
+						<div class="ansQue mrAnswer">
+							<p>默认答案</p>
+							<textarea class="text editAnswerText" style="width: 490px; height: 180px; font-size: 14px; resize:none;"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="btns">
+					<input type="button" class="button searchbtn " rel="0" value="上传知识库" onclick="javascript:okBtn(this)" />
+					<input type="button" class="button minor " value="取消" onclick="javascript:cancelBtn(this)" />
+				</div>
+			</div>
+
+		</div>
+
+		<script src="js/customerServiceMsg.js"></script>
+	</body>
+
+</html>

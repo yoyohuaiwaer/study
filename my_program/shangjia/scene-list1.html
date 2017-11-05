@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script>
+
+        var app = angular.module('loadList', []);
+        app.controller('funCtrol', function($scope, $http) {
+            $http({
+                method:"get",// 可以是get,post,put, delete,head,jsonp;常使用的是get,post
+                url:"http://112.74.14.173:8080/server/scene", //请求路径
+                params:{token:'377688cdfd9daded3d3b3ec34f8fa69d'}//传递参数，字符串map或对象，转化成？name=lisa形式跟在请求路径后面
+            }).success(function(data){
+                data = eval('(' + data + ')');
+                console.log(data.data);
+                $scope.scenes = data.data;
+
+            }).error(function(data){
+            })
+            $scope.remove = function (index) {
+                $scope.items.splice(index, 1);
+            }
+            $scope.editScene = function(e){
+                console.log("123");
+                $scope.myCode = !$scope.myCode;
+            };
+        });
+
+    </script>
+    <script>
+
+        /*$(document).ready(function() {
+            $.ajax(
+                {
+                    url: 'http://112.74.14.173:8080/server/scene',
+                    data: {token: '377688cdfd9daded3d3b3ec34f8fa69d'},
+                    dataType: 'json',
+                    async: false,
+                    success: function (response) {
+                        response = eval('(' + response + ')')
+                        //console.log(response);
+                        $(".grid-body").empty();
+                        var html = '';
+                        if(response.code == '1'){
+                            var sort = 1;
+                            $.each(response.data, function(i,key){
+                                sort = i+1;
+                                html+=' <div class="grid-body-tr"> <div class="order-number">'+sort+'</div> <div class="industry" onclick=""><span>'+key.industry+'</span><input type="text" name="industry" id="industry" value="'+key.industry+'"/></div> <div class="scene"><a href="javascrip:void(0);" onclick="javascript:readscene(this)" id="'+key.name+'" >'+key.name+'</a><input type="text" name="name" id="name" value="'+key.name+'"/></div> <div class="answer-number">100</div> <div class="operation"> <a href="javascript:void();" onclick="javascript:editList(this)" class="" title="'+key.name+'">修改</a> <a href="javascript:void();" onclick="javascript:deleteList(this)" alt="title="'+key.name+'"">删除</a> </div> </div>'
+                            })
+                        }else{
+
+                        }
+                        $(".grid-body").html(html);
+                    },
+                    error: function (text) {
+                        alert(text.readyState);
+                        alert(text.status);
+                    }
+            })
+
+        })*/
+        //
+        function readscene(e){
+
+        };
+    </script>
+</head>
+<body>
+<div>
+    <div class="grid">
+        <div class="grid-head">
+            <div class="grid-head-th">
+                <div class="order-number">序号</div>
+                <div class="industry">行业</div>
+                <div class="scene">场景</div>
+                <div class="answer-number">问答条数</div>
+                <div class="operation">操作</div>
+            </div>
+        </div>
+        <div class="grid-body" ng-app="loadList" ng-controller="funCtrol" ng-init="">
+            <div class="grid-body-tr" ng-repeat="x in scenes">
+                <div class="order-number">{{$index+1}}</div>
+                <div class="industry"><span>{{x.industry}}</span><input type="text" value="{{x.industry}}"/></div>
+                <div class="scene"><a>{{x.name}}</a><input type="text"  value="{{x.name}}"/></div>
+                <div class="answer-number">{{x.count}}</div>
+                <div class="operation">
+                    <a  href="#" class="editScene">修改</a>
+                    <a href="javascript:void(0);" class="clearEdit" onclick="javascript:clearEdit(this)">取消</a>
+                    <a href="javascript:void(0);" class="submitEdit" onclick="javascript:submitEdit(this)" title="{{x.name}}">确定</a>
+                    <a href="javascript:void(0);" class="deletedEdit" onclick="javascript:deletedEdit(this)" title="x.name">删除</a>
+                    <!--<a href="javascript:void(0);" onclick="javascript:editList(this)" class="" title="'+key.name+'">修改</a>
+                    <a href="javascript:void(0);" onclick="javascript:deleteList(this)" title="'+key.name+'">删除</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    var app = angular.module('loadList', []);
+    app.controller('funCtrol', function($scope, $http) {
+        $http({
+            method:"get",// 可以是get,post,put, delete,head,jsonp;常使用的是get,post
+            url:"http://112.74.14.173:8080/server/scene",//请求路径
+            params:{token:'377688cdfd9daded3d3b3ec34f8fa69d'}//传递参数，字符串map或对象，转化成？name=lisa形式跟在请求路径后面
+        }).success(function(data){
+            data = eval('(' + data + ')');
+            console.log(data.data);
+            $scope.scenes = data.data;
+
+        }).error(function(data){
+        })
+        $scope.remove = function (index) {
+            $scope.items.splice(index, 1);
+        }
+
+    });
+    $(function(){
+        alert("123");
+        $(".editScene").click(function(){
+
+        })
+    })
+</script>
+</body>
+</html>

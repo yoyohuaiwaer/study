@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>语音识别使用详情</title>
+    <link href="css/common.css" rel="stylesheet">
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+        .breadcrumb li {
+            position: relative;
+            border-left: 1px solid #efeff1;
+            border-right: 1px solid #efeff1;
+            border-top: 1px solid #efeff1;
+            border-radius: 5px 5px 0 0;
+            margin-right: 10px;
+            line-height: 40px;
+            height: 40px;
+            margin-top: 12px;
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 0 20px;
+
+        }
+        .breadcrumb li:before {
+            content: '';
+        }
+        .breadcrumb li a {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<div style="height: 40px;margin-bottom: 15px;">
+    <input type="button" onclick="javascript:setList(this)" title="7" class="addScene button" value="7日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="button" onclick="javascript:setList(this)" title="30" class="addScene button" value="30日" style="float: left;margin-right: 20px; width: 40px;"/>
+    <input type="date" id="startTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px; "/>
+    至<input type="date" id="endTime" onchange="javascript:setStartList(this)" class="text" style="width: 140px;  margin-left: 6px;"/>
+    <label class="tip"></label>
+    <select id="shop" class="text" onchange="javascript:setTypeSelect(this)" style="width: 140px;">
+    </select>
+</div>
+<!--<div style="text-align: right"><input type="button" onclick="javascript:forExcel(this)" class="addScene button" value="导出Excel"/></div>-->
+
+<div id="demoBox" style="height:600px; width: 960px"></div>
+
+<table id="grid" class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+</table>
+<!--分页-->
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<!--分页-->
+
+<script type="text/javascript" src="js/voiceStatistics.js" ></script>
+
+</body>
+</html>

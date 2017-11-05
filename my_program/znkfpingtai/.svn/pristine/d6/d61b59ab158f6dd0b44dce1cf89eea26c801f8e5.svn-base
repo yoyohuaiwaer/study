@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	    <meta http-equiv="description" content="this is my page">
+	    <meta http-equiv="content-type" content=" charset=uft-8">-->
+		<link rel="stylesheet" href="css/jquery.treeview.css" />
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script type="text/javascript" src="js/jquery.treeview.js" ></script>
+	</head>
+	<body>
+		<ul id="tree" class="filetree">
+        <li><span class="folder">系统管理</span><a class="addElement">+</a>
+            <ul>
+                <li><span class="folder">部门管理</span><a class="addElement">+</a>
+                    <ul>
+                        <li><span class="folder">岗位添加</span></li>
+                        <li><span class="folder">岗位删除</span></li>
+                    </ul>
+                </li>
+                <li><span class="folder">岗位管理</span><a class="addElement">+</a>
+                    <ul>
+                        <li><span class="folder">岗位添加</span></li>
+                        <li><span class="folder">岗位删除</span></li>
+                    </ul>
+                </li>
+                <li><span class="folder">用户管理</span><a class="addElement">+</a>
+                    <ul>
+                        <li><span class="folder">添加用户</span></li>
+                        <li><span class="folder">修改用户</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><span class="folder">审批流转</span><a class="addElement">+</a></li>
+    </ul>
+    
+   <script type="text/javascript">
+    $("#tree").treeview();
+       $(document).ready(function(){
+            addElement();
+       })
+       function addElement(){
+           $('.addElement').on('click',function(){
+               var html = '';
+               if($(this).parent('li').children(' ul').length == 0){
+                   html = '<ul> <li class="last"><span class="folder"><a class="addDetails">添加层级</a></span><a class="addElement">+</a></li></ul>';
+                   $(this).parent('li').append(html);
+                   addElement();
+               }else {
+                    html = '<li class="collapsable"><span class="folder">添加层级<a class="addDetails"></a></span><a class="addElement">+</a></li>'
+                   $(this).parent('li').children(' ul').append(html);
+                   addElement();
+               }
+
+           })
+       };
+   </script>
+	</body>
+</html>

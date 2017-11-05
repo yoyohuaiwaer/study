@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新增广告</title>
+		<!--<link href="css/common.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+	</head>
+
+	<body>
+		<div class="adItem">
+			<label for="title">标题:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="title" style="width: 340px;" placeholder="20字以内" maxlength="20" />
+		</div>
+		<div class="adItem">
+			<label for="content">语音文本:&nbsp;&nbsp;</label>
+			<textarea id="content" style="width: 600px; height: 60px; resize: none; border-radius:5px" maxlength="100"></textarea>
+		</div>
+		<div class="adItem" id="timeWrap">
+			<label for="startTime">起止时间:&nbsp;&nbsp;</label>
+			<form action="" method="get" id="startTime" class="timeContent">
+				<input type="text" placeholder="年" maxlength="4" required max="9999" min="2016" style="width: 30px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">年
+				<input type="text" placeholder="月" maxlength="2" required max="13" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">月
+				<input type="text" placeholder="日" maxlength="2" required max="32" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">日
+				<input type="text" placeholder="时" maxlength="2" required max="24" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">时
+				<input type="text" placeholder="分" maxlength="2" required max="60" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">分
+			</form>
+			<label style="color: #C3C3C3; width: 8px;">-</label>
+			<form action="" method="get" id="endTime" class="timeContent">
+				<input type="text" placeholder="年" maxlength="4" required max="9999" min="2016" style="width: 30px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">年
+				<input type="text" placeholder="月" maxlength="2" required max="13" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">月
+				<input type="text" placeholder="日" maxlength="2" required max="32" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">日
+				<input type="text" placeholder="时" maxlength="2" required max="24" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">时
+				<input type="text" placeholder="分" maxlength="2" required max="60" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">分
+			</form>
+		</div>
+		<div class="adItem">
+			<label>关联素材:&nbsp;&nbsp;</label>
+			<select class="adListSelect" style="width: 320px;"></select>
+		</div>
+		<div class="adItem">
+			<label>频次:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="frequency" style="width: 60px;" min="1" maxlength="20" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" />&nbsp;分钟
+		</div>
+		<div class="adItem radioBox">
+			<label>状态:&nbsp;&nbsp;</label>
+			<input type="radio" name="state" value="上线" checked/><span style="margin-right: 40px;">上线</span>
+			<input type="radio" name="state" value="下线" />下线
+		</div>
+		<label class="tip"></label>
+		<div class="toolbar">
+			<input type="button" class="button confirm" value="确定" onclick="javascript:addAdFun(this);" />
+			<input type="button" class="button minor" value="取消" onclick="javascript:cancelAdFun(this);" />
+		</div>
+		<script type="text/javascript" src="js/addHardAd.js"></script>
+		<script type="text/javascript" src="js/timePublic.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,335 @@
+/**
+ * Created by A on 2016/11/9.
+ */
+$(document).ready(function() {
+	addHX()
+	$.ajax({
+		url: commUrl + '/menu/findbyid',
+		data: {
+			token: $.cookie("token"),
+			parentId: '598173badac5751672de1384'
+		},
+		success: function(data) {
+			data = eval('(' + data + ')');
+			$(".breadcrumb").empty();
+			var html = '<li ><a href="javascript:void(0);" onclick="javascript:changePage(this);" title="' + menuUrl + '' + data.data[0].url + '" id="' + data.data[0].id + '">' + data.data[0].name + '</a>' +
+				'<li class="selected"><a href="javascript:void(0);"   title="' + menuUrl + '' + 'add-ad.html' + '" id="' + data.data[0].parentId + '">历史消息</a></li>';
+			$(".breadcrumb").html(html);
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	});
+
+	//  changeBreadcrumb();
+	pagenation();
+	//  $.cookie('sences','1',{path:'/'})
+	//  sceneChange();
+	addSynonym();
+	//  deleted();
+	//  hideOverflow();
+
+})
+function addHX() {
+
+	$("#rtCall").click(function() {
+//		showIndexOverflow();
+	});
+}
+function clickAudio() {
+	console.log('===')
+
+}
+
+function sceneChange() {
+	$('#scene').change(function() {
+		$.cookie('sences', '2', {
+			path: '/'
+		});
+		//$(this).children('option:selected').attr('value');
+		console.log($(this).children('option:selected').attr('value'));
+		pagenation();
+	})
+}
+
+function addSynonym() {
+	$('.addSynonym').on('click', function() {
+		var sort = $(".grid-body-tr").length;
+		sort += 1;
+		var html = '';
+		html += '<div class="grid-body-tr red"> <div class=""><span>' + sort + '</span></div> ' +
+			'<div class=""><select name="" class="industry"></select></div> ' +
+			'<div><span ><input type="text" class="keyWord text" style="width: 180px"/></span></div>' +
+			'<div><span><input type="text" class="synonym text"/></span></div>' +
+			' <div class="operation"> <a class="confirm" rel="1">确定</a><a class="cancel">取消</a></div></div>';
+		$(".grid-body").append(html);
+
+		loadIndustry();
+		confirm();
+		cancel();
+	})
+}
+
+function confirm() {
+	$('.confirm').on('click', function() {
+		var obj = {}
+		if($(this).attr('rel') == 0) {
+			var keyWord = $(this).parents('.grid-body-tr').find('input.keyWord').val();
+			var feathers = $(this).parents('.grid-body-tr').find('input.synonym').val();
+			var id = $(this).attr('data-content-id');
+			obj = {
+				token: $.cookie("token"),
+				industryId: $(this).attr('data-industryId'),
+				industry: $(this).attr('data-industry'),
+				mainKey: keyWord,
+				feathers: feathers,
+				id: id
+			}
+		} else if($(this).attr('rel') == 1) {
+			var keyWord = $(this).parent('.operation').prev().prev().find('.keyWord').val();
+			var feathers = $(this).parent('.operation').prev().find('.synonym').val();
+			var industry = $(this).parents('.grid-body-tr').find('.industry').children('option:selected').attr('value');
+			var industryId = $(this).parents('.grid-body-tr').find('.industry').children('option:selected').attr('id');
+			console.log(industry);
+			console.log(industryId);
+			debugger;
+			obj = {
+				token: $.cookie("token"),
+				industryId: industryId,
+				industry: industry,
+				mainKey: keyWord,
+				feathers: feathers,
+				id: ''
+			}
+		}
+		$.ajax({
+			url: commUrl + '/synonym/save',
+			type: 'POST',
+			data: obj,
+			success: function(data) {
+				data = JSON.parse(data);
+				console.log(data);
+				if(data.code == 1) {
+					var page = $('.onpage').text();
+					pagenation(page);
+				} else if(data.code == -1) {
+					alert(data.msg);
+					//window.location.href = menuUrl+'index.html';
+				}
+			}
+		})
+	})
+}
+
+function cancel() {
+	$('.cancel').on('click', function() {
+		$(this).parents('.grid-body-tr').remove();
+	})
+}
+
+function pagenation(page) {
+	page = page ? page : 1;
+	var obj = {};
+	obj = {
+		token: $.cookie("token"),
+		page: page,
+		row: '10',
+		sortId: 'createTime',
+		sortType: 'DESC'
+	}
+
+	$.ajax({
+		url: commUrl + '/ad/find?timestamp=+' + new Date().getTime(),
+		data: obj,
+		dataType: 'json',
+		async: false,
+		success: function(response) {
+			response = JSON.parse(response);
+			$(".grid-body").empty();
+			$(".pages ul").empty()
+
+			var html = '';
+			var page = '';
+			if(response.code == '1') {
+				if(response.data.count == 0) {
+					html = '<div class="grid-body-tr"><p>暂无无数据</p></div>';
+				} else {
+					var sort = 0;
+					$.each(response.data.datas, function(i, key) {
+						sort = sort + 1;
+						var newstr = "测试测试暂无无数据测试测试"
+						html += '<div class="grid-body-tr"> <div style="width: 41px; min-width:41px;"><span>' + sort + '</div> </span>';
+						html += '<div style="width: 150px; min-width:150px; max-width:150px; padding:0 0 ;"><span>2017-06-22 12:04:58</span></div>';
+						html += '<div style="width: 235px; min-width:235px; max-width:235px;"><span><input type="text" class="keyWord text" style="display: none" value="' + "今天没吃早饭" + '"/><span class="keyWord">' + "今天没吃早饭" + '</span></span></div>';
+						html += '<div style="width: 61px; min-width:61px;"><audio class="audioBox" preload="none" src="http://so1.111ttt.com:8282/2016/1/12m/10/205101007238.m4a?tflag=1501747444&pin=bba0cb8b9d2f59b7a61f3b95c0e73a64&ip=218.18.137.195#.mp3" ></audio><img class="playPauseBtn" onclick="playOrPaused(this);" src="images/play.png" /></div>' +
+							'<div style="width: 235px; min-width:235px; max-width:235px;"><span><input type="text" class="synonym text" style="display: none" value="' + newstr + '"/><span class="synonym">' + newstr + '</span></span></div>' +
+							' <div class="buttonList"><span> <a class="confirm" rel="0" data-industry="' + key.industry + '" data-industryId="' + key.industryId + '" data-content-id="' + key.id + '" style="display: none">确定</a><a class="upKU" id="' + key.id + '">上传知识库</a><a class="edit" id="' + key.id + '">修改</a><a class="cancelEdit" style="display: none">取消</a><a class="overflowShow" data-contentId="' + key.id + '">删除</a></span></div></div>';
+					})
+					if(response.data.page == response.data.pageCount) {
+						page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + response.data.page + '</span>/<span class="pagecount">' + response.data.pageCount + '</span> </li> ' +
+							'<li class="nextPage readonly" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)"  value="确定"/></li>'
+					} else if(response.data.page == '1') {
+						page = '<li class="prevPage readonly" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + response.data.page + '</span>/<span class="pagecount">' + response.data.pageCount + '</span> </li>' +
+							' <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定"/></li>'
+					} else {
+						page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + response.data.page + '</span>/<span class="pagecount">' + response.data.pageCount + '</span> </li> ' +
+							'<li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定" /></li>'
+					}
+				}
+
+			}
+			$(".grid-body").html(html);
+			$(".pages ul").html(page);
+			edit();
+			showOverflow();
+			cancelEdit();
+			confirm();
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	});
+}
+
+var audio = $('.audioBox');
+var playPause = $('.playPauseBtn');
+var audioTimer;
+
+function playOrPaused() {
+	if(audio[0].paused) {
+		audio[0].play();
+		audioTimer = window.setInterval(audioProgress, 1000);
+		playPause[0].setAttribute("src", "images/pause.png");
+		return;
+	}
+	if(audioTimer){
+		clearInterval(audioTimer);
+	}
+	audio[0].pause();
+	playPause[0].setAttribute("src", "images/play.png");
+
+}
+
+function audioProgress() {
+	console.log(audio.currentTime+"===audio.currentTime")
+	console.log(audio.duration+"===audio.duration")
+	if(audio.currentTime < audio.duration) {
+		if(audio.played) {}
+	} else {
+//	console.log("======clearInterval")
+//		clearInterval(audioTimer);
+//		audio[0].pause();
+//		playPause[0].setAttribute("src", "images/correct.png");
+	}
+}
+
+function edit() {
+	$('.edit').on('click', function() {
+		$(this).next('a').show();
+		$(this).prev('a').show();
+		$(this).hide();
+		$('.upKU').hide();
+		$('.confirm').show();
+		$(this).parents('.grid-body-tr').addClass('red');
+		$(this).parents('.grid-body-tr').find('input.keyWord').show();
+		$(this).parents('.grid-body-tr').find('input.synonym').show();
+		$(this).parents('.grid-body-tr').find('span.keyWord').hide();
+		$(this).parents('.grid-body-tr').find('span.synonym').hide();
+	})
+}
+
+function cancelEdit() {
+	$('.cancelEdit').on('click', function() {
+		$(this).prev('a').prev('a').hide();
+		$(this).prev('a').show();
+		$('.upKU').show();
+		$(this).hide();
+		$('.confirm').hide();
+		$(this).parents('.grid-body-tr').removeClass('red');
+		$(this).parents('.grid-body-tr').find('input.keyWord').hide();
+		$(this).parents('.grid-body-tr').find('input.synonym').hide();
+		$(this).parents('.grid-body-tr').find('span.keyWord').show();
+		$(this).parents('.grid-body-tr').find('span.synonym').show();
+	})
+}
+
+function deleted() {
+	$('.deleted').on('click', function() {
+		var id = $(this).attr('id');
+		$.ajax({
+			url: commUrl + '/synonym/delete',
+			//type:'POST',
+			data: {
+				token: $.cookie("token"),
+				//industryId:$.cookie('industryId'),
+				//industry:$.cookie('industryName'),
+				//mainKey:keyWord,
+				//feathers:feathers,
+				id: id
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				console.log(data);
+				if(data.code == 1) {
+					$(".overall").hide();
+					var page = $('.onpage').text();
+					pagenation(page);
+				} else if(data.code == -1) {
+					$(".overall").hide();
+				}
+			}
+		})
+	})
+}
+
+function prevPage(e) {
+	$(e).next("li").find(".onpage").text();
+
+	if($(e).next("li").find(".onpage").text() == '1') {
+		$(e).addClass("readonly");
+	} else {
+		var page = $(e).next("li").find(".onpage").text() - 1;
+		pagenation(page)
+	}
+}
+
+function nextPage(e) {
+	if($(e).prev("li").find(".onpage").text() == $(e).prev("li").find(".pagecount").text()) {
+		$(e).addClass("readonly");
+	} else {
+		var page = $(e).prev("li").find(".onpage").text() - 0 + 1;
+		pagenation(page)
+
+	}
+}
+//输入框跳转页面
+function turnPage(e) {
+	if(parseInt($(e).prev(".nowPage").val()) <= 1) {
+		var page = 1;
+		pagenation(page);
+	} else if(parseInt($(e).prev(".nowPage").val()) >= parseInt($(".pagecount").text())) {
+		var page = $(".pagecount").text();
+		pagenation(page)
+	} else {
+		var page = $(e).prev(".nowPage").val();
+		pagenation(page)
+
+	}
+}
+
+function showOverflow() {
+	$(".overflowShow").on('click', function() {
+		$(".deleted").attr({
+			id: $(this).attr('data-contentId')
+		});
+		$(".overall").show();
+	})
+};
+
+function hideOverflow() {
+	$(".hideOverflow").on('click', function() {
+		$(".overall").hide();
+	})
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<!--    <style>
+        .overall1 .popap p {
+            line-height: 80px;
+            text-align: left;
+        }
+        .overall1 .popap {
+            padding: 0 20px;
+        }
+        .overall1 .popap label {
+            font-size: 14px;
+            display: inline-block;
+            width: 80px;
+        }
+    </style>-->
+</head>
+<body>
+<div>
+    <div class="search-box" style="display: inline-block">
+        <select name="column" id="column" data-rel="1">
+            <option value="" selected="selected">选择栏目</option>
+        </select>
+    </div>
+    <input type="button" class="button showOverflow1" data-id="" value="新增栏目" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+    <input type="button" class="button deletedCol" data-id="" value="删除栏目" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+    <input type="button" class="button editTags" data-id="" value="新增专辑" style="float: right;margin-bottom: 15px;margin-right: 15px;"/>
+
+</div>
+<div class="grid">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div style="width: 100px;height: 45px;"><span>序号</span></div>
+            <div style="width: 220px;height: 45px;"><span>栏目名</span></div>
+            <div style="width: 220px;height: 45px;"><span>专辑名</span></div>
+            <div style="width: 250px;height: 45px;"><span>标签</span></div>
+            <div style="width: 170px;height: 45px;"><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+
+    </div>
+</div>
+<div class="pages">
+    <ul></ul>
+</div>
+<div class="overall" id="overall">
+    <div class="popap">
+        <p>确定要删除该专辑吗？</p>
+        <input type="button" class="button deleteTagsConfirm" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<div class="overall overall1" style="display: none;" id="editColu">
+    <div class="popap">
+        <p class="confirmDele" style="line-height: 60px">新增栏目</p>
+        <p class="EditCol" style="line-height: 60px; display: none">确定要修改该栏目名吗</p>
+        <p style="line-height: 150px"><input type="text" class="text newScene" id="newScene" value=""></p>
+        <!--<a class="deletedColumn" style="display: none">删除此栏目</a>-->
+        <input type="button" class="button addScene" data-id="" value="确定">
+        <input type="button" class="button minor hideOverflow1" value="取消">
+    </div>
+</div>
+<div class="overall" id="deleColumn">
+    <div class="popap">
+        <p style="line-height: 60px">确定要删除该栏目吗？</p>
+        <div style="height: 150px">
+            <select name="column" id="column1" data-rel="1">
+                <option value="" selected="selected">选择栏目</option>
+            </select>
+        </div>
+        <input type="button" class="button deleteColConfirm" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<script type="text/javascript" src="js/multimediaColumn-list.js"></script>
+</body>
+</html>

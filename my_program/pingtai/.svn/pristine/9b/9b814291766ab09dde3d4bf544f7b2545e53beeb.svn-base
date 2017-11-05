@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>-->
+    <!--<script type="text/javascript" src="js/breadcrumb.js"></script>-->
+   <!-- <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <style>
+        .grid.sports .grid-body-tr > div:first-child,
+        .grid.sports .grid-head-th > div:first-child {
+            width: 150px;
+        }
+        .grid.sports .grid-body-tr > div:first-child span,
+        .grid.sports .grid-head-th > div:first-child span {
+            width: 150px;
+        }
+        .grid.sports .grid-body-tr > div:nth-child(2),
+        .grid.sports .grid-head-th > div:nth-child(2) {
+            width: 250px;
+        }
+        .grid.sports .grid-body-tr > div:nth-child(2) span,
+        .grid.sports .grid-head-th > div:nth-child(2) span {
+            width: 250px;
+        }
+        .grid.sports .grid-body-tr > div:nth-child(3),
+        .grid.sports .grid-head-th > div:nth-child(3) {
+            width: 300px;
+        }
+        .grid.sports .grid-body-tr > div:nth-child(3) span,
+        .grid.sports .grid-head-th > div:nth-child(3) span {
+            width: 300px;
+        }
+        .grid.sports .grid-body-tr > div:last-child,
+        .grid.sports .grid-head-th > div:last-child {
+            width: 260px;
+        }
+        .grid.sports .grid-body-tr > div:last-child span,
+        .grid.sports .grid-head-th > div:last-child span {
+            width: 260px;
+        }
+        .sports img{
+            height: 80px;
+            width: 110px;
+            padding: 8px 0;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: right">
+    <input type="button" class="button edit" data-id="" value="新增动作">
+</div>
+<div class="grid sports">
+    <div class="grid-head">
+        <div class="grid-head-th">
+            <div class=""><span>序号</span></div>
+            <div class=""><span>动作名称</span></div>
+            <div class=""><span>更新时间</span></div>
+            <div class=""><span>操作</span></div>
+        </div>
+    </div>
+    <div class="grid-body" >
+    </div>
+</div>
+<div class="pages">
+    <ul>
+    </ul>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>确定要删除此动作吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+    </div>
+</div>
+<script type="text/javascript" src="js/sports-list.js"></script>
+</body>
+</html>

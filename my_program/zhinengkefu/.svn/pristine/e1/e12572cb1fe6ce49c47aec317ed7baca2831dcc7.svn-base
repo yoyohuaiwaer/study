@@ -1,0 +1,127 @@
+var mediaSource = new MediaSource();
+mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
+var mediaRecorder;
+var recordedBlobs;
+var sourceBuffer;
+
+var gumVideo = document.querySelector('video#localVideo');
+var isSecureOrigin = location.protocol === 'https:' ||
+location.hostname === 'localhost';
+if (!isSecureOrigin) {
+  alert('getUserMedia() must be run from a secure origin: HTTPS or localhost.' +
+    '\n\nChanging protocol to HTTPS');
+  location.protocol = 'HTTPS';
+}
+
+var constraints = {
+  audio: true,
+  video: false
+};
+
+function handleSuccess(stream) {
+  console.log('getUserMedia() got stream: ', stream);
+//window.stream = stream;
+window.stream = windowStream;
+  if (window.URL) {
+//  gumVideo.src = window.URL.createObjectURL(stream);
+    gumVideo.src = window.URL.createObjectURL(windowStream);
+    
+  } else {
+    gumVideo.src = windowStream;
+//  gumVideo.src = stream;
+  }
+}
+
+function handleError(error) {
+  console.log('navigator.getUserMedia error: ', error);
+  if(error.name == 'NotFoundError'){
+    alert('请检查本地是否有语音设备~！');
+    $('.call').hide();
+  }else{
+    $('.call').show();
+
+  }
+
+}
+
+navigator.mediaDevices.getUserMedia(constraints).
+    then(handleSuccess).catch(handleError);
+
+function handleSourceOpen(event) {
+  console.log('MediaSource opened');
+//	sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+	sourceBuffer = mediaSource.addSourceBuffer('video/mpeg');
+}
+
+function handleDataAvailable(event) {
+  if (event.data && event.data.size > 0) {
+    recordedBlobs.push(event.data);
+  }
+}
+
+function handleStop(event) {
+  console.log('Recorder stopped: ', event);
+}
+
+function startRecording() {
+  window.stream = windowStream;
+  recordedBlobs = [];
+  var options = {mimeType: 'video/webm;codecs=vp9'};
+  if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+    console.log(options.mimeType + ' is not Supported');
+    options = {mimeType: 'video/webm;codecs=vp8'};
+    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+      console.log(options.mimeType + ' is not Supported');
+      options = {mimeType: 'video/webm'};
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        console.log(options.mimeType + ' is not Supported');
+        options = {mimeType: ''};
+      }
+    }
+  }
+  try {
+    mediaRecorder = new MediaRecorder(window.stream, options);
+  } catch (e) {
+    console.error('Exception while creating MediaRecorder: ' + e);
+    alert('Exception while creating MediaRecorder: '
+      + e + '. mimeType: ' + options.mimeType);
+    return;
+  }
+  mediaRecorder.onstop = handleStop;
+  mediaRecorder.ondataavailable = handleDataAvailable;
+  mediaRecorder.start(10); // collect 10ms of data
+	$("#videotape").html("录制中")
+  console.log('MediaRecorder started', mediaRecorder);
+}
+
+function stopRecording() {
+	console.log(mediaRecorder)
+	if(mediaRecorder==undefined || mediaRecorder==null)
+	{
+		alert('没有视频开始录入')
+		return;
+	}
+	$("#videotape").html("录制")
+  mediaRecorder.stop(); 
+  mediaRecorder = null;
+  console.log('Recorded Blobs: ', recordedBlobs);
+}
+    
+function download() {
+	if(recordedBlobs==undefined || recordedBlobs.length==0)
+	{
+		alert('暂时没有录像可以下载')
+		return;
+	}
+  var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+  var url = window.URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = '录像.webm';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 100);
+}

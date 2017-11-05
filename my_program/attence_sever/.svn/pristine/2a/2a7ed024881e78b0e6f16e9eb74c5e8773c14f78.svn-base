@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>新增会员</title>
+		<!--<link href="css/common.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+	</head>
+	<style>
+		.imageBox img {
+			display: none;
+		}
+		
+		.photo {
+			width: 120px;
+			height: 120px;
+		}
+		
+		.imageBox {
+			display: inline-block;
+			position: absolute;
+		}
+		
+		.imageBox li {
+			width: 140px;
+			height: 120px;
+			float: left;
+			position: relative;
+		}
+		
+		.closeLayer {
+			z-index: 99;
+			position: absolute;
+			right: 20px;
+			top: 0px;
+		}
+	</style>
+	<body>
+		<!--<div class="adItem">-->
+			<!--<label for="id">会员号:&nbsp;&nbsp;</label>-->
+			<!--<span id="id"></span>-->
+		<!--</div>-->
+		<div class="adItem">
+			<label for="name">姓名:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="name" data-id="" maxlength="30" />
+		</div>
+		<div class="adItem">
+			<label for="number">员工编号:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="number" data-id="" maxlength="30" />
+		</div>
+		<div class="adItem">
+			<label for="classId">部门:&nbsp;&nbsp;</label>
+			<select name="producer" id="producer" style="display: none" >
+			</select>
+			<select name="category" id="classId"></select>
+		</div>
+		<div class="adItem" id="type">
+			<label for="type">权限:&nbsp;&nbsp;</label>
+			<label style="width: 70px; ">
+				<input name="type" type="radio" value="1" />管理
+			</label>
+			<label>
+				<input name="type" type="radio" value="0" checked />员工
+			</label>
+		</div>
+
+		<div class="adItem" id="sex">
+			<label>性别:&nbsp;&nbsp;</label>
+			<label style="width: 70px; ">
+				<input name="sex" type="radio" value="男" checked/>男
+			</label>
+			<label>
+				<input name="sex" type="radio" value="女" />女
+			</label>
+		</div>
+		<div class="adItem" id="status">
+			<label>状态:&nbsp;&nbsp;</label>
+			<label style="width: 70px; ">
+				<input name="status" type="radio" value="job" checked/>在职
+			</label>
+			<label>
+				<input name="status" type="radio" value="quit" />离职
+			</label>
+		</div>
+		<div class="adItem">
+			<label for="phone">联系电话:&nbsp;&nbsp;</label>
+			<input type="tel" class="text" id="phone" />
+		</div>
+		<!--<div class="adItem" style="margin: 10px 0 0 0;">-->
+			<!--<label>会员声纹:</label>-->
+			<!--<div class="choseimg changeAudio">-->
+				<!--+-->
+				<!--<input type="file" class="file_upload">-->
+			<!--</div>-->
+			<!--<div style="display: inline-block;">-->
+				<!--<audio style="display: none;" id="audioId" controls></audio>-->
+			<!--</div>-->
+			<!--<span class="audioTips">音频格式应为：wav</span>-->
+		<!--</div>-->
+		<div class="adItem" style="margin: 0 0 10px 0;">
+			<label>会员相片:</label>
+			<div class="choseimg changeImg" style="margin: 0;">
+				+
+				<input type="file" style="width: 120px; ">
+			</div>
+			<ul class="imageBox">
+				<li>
+					<img src="" id="imageStr0" class="photo">
+					<div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="0">
+						<img id="layer0" src="images/delected.png">
+					</div>
+				</li>
+				<li>
+					<img src="" id="imageStr1" class="photo">
+					<div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="1">
+						<img id="layer1" src="images/delected.png">
+					</div>
+				</li>
+				<li>
+					<img src="" id="imageStr2" class="photo">
+					<div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="2">
+						<img id="layer2" src="images/delected.png">
+					</div>
+				</li>
+				<li>
+					<img src="" id="imageStr3" class="photo">
+					<div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="3">
+						<img id="layer3" src="images/delected.png">
+					</div>
+				</li>
+				<li>
+					<img src="" id="imageStr4" class="photo">
+					<div class="closeLayer" onClick="javascript:delcfm(this)" href="#" title="4">
+						<img id="layer4" src="images/delected.png">
+					</div>
+				</li>
+			</ul>
+			<p class="imgTips">注意:(1)本人正面免冠照,要求五官清晰可见  (2)照片不可美颜/PS加工 (3)照片中只有1张人脸  (4)最多可上传5张照片,照片格式为jpg|jpeg|png|bmp 小于2M</p>
+		</div>
+		<label class="tip"></label>
+		<div class="toolbar">
+			<input type="button" class="button confirm" value="确定" onclick="javascript:addAdFun(this);" />
+			<input type="button" class="button minor" value="取消" onclick="javascript:cancelAdFun(this);" />
+		</div>
+		<div class="overall">
+			<div class="popap" style="height: 200px;">
+				<p>正在上传资源中,请稍候......</p>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/addMembers.js"></script>
+	</body>
+
+</html>

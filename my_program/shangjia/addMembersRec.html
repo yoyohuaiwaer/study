@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>新增会员广告</title>
+		<!--<link href="css/common.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+	</head>
+	<style>
+		#divAd {
+			border: 1px solid grey;
+			width: 100px;
+			height: 100px;
+			overflow: auto;
+			text-align: left;
+			background-color: #FFFFFF;
+			padding: 6px;
+			position: absolute;
+			z-index: 99;
+			display: none;
+		}
+		.adlist {
+			border: 1px solid #c3c3c3;
+			border-radius: 5px;
+			display: inline-block;
+			line-height: 30px;
+		}
+	</style>
+
+	<body>
+		<div class="adItem">
+			<label for="title">标题:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="title" style="width: 340px;" placeholder="20字以内" maxlength="20" />
+		</div>
+		<div class="adItem">
+			<label for="content">语音文本:&nbsp;&nbsp;</label>
+			<input type="text" class="text" id="content" style="width: 416px;" placeholder="30字以内" maxlength="30" />
+		</div>
+		<div class="adItem" id="timeWrap">
+			<label for="startTime">起止时间:&nbsp;&nbsp;</label>
+			<form action="" method="get" id="startTime" class="timeContent">
+				<input type="text" placeholder="年" maxlength="4" required max="9999" min="2016" style="width: 30px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">年
+				<input type="text" placeholder="月" maxlength="2" required max="13" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">月
+				<input type="text" placeholder="日" maxlength="2" required max="32" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">日
+				<input type="text" placeholder="时" maxlength="2" required max="24" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">时
+				<input type="text" placeholder="分" maxlength="2" required max="60" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">分
+			</form>
+			<label style="color: #C3C3C3; width: 8px;">-</label>
+			<form action="" method="get" id="endTime" class="timeContent">
+				<input type="text" placeholder="年" maxlength="4" required max="9999" min="2016" style="width: 30px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">年
+				<input type="text" placeholder="月" maxlength="2" required max="13" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">月
+				<input type="text" placeholder="日" maxlength="2" required max="32" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">日
+				<input type="text" placeholder="时" maxlength="2" required max="24" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">时
+				<input type="text" placeholder="分" maxlength="2" required max="60" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');javascript:showValue(this)" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">分
+			</form>
+		</div>
+	   <div class="qa-list adItem">
+            <label for="adIds">关联素材:</label>
+            <div class="selectBox" id="adIds">
+                <div class="optionSelected"><span class="select-font">关联素材</span><span class="suport-icon icon-drop_down"></span></div>
+                <ul class="selectOption"  style="display: none;">
+                </ul>
+            </div>
+        </div>
+		
+		
+		<div class="adItem">
+			<label for="url">关联会员:&nbsp;&nbsp;</label>
+			<select id="member_Type">
+				<option value="VIP" selected="selected">VIP</option>
+				<option value="普通">普通</option>
+			</select>
+		</div>
+		<label class="tip"></label>
+		<div class="toolbar">
+			<input type="button" class="button confirm" value="确定" onclick="javascript:addAdFun(this);" />
+			<input type="button" class="button minor" value="取消" onclick="javascript:cancelAdFun(this);" />
+		</div>
+		</div>
+		<script type="text/javascript" src="js/addMembersRec.js"></script>
+		<script type="text/javascript" src="js/timePublic.js" ></script>
+	</body>
+
+</html>

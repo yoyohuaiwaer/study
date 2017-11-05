@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <title></title>
+<script>
+    $(document).ready(function(){
+
+        $(".breadcrumb").empty();
+        $(".breadcrumb").html('<li class="selected"><span>插件库</span></li>');
+
+        renovate();
+
+    })
+    function renovatetree(){
+        $.ajax({
+            url:commUrl+'/menu/find',
+            type:'GET',
+            data:{token:$.cookie("token")},
+            dataType:'json',
+            async: false,
+            success: function(data){
+                //alert(data);
+                data = eval('(' + data + ')');
+                //console.log(data);
+                if(data.code== '1'){
+                    $('#tree-menus').empty();
+                    var html = '';
+
+                    $.each(data.data, function(i,key){
+                        //console.log( this.menu1.name);
+
+                        var dom = '';
+
+                        if(this.menu1.name == "功能"){
+
+                            $.each(key.menu2,function(l,val){
+                                if(this.view == 1){
+                                    dom +='<li class="node" id="'+this.id+'"> <div class="node-font"> <span class="node-icon icon-file"></span> <div class="node-name" ><a href="javascript:void(0);" title="'+menuUrl+''+this.url+'">'+this.name+'</a></div> </div> </li>';
+                                }
+                            })
+                            dom+='<li class="node" id="add"> <div class="node-font"> <span class="node-icon icon-file">+</span> <div class="node-name" ><a href="javascript:void(0);" title=" '+menuUrl+'addfunction.html" >添加功能</a></div> </div> </li>';
+                        }
+                        else{
+                            $.each(key.menu2,function(l,val){
+                                dom +='<li class="node" id="'+this.id+'"> <div class="node-font"> <span class="node-icon icon-file"></span> <div class="node-name" ><a href="javascript:void(0);" title="'+menuUrl+''+this.url+'">'+this.name+'</a></div> </div> </li>';
+                            });
+                        }
+                        //alert(dom);
+                        if(dom == ''){
+                            html+='<li class="node" id="'+this.menu1.id+'"> <div class="node-font"> <span class="node-icon icon-file"><img src="'+this.menu1.icon+'"/></span> <div class="node-name" >'+this.menu1.name+'</div> </div></li>';
+                        }else{
+                            html+='<li class="node" id="'+this.menu1.id+'"> <div class="node-font"> <span class="node-icon icon-file"><img src="'+this.menu1.icon+'"/></span> <div class="node-name" >'+this.menu1.name+'</div> </div><ul class="tree-menus tree-meni2">'+dom+'</ul></li>';
+                        }
+                    })
+
+                    $('#tree-menu1').html(html);
+                    findMenu();
+
+
+                }
+            },
+            error: function(data,text,status){
+                alert(data.readyState);
+                alert(data.status);
+            }
+        })
+    };
+    function findMenu(){
+        $(".tree-meni2 .node").click(function(){
+            $(".node").removeClass("node-selected")
+            $(this).addClass("node-selected");
+            var selectedurl = $(this).find("a").attr("title");
+            $("h2.main-title").text($(this).text()).attr({title:$(this).attr("id")});
+            $.ajax({
+                url:selectedurl,
+                type:'GET',
+                //async: false,
+                success: function(data){
+
+                    $(".main").empty().html(data);
+                },
+                error: function(text){
+                    alert(text.readyState);
+                    alert(text.status);
+                }
+            });
+        });
+    };
+    function renovate(){
+        $.ajax(
+                {url:commUrl+'/menu/findfunction',
+                    data:{token:$.cookie("token")},
+                    dataType: 'json',
+                    async: false,
+                    success: function(response){
+                        response = eval('(' + response + ')')
+                        //console.log(response);
+                        if(response.code == '1'){
+                            $(".addFunctionBox").empty();
+                            var html = ''
+                            $.each(response.data,function(i,key){
+                                //console.log(key);
+                                if(key.view == '1'){
+                                    html+= '<li> <div class="icon"> <img src="'+key.icon+'" alt=""/> </div> <div class="function-detial"> <div class="title">'+key.name+'</div> <div class="desc">'+key.desc+'</div> </div> <div class="showstate"> <a class="deleteFun"  id="'+key.id+'">已添加</a> <span class="arrow"></span> </div> </li>';
+
+                                }
+                                else{
+                                    html+= '<li> <div class="icon"><img src="'+key.icon+'" alt=""/></div> <div class="function-detial"> <div class="title">'+key.name+'</div> <div class="desc">'+key.desc+'</div> </div> <div class="showstate"> <a class="addFun"  id="'+key.id+'" >未添加</a> <span class="arrow"></span> </div> </li>';
+
+                                }
+                            })
+                            //确认绑定事件
+                            $(".addFunctionBox").html(html);
+                            detection();
+                            addfunction();
+
+                        };
+
+                    },
+                    error: function(text){
+                        alert(text.readyState);
+                        alert(text.status);
+                    }
+                });
+        /*$.get(commUrl+'/menu/findfunction',{token:$.cookie("token")},function(response){
+                    response = eval('(' + response + ')')
+                    if(response.code == '1'){
+                        $(".addFunctionBox").empty();
+                        var html = ''
+                        $.each(response.data,function(i,key){
+                            //alert(key.name);
+                            if(key.view == '1'){
+                                html+= '<li> <div class="icon"><img src="'+key.icon+'" alt=""/></div> <div class="function-detial"> <div class="title">'+key.name+'</div> <div class="desc">'+key.desc+'</div> </div> <div class="showstate"> <a href="#" class="deleteFun" id="'+key.id+'">已添加</a> <span class="arrow"></span> </div> </li>'
+                            }
+                            else{
+                                html+= '<li> <div class="icon"><img src="'+key.icon+'" alt=""/></div> <div class="function-detial"> <div class="title">'+key.name+'</div> <div class="desc">'+key.desc+'</div> </div> <div class="showstate"> <a href="#" class="addFun" id="'+key.id+'" >未添加</a> <span class="arrow"></span> </div> </li>'
+                            }
+                        })
+                        //alert(html);
+                        detection();
+                        addfunction();
+                        $(".addFunctionBox").html(html);
+                    };
+
+                }
+        )*/
+    };
+
+    function detection(){
+        $(".deleteFun").on('click',function(){
+            $.ajax(
+                    {
+                        url:commUrl+'/menu/deleteview',
+                        data:{token:$.cookie("token"),menuId:$(this).attr('id')},
+                        type:'POST',
+                        dataType: 'json',
+                        success: function(response){
+                            response = eval('(' + response + ')')
+                            //alert(response);
+                            if(response.code == '1'){
+                                renovatetree();
+                                renovate();
+                                // newPage();
+                            }
+                        },
+                        error: function(text){
+                            alert(text.readyState);
+                            alert(text.status);
+                        }
+                    }
+            )
+        })
+    }
+
+    function addfunction(){
+        $('.addFun').on('click',function(){
+            $.ajax({
+                url:commUrl+'/menu/functionview',
+                data:{token:$.cookie("token"),menuId:$(this).attr('id')},
+                type:'POST',
+                dataType: 'json',
+                success: function(data){
+                    data = eval('(' + data + ')');
+                    //console.log(response);
+                    if(data.code == '1'){
+                        renovatetree();
+                        renovate();
+                        // newPage();
+                    }
+                },
+                error: function(text){
+                    alert(text.readyState);
+                    alert(text.status);
+                }
+            })
+        })
+    }
+
+
+</script>
+</head>
+<body>
+<div>
+    <ul class="addFunctionBox" >
+    </ul>
+</div>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'icomoon-boot';
+    src:  url('fonts/icomoon-boot.eot?cr449q');
+    src:  url('fonts/icomoon-boot.eot?cr449q#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-boot.ttf?cr449q') format('truetype'),
+    url('fonts/icomoon-boot.woff?cr449q') format('woff'),
+    url('fonts/icomoon-boot.svg?cr449q#icomoon-boot') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon-boot' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Checkmark:before {
+    content: "\e901";
+    font-size: 15px;
+    padding: 2px 1px;
+}
+.icon-recycling11:before {
+    content: "\e900";
+}
+.icon-pencil:before {
+    content: "\e905";
+}
+.icon-cross:before {
+    content: "\ea0f";
+}
+.icon-checkmark:before {
+    content: "\ea10";
+}
+.icon-Cancel:before {
+    content: "\e902";
+    font-size: 15px;
+    padding:2px 1px;
+}
+
+
+.u-panels{
+    /*display: inline-flex;*/
+    display: -webkit-inline-flex;
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px 5px 5px 5px;
+}
+.u-panel {
+    width: 192px;
+    border-right: 1px solid #e6e6e6;
+    display: inline-block;
+}
+.u-panel .u-panel-tlt {
+    font-size: 14px;
+    color: #333;
+    background: #fafafb;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 15px 12px;
+}
+.z-normal,
+.z-edit {
+    padding: 10px 12px;
+    cursor: pointer;
+    /*background: red;*/
+}
+
+.u-panel .u-panel-cnt {
+    height: 438px;
+    overflow-y: auto;
+}
+.u-panel .u-panel-cnt .u-panel-itm {
+    position: relative;
+    font-size: 14px;
+    color: #333;
+    /*padding: 10px 12px;*/
+}
+.z-normal span[class^="icon-"]{
+    display: none;
+}
+.z-normal:hover span:not([class^="icon-"]){
+    text-decoration: underline;
+}
+.z-normal:hover span[class^="icon-"]{
+    display: inline;
+}
+
+.u-panel .u-panel-cnt .u-panel-itm.z-sel,
+.u-panel-itm:hover{
+    background: #eeeef1;
+}
+.hidden{
+    display: none;
+}
+.z-edit.normal {
+    display: block;
+}
+
+.u-panel .u-panel-cnt .u-add,
+.u-panel-add{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    color: #62a8ea;
+    padding: 12px;
+}
+.u-panel-itm-tlt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.z-edit {
+    display: none;
+}
+.z-normal span:not([class^="icon"]),
+.z-edit .u-ipt{
+    display: inline-block;
+    width: 120px;
+}
+.z-normal span[class^="icon"]
+/*.z-edit span[class^="icon"]*/{
+    padding: 0 3px;
+}

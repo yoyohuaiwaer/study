@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+    <script>
+        function newPage(){
+            $.get('question-list.html',{token:$.cookie("token"),scene:$.cookie("scene")},function(response){
+                $(".main").empty().html(response);
+            })
+        }
+        $(document).ready(function(){
+            $.ajax({
+                url:commUrl+'/menu/findbyid',
+                data:{
+                    token:$.cookie("token"),
+                    parentId:$(".main-title").attr("title")
+                },
+                success: function(data){
+                    data = eval('('+data+')');
+                    if(data.code == '1'){
+                        $(".breadcrumb").empty();
+                        console.log(data);
+                        var breadcrumb = '<li><a href="javascript:void(0);" onclick="javascript:changePage(this);" title="'+menuUrl+''+data.data[0].url+'" id="'+data.data[0].parentId+'">'+data.data[0].name+'</a></li>' +
+                                '<li><a href="javascript:void(0);" onclick="javascript:changePage(this);" title="'+menuUrl+''+data.data[1].url+'" id="'+data.data[1].parentId+'">'+data.data[1].name+'</a></li>' +
+                                '<li class="selected"><span href="javascript:void(0); title="'+menuUrl+''+data.data[2].url+'" id="'+data.data[2].parentId+'">'+data.data[2].name+'</span></li>'
+                        $(".breadcrumb").html(breadcrumb);
+                        //alert(breadcrumb);
+                    }
+                },
+                error: function(text){
+                    alert(text.readyState);
+                    alert(text.status);
+                }
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+<div>
+
+    <form action="" method="get" id="qrecordForm">
+        <div>
+            <label for="question">关键词(组):</label>
+            <input type="text" name="question" id="question" class="text"/>
+            <label id="tip1" for="question"></label>
+        </div>
+        <div>
+            <label for="action">动作定义:</label>
+            <select name="action" id="action" class="text" style="width: 100px;">
+                <option value="happy">开心</option>
+                <option value="sad">悲伤</option>
+                <option value="thinking">思考</option>
+                <option value="angry">愤怒</option>
+                <option value="goodBye">再见</option>
+                <option value="" selected="selected">不定义</option>
+            </select>
+            <label id="tip2" for="action"></label>
+        </div>
+
+
+        <div>
+            <label for="answer">答案:</label>
+            <input type="text" name="answer" id="answer" class="text" style="width: 520px"/>
+            <label id="tip3" for="answer"></label>
+        </div>
+        <div>
+            <label for="url">url:</label>
+            <input type="url" name="url" id="url" class="text" style="width: 520px"/>
+            <label id="tip4" for="url"></label>
+        </div>
+        <div style="height: 50px; line-height: 50px;">
+            <label for="ad">广告一:</label>
+            <select name="ad" id="allAdList1" class="text" style="width: 320px;" onchange="adChange(this)">
+            </select>
+        </div>
+        <div style="height: 50px; line-height: 50px;">
+            <label for="ad">广告二:</label>
+            <select name="ad" id="allAdList2" class="text" style="width: 320px;" onchange="adChange(this)">
+            </select>
+        </div>
+        <div style="height: 50px; line-height: 50px;">
+            <label for="ad">广告三:</label>
+            <select name="ad" id="allAdList3" class="text" style="width: 320px;" onchange="adChange(this)">
+            </select>
+        </div>
+        <div style="height: 50px; line-height: 50px;">
+            <label for="ad">广告四:</label>
+            <select name="ad" id="allAdList4" class="text" style="width: 320px;" onchange="adChange(this)">
+            </select>
+        </div>
+        <div style="height: 50px; line-height: 50px;">
+            <label for="ad">广告五:</label>
+            <select name="ad" id="allAdList5" class="text" style="width: 320px;" onchange="adChange(this)">
+            </select>
+        </div>
+        <div id="tip5"></div>
+        <div class="t_r">
+            <input type="button" value="保存" class="button" id="submit"/>
+            <input type="button" value="取消" class="button minor" id="reset" />
+        </div>
+    </form>
+</div>
+<script>
+	getAdList();
+	function getAdList(){
+		$.ajax({
+            url:commUrl+'/ad/findAll',
+            data:{token:$.cookie("token")},
+            dataType:'json',
+            success:function(data){
+                data = eval('('+data+')');
+                    console.log(data);
+                var html = '<option class="answerList">'+'请选择广告'+'</option>';
+                if(data.code == '1'){
+                   $.each(data.data,function(i,key){
+                   		html +='<option id='+key.id+'  title='+key.title+' class="answerList">'+key.title+'</option>'
+	                })
+                }
+                $("#allAdList1").html(html);
+                $("#allAdList2").html(html);
+                $("#allAdList3").html(html);
+                $("#allAdList4").html(html);
+                $("#allAdList5").html(html);
+            },
+            error: function(text){
+                alert(text.readyState);
+                alert(text.status);
+            }
+        })
+	}
+    var aler = $("#action").change(function(e){
+        var text = ($(this).find("option:selected").attr("value"));
+        return e
+    });
+    //alert(aler);
+    function newPage(){
+        $.get(menuUrl+'question-list.html',{token:$.cookie("token"),scene:$.cookie("scene")},function(response){
+            $(".main").empty().html(response);
+        })
+    }
+    $("#submit").click(function(){
+    	var isNext = arrTwo();
+    	if(!isNext)
+    	{
+    		return false;
+    	}
+    	var ids = [];
+    	for(var i=1;i<=5;i++)
+    	{
+    		var ad = $("#allAdList"+i).find("option:selected").attr("id");
+        	if(ad!=undefined)
+    		{
+    			ids.push(ad);
+    		}
+    	}
+        if($("#url").val().substr(0,7) == "http://"||$("#url").val() == ""){
+            $.ajax({
+                url:commUrl+'/qa',
+                type:'POST',
+                data:{
+                    token:$.cookie("token"),
+                    scene: $.cookie("scene"),
+                    q:$("#question").val(),
+                    a:$("#answer").val(),
+                    url:$("#url").val(),
+                    action:$("#action").find("option:selected").attr("value"),
+                    adIds:ids
+                },
+                success: function(data){
+                	
+                    data = eval('(' + data + ')')
+                    if(data.code == '1'){
+                        newPage();
+                    }
+                },
+                error: function(text){
+                    alert(text.readyState);
+                    alert(text.status);
+                }
+            })
+        }
+        else {
+            $("#tip4").show().text("输入地址有误，地址必须是以http://开头的url");
+        }
+    })
+    $("#reset").click(function(){
+        newPage();
+    })
+    
+    function adChange(e){
+        	var isNext = arrTwo();
+        	if(!isNext)
+        	{
+        		return false;
+        	}
+        }
+        function arrTwo(){
+        	var ids = [
+    				$("#allAdList1").find("option:selected").attr("id"),
+    				$("#allAdList2").find("option:selected").attr("id"),
+    				$("#allAdList3").find("option:selected").attr("id"),
+    				$("#allAdList4").find("option:selected").attr("id"),
+    				$("#allAdList5").find("option:selected").attr("id")];
+	    	var nary=ids.sort(); 
+			for(var i=0;i<ids.length;i++){ 
+				if (nary[i]!=undefined || nary[i+1]!=undefined){ 
+					if( nary[i]==nary[i+1])
+					{
+						$('#tip5').empty().css({color:"red"}).html("请勿选择重复广告");
+						return false;
+					}
+				}
+			} 
+			$('#tip5').empty();
+			return true;
+        }
+</script>
+</body>
+</html>

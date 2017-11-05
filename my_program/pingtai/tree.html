@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/jquery.treeview.css" />
+    <!--<link rel="stylesheet" href="css/common.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/common.js"></script>-->
+</head>
+<body>
+<div>
+    <div class="panel-box">
+        <div class="panel">
+            <div class="panel-head">
+                <p><h4>目录结构</h4></p>
+            </div>
+            <div class="panel-content">
+                <ul id="tree" class="filetree treeview" >
+            </ul>
+        </div>
+        <div class="panel-foot"></div>
+    </div>
+    </div>
+    <div class="panel-box">
+        <div class="panel" style="background: #f4f5f9;">
+            <div class="panel-head">
+                <p><h4>问答详情</h4></p>
+            </div>
+            <div class="panel-content" id="tree-details" data-content-id="node1">
+                <div class="qa-list industry"><label for="questions">行业:</label>
+                    <select name="" id="industry">
+
+                    </select>
+                </div>
+                <div class="qa-list"><label for="question">起始问题:</label><input type="text" class="text" id="question"/></div>
+                <div class="qa-list"><label for="questions">关键词（组）:</label><input type="text" class="text" id="questions"/></div>
+                <div class="qa-list">
+                    <label for="entity">关联实体:</label>
+                    <select name="" id="entity">
+                        <option value="" id="">实体</option>
+                    </select>
+                </div>
+                <div class="qa-list">
+                    <label for="adIds">关联素材:</label>
+                    <div class="selectBox" id="adIds">
+                        <div class="optionSelected"><span class="select-font">关联素材</span><span class="suport-icon icon-drop_down"></span></div>
+                        <ul class="selectOption" style="display: none;">
+                        </ul>
+                    </div>
+                </div>
+                <div class="qa-list">
+                    <label for="adIds">悬浮提示:</label>
+                        <input type="radio" name="sType" value="1" checked/>是&#12288;
+                        <input type="radio" name="sType" value="2"/>否
+
+                </div>
+                <div class="qa-list" style="margin-bottom: 30px"><label for="answers">答案:</label><textarea name="" id="answers"></textarea></div>
+                <div class="qa-list" style="text-align: center">
+                    <input type="button" class="button detailConfirm" value="添加内容" data-content-id="node1" style="width: 80px; background: #64c7f5; border-color: #64c7f5;" />
+                    <input type="button" class="button minor detailCancel" value="重置" style="width: 80px"/>
+                </div>
+            </div>
+            <div class="panel-foot"></div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+<br/>
+<br/>
+<div style="text-align: center;clear: both; margin-top: 50px">
+    <input type="button" class="button confirm" value="提交"/>
+    <input type="button" class="button minor cancel" value="取消"/>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除此问答及其下面的问答吗吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow" value="取消"/>
+    </div>
+</div>
+<script src="js/tree.js">
+</script>
+</body>
+</html>

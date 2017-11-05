@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/account-details.js"></script>
+    <style>
+        .industrys {
+            display: inline-block;
+            height: auto;
+            line-height: 30px;
+            width: 450px;
+        }
+        .industrys-box {
+            margin-bottom: 15px;
+        }
+        .industrys-box span {
+            display: inline-block;
+            width: 60px;
+        }
+        .industrys-box label{
+            width: auto!important;
+            margin-right: 20px;
+        }
+        .industrys-box input[type="checkbox"]{
+            margin-left: 0;
+        }
+        .industrys-box .industrys-input {
+            display: inline-block;
+            width: 330px;
+            border:1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 15px;
+        }
+        .checked-box {
+            border:1px solid #ccc;
+            display: inline-block;
+            vertical-align: top;
+            width: 290px;
+            min-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<form class="accound-detail">
+    <div><label for="username">用户名</label><input type="text" id="username" class="text"/><span class="tip5"></span></div>
+    <div><label for="email">邮箱地址</label><input type="email" id="email" class="text"/><span class="tip1"></span></div>
+    <div><label for="password">登录密码</label><input type="text" id="password" class="text"/><span class="tip2"></span></div>
+    <div><label for="nick">企业名称</label><input type="text" id="nick" class="text"/><span class="tip4"></span></div>
+    <!--<div><label for="industry">所属行业</label><select name="industry" id="industry">
+        &lt;!&ndash;<option value=""></option>&ndash;&gt;
+    </select><span class="tip3"></span></div>
+    <div style="height: auto">
+        <label style="vertical-align: top; line-height: 43px">问答库授权</label>
+        <div class="industrys" style="display: inline-block;">
+        </div>
+    </div>-->
+    <div class="toolbar" >
+        <input type="button" class="button confirm" value="保存"/>
+        <input type="button" class="button minor cancel" value="取消"/>
+    </div>
+</form>
+</body>
+</html>

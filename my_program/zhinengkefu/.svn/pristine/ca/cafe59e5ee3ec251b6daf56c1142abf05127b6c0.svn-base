@@ -1,0 +1,329 @@
+$(document).ready(function() {
+	var span = document.createElement('span');
+//	span.innerHTML = '-';
+	span.innerHTML = '+';
+	span.className = 'controlSymbol';
+
+	function titleFun() {
+		var args = arguments;
+		var ret = [];
+		for(var i = 0; i < args.length; i++) {
+			var temp = document.getElementsByTagName(args[i]);
+			try {
+				ret = ret.concat(Array.prototype.slice.call(temp, 0));
+			} catch(e) {
+				for(var j = 0; j < temp.length; j++) {
+					ret.push(temp[j]);
+				}
+			}
+		}
+		return ret;
+	}
+
+	function addSymbol(h) {
+		var innerSpan = span.cloneNode(true);
+		var isHas = $(h).hasClass('noSpan');
+		if(!isHas)
+		{
+			h.insertBefore(innerSpan, h.firstChild);
+		}
+	}
+
+	function next(el) {
+		while(el.nextSibling) {
+			if(el.nextSibling.nodeType == 1) {
+				return el.nextSibling;
+			}
+			el = el.nextSibling;
+		}
+		return null;
+	}
+	var outerWrap = document.getElementById('tree_wrap');
+	var smallTree = document.getElementById('anotherTree');
+	var editTree = document.getElementById('editTree');
+	var hs = titleFun('h5', 'h6');
+	for(var i = 0; i < hs.length; i++) {
+		addSymbol(hs[i]);
+	}
+	outerWrap.onclick = function(event) {
+		event = event || window.event;
+		var t = event.target || event.srcElement;
+		if(t.className == 'controlSymbol') {
+			initClassUI();
+			var sn = next(t.parentNode);
+			var nextN = next(t.parentNode);
+			if(nextN!=null || nextN)
+			{
+				var snStyle = next(t.parentNode).style;
+	//			snStyle.display = (snStyle.display == 'block' || snStyle.display == '') ? 'none' : 'block';
+	//			t.innerHTML = t.innerHTML == '+' ? '-' : '+';
+				snStyle.display = (snStyle.display == 'none' || snStyle.display == '') ? 'block' : 'none';
+				t.innerHTML = t.innerHTML == '-' ? '+' : '-';
+			}
+			
+		}
+	}
+	
+	smallTree.onclick = function(event) {
+		event = event || window.event;
+		var small = event.target || event.srcElement;
+		if(small.tagName!='SPAN')
+		{
+			var isAtshow = $('#anotherTree').css('display');
+			$('#anotherTree').css('display', isAtshow == 'none' ? 'inline-block' : "none");
+			var str = $(small).parent().find('label').html();
+			if(small.tagName=='LI')
+			{
+				str = $(small).find('label').html();
+			}
+			$('#treeTitleInput').val(str)
+			return;
+		}
+		if(small.className == 'controlSymbol') {
+			initClassUI();
+			var sn = next(small.parentNode);
+			var nextN = next(small.parentNode);
+			if(nextN!=null || nextN)
+			{
+				var snStyle = next(small.parentNode).style;
+				snStyle.display = (snStyle.display == 'none' || snStyle.display == '') ? 'block' : 'none';
+				small.innerHTML = small.innerHTML == '-' ? '+' : '-';
+			}
+			
+		}
+	}
+	
+	editTree.onclick = function(event) {
+		event = event || window.event;
+		var small = event.target || event.srcElement;
+		if(small.tagName!='SPAN')
+		{
+			var isAtshow = $('#editTree').css('display');
+			$('#editTree').css('display', isAtshow == 'none' ? 'inline-block' : "none");
+			var str = $(small).parent().find('label').html();
+			if(small.tagName=='LI')
+			{
+				str = $(small).find('label').html();
+			}
+			$('#editTreeInput').val(str)
+			return;
+		}
+		if(small.className == 'controlSymbol') {
+			initClassUI();
+			var sn = next(small.parentNode);
+			var nextN = next(small.parentNode);
+			if(nextN!=null || nextN)
+			{
+				var snStyle = next(small.parentNode).style;
+				snStyle.display = (snStyle.display == 'none' || snStyle.display == '') ? 'block' : 'none';
+				small.innerHTML = small.innerHTML == '-' ? '+' : '-';
+			}
+			
+		}
+	}
+	
+//	onFile();
+//	listPage();
+})
+//分类新增 修改 删除
+function classClick(value) {
+	var id = $(value).attr('id')
+	var classifyUl = $('.classifyUl');
+	for(var i = 0; i < classifyUl.length; i++) {
+		var parent = $(classifyUl[i]).parent();
+		if($(parent).attr('id') == id) {
+			var isshow = $(classifyUl[i]).css('display');
+			$(classifyUl[i]).css('display', isshow == 'none' ? 'block' : "none");
+		} else {
+			$(classifyUl[i]).css('display', 'none');
+		}
+	}
+}
+//分类下拉菜单收起
+function initClassUI() {
+	var classifyUl = $('.classifyUl');
+	for(var i = 0; i < classifyUl.length; i++) {
+		$(classifyUl[i]).css('display', 'none');
+	}
+}
+
+function clearOverall(e) {
+	$(".overall").hide();
+}
+//分类下拉菜单点击
+function showOverall(e) {
+	console.log($(e).attr('class')  )
+	var className = $(e).attr('class');
+	$(".deleteQuestion").attr({
+		id: e.id
+	});
+	$(".overall").show();
+	switch(className){
+		case "addCla": 
+			$('.popapTitle').html('创建分类')
+			$(".isDeleted").css('display', 'none');
+			$(".popapInput").css('display', 'block');
+			$(".popapInput").val("");
+		break;
+		case "reviseCla": 
+			$('.popapTitle').html('修改分类');
+			$(".isDeleted").css('display', 'none');
+			$(".popapInput").css('display', 'block');
+			$(".popapInput").val("售前");
+		break;
+		case "deletedCla": 
+			$('.popapTitle').html('删除分类')
+			$(".isDeleted").css('display', 'block');
+			$(".popapInput").css('display', 'none');
+		break;
+		case "bigClaTitle":
+			$('.popapTitle').html('创建分类')
+			$(".isDeleted").css('display', 'none');
+			$(".popapInput").css('display', 'block');
+			$(".popapInput").val("");
+		break;
+	}
+}
+
+function popopEnsure(e) {
+	$(".overall").hide();
+}
+function searchbtn(){
+    $('.searchbtn').on('click',function(){
+//      listPage(1,true);
+		alert('搜索问题')
+    })
+};
+//批量导入
+function onFile() {
+	$(".onfile").change(function() {
+		var file = this.files[0];
+		if(file == undefined) {
+			return;
+		}
+		var fileName = file.name.substring(file.name.lastIndexOf(".") + 1).toLowerCase();
+		if(fileName == "xlsx" || fileName == "xlsm" || fileName == "xltx" || fileName == "xltm" || fileName == "xls") {
+			if(file.size / 1024 < 1000) {
+				$(".urlTxt").val(file.name)
+				var formData = new FormData();
+				formData.append('qa_file', file);
+				$.ajax({
+					type: "POST",
+					url: commUrl + "/qa_import?token=" + $.cookie("token"),
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: formData,
+					complete: function(data) {
+						var obj = eval('(' + data.responseText + ')');
+						var msg = obj.msg;
+						if(obj.successNumber > 0) {
+							if(obj.errorNumber > 0) {
+								msg += ',成功通过验证' + obj.successNumber + '条,失败' + obj.errorNumber + '条,详情请下载并查看' + '<a download href=' + obj.errorExcelUrl + '>上传结果</a>'
+							}
+						} 
+						console.log(obj)
+						$(".showTips").empty().html(msg);
+					},
+					error: function(text) {
+						alert(text.readyState);
+						alert(text.status);
+					}
+				});
+			} else {
+				$(".showTips").empty().html("文件过大");
+			}
+		} else {
+			$(".showTips").empty().html("请上传EXCEL表格类型的文件");
+		}
+	})
+}
+
+function listPage(page, isSearch) {
+	var obj = {};
+	page = page ? page : 1;
+	obj = {
+		token: $.cookie("token"),
+		page: page,
+		row: '10',
+		sortId: 'createTime',
+		sortType: 'DESC'
+	}
+	$.ajax({
+		url: commUrl + '/videoREC/getMachineList' ,
+		data: obj,
+		cache: false,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data)
+			$(".grid-body").empty();
+			var html = '<tr class="grid-head-th">' +
+				'<th class="start_Time">序号</th>' +
+				'<th class="start_Time">问题</th>' +
+				'<th class="totalNum">相似问句  </th>' +
+				'<th class="totalNum">创建时间 </th>' +
+				'<th class="noLoginNum" >操作</th>' +
+				'</tr>';
+			var sort = 0;
+			var page = '';
+			if(data.code == '1' && data.data.datas.length>0) {
+				$.each(data.data.datas, function(i, key) {
+					sort = i + 1;
+					html += '<tr> <td>' + sort + '</td> ' +
+						'<td style="width:300px; "> ' + key.maName + '</td> ' +
+						'<td><a href="javascript:void(0);"  onclick="javascript:similarQuestions(this)" class="gridBtn" id="' + key.maid + '" >2</a></td> ' +
+						'<td>' + "17-08-07 08:45" + '</td> ' +
+						'<td ><a href="javascript:void(0);"  onclick="javascript:checkInfo(this)" class="gridBtn" id="' + key.maid + '" >编辑</a><a href="javascript:void(0);"  onclick="javascript:checkInfo(this)" class="gridBtn" id="' + key.maid + '" >删除</a></td>' +
+						'</tr>'
+				})
+				
+				if(data.data.page == '1') {
+					page = '<li class="prevPage readonly" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li>' +
+						' <li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定"/></li>'
+
+				} else if(data.data.page == data.data.pageCount) {
+					page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li> ' +
+						'<li class="nextPage readonly" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)"  value="确定"/></li>'
+				} else {
+					page = '<li class="prevPage" onclick="javascript:prevPage(this)" >&lsaquo;</li> <li class="page"> <span class="onpage">' + data.data.page + '</span>/<span class="pagecount">' + data.data.pageCount + '</span> </li> ' +
+						'<li class="nextPage" onclick="javascript:nextPage(this)">&rsaquo;</li><li class="turnPage"><input type="number" class="nowPage"/><input type="button" onclick="javascript:turnPage(this)" value="确定" /></li>'
+				}
+			}
+			if(data.code=='-1')
+			{
+				alert(data.msg+" 请重新登录")
+			}
+			$(".pages ul").html(page);
+			$(".grid").html(html);
+
+		},
+		error: function(text) {
+			alert(text.readyState);
+			alert(text.status);
+		}
+	})
+}
+//相似问句
+function similarQuestions(e){
+	var id = $(e).attr('id');
+//	alert(id)
+	$(".similarQueOverall").show();
+}
+//隐藏相似问句遮罩层
+function hideSimilarQueOver(e){
+	$(".similarQueOverall").hide();
+}
+
+function isShowTreeTwo(e)
+{
+	var isshow = $('#anotherTree').css('display');
+	$('#anotherTree').css('display', isshow == 'none' ? 'inline-block' : "none");
+}
+
+function isShowEditTree(e)
+{
+	var isshow = $('#editTree').css('display');
+	$('#editTree').css('display', isshow == 'none' ? 'inline-block' : "none");
+}

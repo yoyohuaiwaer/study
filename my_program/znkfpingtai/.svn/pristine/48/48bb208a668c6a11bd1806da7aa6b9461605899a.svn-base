@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多媒体列表</title>
+    <style>
+        .grid.sceneQa .grid-body-tr > div:first-child,
+        .grid.sceneQa .grid-head-th > div:first-child {
+            width: 80px;
+            max-width: 80px;
+        }
+        .grid.sceneQa .grid-body-tr > div:nth-child(2),
+        .grid.sceneQa .grid-head-th > div:nth-child(2) {
+            width: 220px;
+            max-width: 220px;
+        }
+        .grid.sceneQa .grid-body-tr > div:nth-child(3),
+        .grid.sceneQa .grid-head-th > div:nth-child(3) {
+            width: 150px;
+            max-width: 150px;
+        }
+        .grid.sceneQa .grid-body-tr > div:nth-child(4),
+        .grid.sceneQa .grid-head-th > div:nth-child(4),
+        .grid.sceneQa .grid-body-tr > div:nth-child(5),
+        .grid.sceneQa .grid-head-th > div:nth-child(5) {
+            width: 100px;
+            max-width: 100px;
+        }
+        .grid.sceneQa .grid-body-tr > div:nth-child(6),
+        .grid.sceneQa .grid-head-th > div:nth-child(6) {
+            width: 180px;
+            max-width: 180px;
+        }
+        .grid.sceneQa .grid-body-tr > div:last-child,
+        .grid.sceneQa .grid-head-th > div:last-child {
+            width: 130px;
+            max-width: 130px;
+        }
+        .grid.sceneQa .grid-body-tr > div:last-child a,
+        .grid.sceneQa .grid-head-th > div:last-child a {
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!--<div style="text-align: right">
+        <div class="search-box" style="display: inline-block">
+            <select name="scene" id="scene" data-rel="2">
+                &lt;!&ndash;<option value="none" selected="selected">选择场景</option>&ndash;&gt;
+            </select>
+        </div>
+        <div class="search-box" style="display: inline-block">
+            <select name="search" id="search" class="text" style="width: 80px;">
+                <option value="question" selected="selected">关键词</option>
+                <option value="answer">答案</option>
+            </select>
+            <input type="text" class="text searchText"/>
+            <input type="button" class="button searchbtn"  rel="0" value="搜索"/>
+        </div>
+        <input type="button" class="addQuestion button" value="新增问答" rel="1"/>
+        <input type="button" class="showOverflow1 button" value="新增场景" rel="1"/>
+    </div>-->
+    <div class="grid sceneQa">
+        <div class="grid-head">
+            <div class="grid-head-th">
+                <div class=""><span>ID</span></div>
+                <div class=""><span>文件名</span></div>
+                <div class=""><span>栏目</span></div>
+                <div class=""><span>属性</span></div>
+                <div class=""><span>状态</span></div>
+                <div class=""><span>更新时间</span></div>
+                <div class="operation"><span>操作</span></div>
+            </div>
+        </div>
+        <div class="grid-body">
+
+        </div>
+    </div>
+    <div class="pages">
+        <ul>
+        </ul>
+    </div>
+</div>
+<div class="overall">
+    <div class="popap">
+        <p>要定要删除词条问答吗？</p>
+        <input type="button" class="button deleted" value="确定">
+        <input type="button" class="button minor hideOverflow"  value="取消"/>
+    </div>
+</div>
+<script src="js/multimedia-list.js"></script>
+</body>
+</html>
